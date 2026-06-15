@@ -1,0 +1,29 @@
+{
+  "name": "carboncoach",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "AI-assisted carbon awareness platform for understanding, tracking, and reducing personal carbon footprint through everyday decision coaching.",
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^1.5.2"
+  }
+}
