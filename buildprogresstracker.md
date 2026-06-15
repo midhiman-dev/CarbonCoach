@@ -119,27 +119,27 @@ npm audit --omit=dev
 
 # Master Task Tracker
 
-| Task | Title                                                                             | Status       | Owner/Agent | Scoring Focus                   | Build   | Typecheck | Tests   | Lint    | Format  | Human Review | Commit  |
-| ---- | --------------------------------------------------------------------------------- | ------------ | ----------- | ------------------------------- | ------- | --------- | ------- | ------- | ------- | ------------ | ------- |
-| 001  | Repo Foundation, Workspace, and Quality Gates                                     | Complete     | Antigravity | CQ, TEST, EFF                   | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
-| 002  | Shared Carbon Domain Model and Factor Registry                                    | Complete     | Antigravity | CQ, TEST, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
-| 003  | Deterministic Carbon Footprint Engine                                             | Complete     | Antigravity | CQ, TEST, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
-| 004  | Recommendation Engine and Weekly Action Ranking                                   | Not Started  | TBD         | CQ, TEST, ALIGN                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 005  | Privacy, Redaction, and Local Data Safety Utilities                               | Not Started  | TBD         | SEC, TEST, CQ                   | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 006  | Coach Contracts, Fallback Composer, and Numeric Guard Contracts                   | Not Started  | TBD         | SEC, TEST, CQ                   | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 007  | Gemini Coach Service with Timeout, Schema Validation, Numeric Guard, and Fallback | Not Started  | TBD         | SEC, EFF, TEST, ALIGN           | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 008  | Accessible UI Foundation and App Shell                                            | Not Started  | TBD         | CQ, A11Y, EFF                   | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 009  | Carbon Profile Onboarding Flow                                                    | Not Started  | TBD         | A11Y, CQ, ALIGN                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 010  | Footprint Summary and Action Plan UI                                              | Not Started  | TBD         | ALIGN, A11Y, CQ                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 011  | Daily Choice Lab Engine and Tests                                                 | Not Started  | TBD         | ALIGN, TEST, CQ                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 012  | Daily Choice Lab UI and Choice Coach Integration                                  | Not Started  | TBD         | ALIGN, A11Y, SEC, EFF           | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 013  | Carbon World Engine and Lightweight Visual UI                                     | Not Started  | TBD         | ALIGN, A11Y, EFF                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 014  | Weekly Tracker and Local Persistence                                              | Not Started  | TBD         | ALIGN, TEST, SEC                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 015  | Security, Privacy, Assumptions, and Documentation Pass                            | Not Started  | TBD         | SEC, ALIGN, CQ                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 016  | Accessibility and Responsive Hardening                                            | Not Started  | TBD         | A11Y, CQ, TEST                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 017  | Cloud Run Deployment and Free-Tier Readiness                                      | Not Started  | TBD         | EFF, SEC, CQ                    | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 018  | LinkedIn Submission Docs, Prompt Strategy, and Architecture Evidence              | Not Started  | TBD         | ALIGN, CQ                       | N/A     | N/A       | N/A     | N/A     | Not Run | Not Run      | Pending |
-| 019  | Final Verification, Release Candidate, and Submission Gate                        | Not Started  | TBD         | CQ, SEC, EFF, TEST, A11Y, ALIGN | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| Task | Title                                                                             | Status      | Owner/Agent | Scoring Focus                   | Build   | Typecheck | Tests   | Lint    | Format  | Human Review | Commit  |
+| ---- | --------------------------------------------------------------------------------- | ----------- | ----------- | ------------------------------- | ------- | --------- | ------- | ------- | ------- | ------------ | ------- |
+| 001  | Repo Foundation, Workspace, and Quality Gates                                     | Complete    | Antigravity | CQ, TEST, EFF                   | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
+| 002  | Shared Carbon Domain Model and Factor Registry                                    | Complete    | Antigravity | CQ, TEST, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
+| 003  | Deterministic Carbon Footprint Engine                                             | Complete    | Antigravity | CQ, TEST, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
+| 004  | Recommendation Engine and Weekly Action Ranking                                   | Review Ready | Antigravity | CQ, TEST, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Not Run      | Pending |
+| 005  | Privacy, Redaction, and Local Data Safety Utilities                               | Not Started | TBD         | SEC, TEST, CQ                   | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 006  | Coach Contracts, Fallback Composer, and Numeric Guard Contracts                   | Not Started | TBD         | SEC, TEST, CQ                   | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 007  | Gemini Coach Service with Timeout, Schema Validation, Numeric Guard, and Fallback | Not Started | TBD         | SEC, EFF, TEST, ALIGN           | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 008  | Accessible UI Foundation and App Shell                                            | Not Started | TBD         | CQ, A11Y, EFF                   | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 009  | Carbon Profile Onboarding Flow                                                    | Not Started | TBD         | A11Y, CQ, ALIGN                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 010  | Footprint Summary and Action Plan UI                                              | Not Started | TBD         | ALIGN, A11Y, CQ                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 011  | Daily Choice Lab Engine and Tests                                                 | Not Started | TBD         | ALIGN, TEST, CQ                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 012  | Daily Choice Lab UI and Choice Coach Integration                                  | Not Started | TBD         | ALIGN, A11Y, SEC, EFF           | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 013  | Carbon World Engine and Lightweight Visual UI                                     | Not Started | TBD         | ALIGN, A11Y, EFF                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 014  | Weekly Tracker and Local Persistence                                              | Not Started | TBD         | ALIGN, TEST, SEC                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 015  | Security, Privacy, Assumptions, and Documentation Pass                            | Not Started | TBD         | SEC, ALIGN, CQ                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 016  | Accessibility and Responsive Hardening                                            | Not Started | TBD         | A11Y, CQ, TEST                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 017  | Cloud Run Deployment and Free-Tier Readiness                                      | Not Started | TBD         | EFF, SEC, CQ                    | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 018  | LinkedIn Submission Docs, Prompt Strategy, and Architecture Evidence              | Not Started | TBD         | ALIGN, CQ                       | N/A     | N/A       | N/A     | N/A     | Not Run | Not Run      | Pending |
+| 019  | Final Verification, Release Candidate, and Submission Gate                        | Not Started | TBD         | CQ, SEC, EFF, TEST, A11Y, ALIGN | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 
 ---
 
@@ -173,7 +173,7 @@ Update this section after every completed task.
 | Started At                | 2026-06-15                                                                                                                                                                                                                                                                                    |
 | Completed At              | 2026-06-15                                                                                                                                                                                                                                                                                    |
 | Agent / Tool              | Antigravity                                                                                                                                                                                                                                                                                   |
-| Commit Hash               | 80028ff438d0f4b295b4af12ad77e6d616961904                                                                                                                                                                                                                                                                                      |
+| Commit Hash               | 80028ff438d0f4b295b4af12ad77e6d616961904                                                                                                                                                                                                                                                      |
 | Files Changed             | packages/shared/src/types/carbon.ts, packages/shared/src/carbon/factorTypes.ts, packages/shared/src/carbon/assumptions.ts, packages/shared/src/carbon/factorRegistry.ts, packages/shared/src/carbon/index.ts, packages/shared/src/index.ts, packages/shared/src/carbon/factorRegistry.test.ts |
 | Summary                   | Implemented the carbon domain types, factor registry types, assumption metadata, transparent factor registry, helpers, and integrity tests.                                                                                                                                                   |
 | Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                                                                            |
@@ -185,37 +185,37 @@ Update this section after every completed task.
 
 ## Task 003 — Deterministic Carbon Footprint Engine
 
-| Field                     | Value                                                                                                                                                                                             |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Status                    | Review Ready                                                                                                                                                                                      |
-| Started At                | 2026-06-15                                                                                                                                                                                        |
-| Completed At              | 2026-06-15                                                                                                                                                                                        |
-| Agent / Tool              | Antigravity                                                                                                                                                                                       |
-| Commit Hash               | Pending                                                                                                                                                                                           |
+| Field                     | Value                                                                                                                                                                           |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                                                                                    |
+| Started At                | 2026-06-15                                                                                                                                                                      |
+| Completed At              | 2026-06-15                                                                                                                                                                      |
+| Agent / Tool              | Antigravity                                                                                                                                                                     |
+| Commit Hash               | Pending                                                                                                                                                                         |
 | Files Changed             | packages/shared/src/carbon/categoryCalculators.ts, packages/shared/src/carbon/calculator.ts, packages/shared/src/carbon/calculator.test.ts, packages/shared/src/carbon/index.ts |
-| Summary                   | Implemented deterministic footprint calculation with category-specific logic, normalization handling, top contributor derivation, confidence levels, and full test suite.                         |
-| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                |
-| Verification Result       | Pass                                                                                                                                                                                              |
-| Human Review Result       | Accepted                                                                                                                                                                                           |
-| Risks / Follow-ups        | No recommendation engine added, calculation logic only handles existing profile values. Strict numeric fallback bounds logic is documented.                                                       |
+| Summary                   | Implemented deterministic footprint calculation with category-specific logic, normalization handling, top contributor derivation, confidence levels, and full test suite.       |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                              |
+| Verification Result       | Pass                                                                                                                                                                            |
+| Human Review Result       | Accepted                                                                                                                                                                        |
+| Risks / Follow-ups        | No recommendation engine added, calculation logic only handles existing profile values. Strict numeric fallback bounds logic is documented.                                     |
 
 ---
 
 ## Task 004 — Recommendation Engine and Weekly Action Ranking
 
-| Field                     | Value       |
-| ------------------------- | ----------- |
-| Status                    | Not Started |
-| Started At                |             |
-| Completed At              |             |
-| Agent / Tool              |             |
-| Commit Hash               |             |
-| Files Changed             |             |
-| Summary                   |             |
-| Verification Commands Run |             |
-| Verification Result       |             |
-| Human Review Result       |             |
-| Risks / Follow-ups        |             |
+| Field                     | Value                                                                                                          |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                   |
+| Started At                | 2026-06-15                                                                                                     |
+| Completed At              | 2026-06-15                                                                                                     |
+| Agent / Tool              | Antigravity                                                                                                    |
+| Commit Hash               | Pending                                                                                                        |
+| Files Changed             | packages/shared/src/types/actions.ts, packages/shared/src/recommendations/*, packages/shared/src/index.ts      |
+| Summary                   | Implemented deterministic action catalog, preference-aware recommendation scoring, and weekly action plan.     |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                             |
+| Verification Result       | Pass                                                                                                           |
+| Human Review Result       | Pending                                                                                                        |
+| Risks / Follow-ups        | None. Numeric values only included if documented; heavily rely on impactBand otherwise.                        |
 
 ---
 
