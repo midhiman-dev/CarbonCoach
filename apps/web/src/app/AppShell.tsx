@@ -10,13 +10,16 @@ import {
   StatusBadge,
   ProgressMeter,
 } from '../components/ui';
-import { CarbonProfile } from '@carboncoach/shared';
+import { CarbonProfile, calculateFootprint } from '@carboncoach/shared';
 import { ProfileOnboarding } from '../features/profile';
+import { FootprintSummary, formatCategoryLabel } from '../features/footprint';
 
 export const AppShell: React.FC = () => {
   const [activeSection, setActiveSection] = useState<ActiveSection>('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [savedProfile, setSavedProfile] = useState<CarbonProfile | null>(null);
+
+  const estimate = savedProfile ? calculateFootprint(savedProfile) : null;
 
   const renderContent = () => {
     switch (activeSection) {
@@ -37,23 +40,49 @@ export const AppShell: React.FC = () => {
                       <p>
                         Your profile is configured. You can view or edit details in the Profile tab.
                       </p>
-                      <StatusBadge variant="high" label="Configured" />
+                      <StatusBadge variant="low" label="Configured" />
                     </>
                   ) : (
                     <>
                       <p>Estimate will appear after onboarding.</p>
-                      <StatusBadge variant="low" label="Not Configured" />
+                      <StatusBadge variant="moderate" label="Not Configured" />
                     </>
                   )}
                 </div>
               </Card>
 
               <Card title="Top Contributor">
-                <p>Top category impact band analysis will be calculated after onboarding.</p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
+                  {estimate && estimate.topCategory ? (
+                    <>
+                      <p>
+                        Largest source: <strong>{formatCategoryLabel(estimate.topCategory)}</strong>
+                      </p>
+                      <StatusBadge variant="high" label="Analysis Ready" />
+                    </>
+                  ) : (
+                    <>
+                      <p>Top category impact band analysis will be calculated after onboarding.</p>
+                      <StatusBadge variant="info" label="Awaiting Profile" />
+                    </>
+                  )}
+                </div>
               </Card>
 
               <Card title="Active Week Action Plan">
-                <p>A customized weekly plan will be generated based on your profile.</p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
+                  {savedProfile ? (
+                    <>
+                      <p>Custom weekly plan actions are available in the actions tracker.</p>
+                      <StatusBadge variant="low" label="Plan Generated" />
+                    </>
+                  ) : (
+                    <>
+                      <p>A customized weekly plan will be generated based on your profile.</p>
+                      <StatusBadge variant="info" label="Awaiting Profile" />
+                    </>
+                  )}
+                </div>
               </Card>
             </div>
 
@@ -61,7 +90,7 @@ export const AppShell: React.FC = () => {
               <Card title="Daily Choice Lab Preview">
                 <p style={{ marginBottom: 'var(--spacing-md)' }}>
                   Compare transit, meal, and shipping decisions using clear impact bands and get
-                  Gemini Choice Coach tips.
+                  Scenario-based choice guidance will be added in a later task.
                 </p>
                 <EmptyState
                   title="Scenario Comparisons Coming Soon"
@@ -107,23 +136,13 @@ export const AppShell: React.FC = () => {
         return (
           <div>
             <SectionHeader
-              title="Footprint Summary & AI Coach"
-              subtitle="Review breakdowns and receive personalized coaching explanations"
+              title="Footprint Summary"
+              subtitle="Review breakdowns derived from your lifestyle profile inputs"
             />
-            <div className="grid-two-cols">
-              <Card title="Calculated Footprint">
-                <EmptyState
-                  title="Breakdown Coming Soon"
-                  description="Calculated category carbon totals will load here after onboarding."
-                />
-              </Card>
-              <Card title="Footprint Coach">
-                <EmptyState
-                  title="Gemini Footprint Explanation Coming Soon"
-                  description="Detailed AI coaching responses will appear here after the API client integration."
-                />
-              </Card>
-            </div>
+            <FootprintSummary
+              profile={savedProfile}
+              onNavigateToProfile={() => setActiveSection('profile')}
+            />
           </div>
         );
 

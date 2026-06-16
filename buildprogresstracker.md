@@ -130,7 +130,7 @@ npm audit --omit=dev
 | 007  | Gemini Coach Service with Timeout, Schema Validation, Numeric Guard, and Fallback | Review Ready | Antigravity | SEC, EFF, TEST, ALIGN           | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 008  | Accessible UI Foundation and App Shell                                            | Review Ready | Antigravity | CQ, A11Y, EFF                   | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 009  | Carbon Profile Onboarding Flow                                                    | Review Ready | Antigravity | A11Y, CQ, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 010  | Footprint Summary and Action Plan UI                                              | Not Started  | TBD         | ALIGN, A11Y, CQ                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 010  | Footprint Summary and Action Plan UI                                              | Review Ready | Antigravity | ALIGN, A11Y, CQ                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 011  | Daily Choice Lab Engine and Tests                                                 | Not Started  | TBD         | ALIGN, TEST, CQ                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 012  | Daily Choice Lab UI and Choice Coach Integration                                  | Not Started  | TBD         | ALIGN, A11Y, SEC, EFF           | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 013  | Carbon World Engine and Lightweight Visual UI                                     | Not Started  | TBD         | ALIGN, A11Y, EFF                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
@@ -323,19 +323,19 @@ Update this section after every completed task.
 
 ## Task 010 — Footprint Summary and Action Plan UI
 
-| Field                     | Value       |
-| ------------------------- | ----------- |
-| Status                    | Not Started |
-| Started At                |             |
-| Completed At              |             |
-| Agent / Tool              |             |
-| Commit Hash               |             |
-| Files Changed             |             |
-| Summary                   |             |
-| Verification Commands Run |             |
-| Verification Result       |             |
-| Human Review Result       |             |
-| Risks / Follow-ups        |             |
+| Field                     | Value                                                                                                                                                                                                            |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                                                                                                                     |
+| Started At                | 2026-06-16                                                                                                                                                                                                        |
+| Completed At              | 2026-06-16                                                                                                                                                                                                        |
+| Agent / Tool              | Antigravity                                                                                                                                                                                                      |
+| Commit Hash               | Pending                                                                                                                                                                                                          |
+| Files Changed             | apps/web/src/features/footprint/footprintViewModel.ts, apps/web/src/features/footprint/FootprintSummary.tsx, apps/web/src/features/footprint/index.ts, apps/web/src/features/footprint/*.test.*, apps/web/src/app/AppShell.tsx   |
+| Summary                   | Connected in-memory profile to shared deterministic calculator. Implemented approximate footprint summary UI, category breakdowns with impact/confidence badges, top contributor card, and scientific assumptions.|
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                               |
+| Verification Result       | Pass                                                                                                                                                                                                             |
+| Human Review Result       | Pending                                                                                                                                                                                                          |
+| Risks / Follow-ups        | Local-first in-memory profile only. AI coaching and weekly action recommendation details will be integrated in subsequent tasks.                                                                                 |
 
 ---
 
