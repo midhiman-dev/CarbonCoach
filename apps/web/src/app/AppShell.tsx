@@ -10,10 +10,13 @@ import {
   StatusBadge,
   ProgressMeter,
 } from '../components/ui';
+import { CarbonProfile } from '@carboncoach/shared';
+import { ProfileOnboarding } from '../features/profile';
 
 export const AppShell: React.FC = () => {
   const [activeSection, setActiveSection] = useState<ActiveSection>('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [savedProfile, setSavedProfile] = useState<CarbonProfile | null>(null);
 
   const renderContent = () => {
     switch (activeSection) {
@@ -29,8 +32,19 @@ export const AppShell: React.FC = () => {
             <div className="grid-responsive">
               <Card title="Carbon Profile Status">
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
-                  <p>Estimate will appear after onboarding.</p>
-                  <StatusBadge variant="low" label="Not Configured" />
+                  {savedProfile ? (
+                    <>
+                      <p>
+                        Your profile is configured. You can view or edit details in the Profile tab.
+                      </p>
+                      <StatusBadge variant="high" label="Configured" />
+                    </>
+                  ) : (
+                    <>
+                      <p>Estimate will appear after onboarding.</p>
+                      <StatusBadge variant="low" label="Not Configured" />
+                    </>
+                  )}
                 </div>
               </Card>
 
@@ -81,12 +95,11 @@ export const AppShell: React.FC = () => {
               title="Carbon Profile"
               subtitle="Configure your lifestyle inputs for estimation"
             />
-            <Card title="Lifestyle Profile Configuration">
-              <EmptyState
-                title="Profile Setup Form Coming Soon"
-                description="Onboarding flows to configure commute, food, and energy will be added in Task 009."
-              />
-            </Card>
+            <ProfileOnboarding
+              savedProfile={savedProfile}
+              onSaveProfile={(profile) => setSavedProfile(profile)}
+              onClearProfile={() => setSavedProfile(null)}
+            />
           </div>
         );
 

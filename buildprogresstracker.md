@@ -129,7 +129,7 @@ npm audit --omit=dev
 | 006  | Coach Contracts, Fallback Composer, and Numeric Guard Contracts                   | Review Ready | Antigravity | SEC, TEST, CQ                   | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 007  | Gemini Coach Service with Timeout, Schema Validation, Numeric Guard, and Fallback | Review Ready | Antigravity | SEC, EFF, TEST, ALIGN           | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 008  | Accessible UI Foundation and App Shell                                            | Review Ready | Antigravity | CQ, A11Y, EFF                   | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 009  | Carbon Profile Onboarding Flow                                                    | Not Started  | TBD         | A11Y, CQ, ALIGN                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 009  | Carbon Profile Onboarding Flow                                                    | Review Ready | Antigravity | A11Y, CQ, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 010  | Footprint Summary and Action Plan UI                                              | Not Started  | TBD         | ALIGN, A11Y, CQ                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 011  | Daily Choice Lab Engine and Tests                                                 | Not Started  | TBD         | ALIGN, TEST, CQ                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 012  | Daily Choice Lab UI and Choice Coach Integration                                  | Not Started  | TBD         | ALIGN, A11Y, SEC, EFF           | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
@@ -287,37 +287,37 @@ Update this section after every completed task.
 
 ## Task 008 — Accessible UI Foundation and App Shell
 
-| Field                     | Value                                                                                                                                                                                                                                                                          |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Status                    | Review Ready                                                                                                                                                                                                                                                                   |
-| Started At                | 2026-06-16                                                                                                                                                                                                                                                                     |
-| Completed At              | 2026-06-16                                                                                                                                                                                                                                                                     |
-| Agent / Tool              | Antigravity                                                                                                                                                                                                                                                                    |
-| Commit Hash               | Pending                                                                                                                                                                                                                                                                        |
-| Files Changed             | apps/web/src/styles/tokens.css, apps/web/src/styles/global.css, apps/web/src/styles/layout.css, apps/web/src/styles/components.css, apps/web/src/app/navigation.ts, apps/web/src/app/routes.ts, apps/web/src/components/ui/*, apps/web/src/app/AppShell.tsx, apps/web/src/App.tsx |
-| Summary                   | Implemented global design tokens, styling baseline, reusable accessible UI primitives, skip links, semantic landmarks, responsive navigation structure, and placeholders matching local-first policies.                                                                |
-| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                                                             |
-| Verification Result       | Pass                                                                                                                                                                                                                                                                           |
-| Human Review Result       | Pending                                                                                                                                                                                                                                                                        |
-| Risks / Follow-ups        | None. Form controls and layouts are strictly structural and ready to receive real state implementations.                                                                                                                                                                       |
+| Field                     | Value                                                                                                                                                                                                                                                                              |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                                                                                                                                                                                       |
+| Started At                | 2026-06-16                                                                                                                                                                                                                                                                         |
+| Completed At              | 2026-06-16                                                                                                                                                                                                                                                                         |
+| Agent / Tool              | Antigravity                                                                                                                                                                                                                                                                        |
+| Commit Hash               | Pending                                                                                                                                                                                                                                                                            |
+| Files Changed             | apps/web/src/styles/tokens.css, apps/web/src/styles/global.css, apps/web/src/styles/layout.css, apps/web/src/styles/components.css, apps/web/src/app/navigation.ts, apps/web/src/app/routes.ts, apps/web/src/components/ui/\*, apps/web/src/app/AppShell.tsx, apps/web/src/App.tsx |
+| Summary                   | Implemented global design tokens, styling baseline, reusable accessible UI primitives, skip links, semantic landmarks, responsive navigation structure, and placeholders matching local-first policies.                                                                            |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                                                                 |
+| Verification Result       | Pass                                                                                                                                                                                                                                                                               |
+| Human Review Result       | Pending                                                                                                                                                                                                                                                                            |
+| Risks / Follow-ups        | None. Form controls and layouts are strictly structural and ready to receive real state implementations.                                                                                                                                                                           |
 
 ---
 
 ## Task 009 — Carbon Profile Onboarding Flow
 
-| Field                     | Value       |
-| ------------------------- | ----------- |
-| Status                    | Not Started |
-| Started At                |             |
-| Completed At              |             |
-| Agent / Tool              |             |
-| Commit Hash               |             |
-| Files Changed             |             |
-| Summary                   |             |
-| Verification Commands Run |             |
-| Verification Result       |             |
-| Human Review Result       |             |
-| Risks / Follow-ups        |             |
+| Field                     | Value                                                                                                                                             |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                                                      |
+| Started At                | 2026-06-16                                                                                                                                        |
+| Completed At              | 2026-06-16                                                                                                                                        |
+| Agent / Tool              | Antigravity                                                                                                                                       |
+| Commit Hash               | Pending                                                                                                                                           |
+| Files Changed             | apps/web/src/features/profile/\*, apps/web/src/app/AppShell.tsx                                                                                   |
+| Summary                   | Implemented the accessible, keyboard-navigable profile onboarding flow with form validation and dynamic summary states, integrated into AppShell. |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                |
+| Verification Result       | Pass                                                                                                                                              |
+| Human Review Result       | Pending                                                                                                                                           |
+| Risks / Follow-ups        | In-memory state only. Persistence in localStorage to be added in Task 014.                                                                        |
 
 ---
 
