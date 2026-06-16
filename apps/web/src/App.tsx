@@ -1,12 +1,8 @@
-import { carbonCoachProductName } from '@carboncoach/shared';
+import { AppShell } from './app/AppShell';
+import './styles/global.css';
 
 function App() {
-  return (
-    <main>
-      <h1>{carbonCoachProductName}</h1>
-      <p>Understand your footprint. Make better everyday choices.</p>
-    </main>
-  );
+  return <AppShell />;
 }
 
 export default App;
