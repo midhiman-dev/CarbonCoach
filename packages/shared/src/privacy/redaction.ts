@@ -5,7 +5,8 @@ const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
 // Basic phone regex: + followed by digits, spaces, dashes, parens
 const phoneRegex = /(?:\+?\d{1,3}[\s-]?)?(?:\(?\d{2,4}\)?[\s-]?)?\d{3,4}[\s-]?\d{3,4}\b/g;
 // Basic address approximation: digits followed by some words like "Street", "Ave", etc.
-const addressRegex = /\b\d{1,5}\s(?:[A-Za-z0-9#]+\s){1,5}(?:Street|St|Avenue|Ave|Road|Rd|Boulevard|Blvd|Lane|Ln|Drive|Dr|Court|Ct|Way|Square|Sq)\b/gi;
+const addressRegex =
+  /\b\d{1,5}\s(?:[A-Za-z0-9#]+\s){1,5}(?:Street|St|Avenue|Ave|Road|Rd|Boulevard|Blvd|Lane|Ln|Drive|Dr|Court|Ct|Way|Square|Sq)\b/gi;
 
 export function redactSensitiveText(input: string): RedactionResult {
   if (!input) {
@@ -44,7 +45,11 @@ export function redactSensitiveText(input: string): RedactionResult {
   // E.g., strings over 30 chars with mix of letters and numbers
   const longTokenRegex = /\b[a-zA-Z0-9_.-]{32,}\b/g;
   text = text.replace(longTokenRegex, (match) => {
-    matches.push({ kind: 'sensitiveToken', token: match, replacement: '[redacted-sensitive-token]' });
+    matches.push({
+      kind: 'sensitiveToken',
+      token: match,
+      replacement: '[redacted-sensitive-token]',
+    });
     return '[redacted-sensitive-token]';
   });
 

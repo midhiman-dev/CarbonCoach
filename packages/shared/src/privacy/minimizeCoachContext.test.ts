@@ -15,16 +15,16 @@ describe('minimizeCoachContext', () => {
         monthlyKgCO2e: 200,
         confidence: 'medium',
         factorIds: [],
-        assumptionNotes: []
+        assumptionNotes: [],
       },
       {
         category: 'food',
         monthlyKgCO2e: 250,
         confidence: 'medium',
         factorIds: [],
-        assumptionNotes: []
-      }
-    ]
+        assumptionNotes: [],
+      },
+    ],
   };
 
   const mockActions: RankedCarbonAction[] = [
@@ -39,8 +39,8 @@ describe('minimizeCoachContext', () => {
       assumptionNote: '',
       score: 10,
       fitReasons: [],
-      estimatedMonthlyReductionKgCO2e: 50
-    }
+      estimatedMonthlyReductionKgCO2e: 50,
+    },
   ];
 
   it('minimizes footprint context correctly', () => {
@@ -48,14 +48,14 @@ describe('minimizeCoachContext', () => {
     const result = summarizeFootprintContextForCoach({
       footprint: mockFootprint,
       recommendedActions: mockActions,
-      preference
+      preference,
     });
 
     expect(result.summary.monthlyTotalKgCO2e).toBe(450);
     expect(result.summary.categoryTotals).toEqual({ transport: 200, food: 250 });
     expect(result.summary.topCategory).toBe('transport');
     expect(result.summary.recommendedActionTitles).toContain('Take the bus');
-    
+
     expect(result.allowedNumbers).toContain('450');
     expect(result.allowedNumbers).toContain('200');
     expect(result.allowedNumbers).toContain('250');

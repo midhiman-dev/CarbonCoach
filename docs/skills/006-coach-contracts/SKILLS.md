@@ -1,8 +1,9 @@
 ---
-
 name: carboncoach-coach-contracts
 description: Use this skill when implementing Task 006 — Coach Contracts, Fallback Composer, and Numeric Guard Contracts for CarbonCoach. This task creates shared assistant contracts, deterministic fallback coach responses, coach validation helpers, and Numeric Invention Guard utilities/tests. It must not implement Gemini, API routes, UI, Daily Choice Lab, tracker, Carbon World, or deployment.
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
+
+---
 
 # Task 006 — Coach Contracts, Fallback Composer, and Numeric Guard Contracts
 
@@ -71,31 +72,31 @@ buildprogresstracker.md
 
 Implement:
 
-* coach mode types,
-* coach request types,
-* coach response types,
-* footprint coach context contract,
-* choice coach context placeholder contract,
-* deterministic fallback composer,
-* coach response validation helpers,
-* Numeric Invention Guard implementation,
-* tests for fallback, validation, and numeric guard,
-* exports from `@carboncoach/shared`.
+- coach mode types,
+- coach request types,
+- coach response types,
+- footprint coach context contract,
+- choice coach context placeholder contract,
+- deterministic fallback composer,
+- coach response validation helpers,
+- Numeric Invention Guard implementation,
+- tests for fallback, validation, and numeric guard,
+- exports from `@carboncoach/shared`.
 
 ## Out of Scope
 
 Do not implement:
 
-* Gemini provider,
-* API routes,
-* Express coach endpoint,
-* prompt builder for real Gemini call,
-* frontend coach UI,
-* Daily Choice Lab engine,
-* tracker,
-* Carbon World,
-* deployment,
-* localStorage adapter.
+- Gemini provider,
+- API routes,
+- Express coach endpoint,
+- prompt builder for real Gemini call,
+- frontend coach UI,
+- Daily Choice Lab engine,
+- tracker,
+- Carbon World,
+- deployment,
+- localStorage adapter.
 
 ---
 
@@ -252,13 +253,13 @@ export function collectCoachResponseTextFields(response: CoachResponse): string[
 
 Validation should check:
 
-* required fields exist,
-* string fields are non-empty,
-* arrays are arrays,
-* mode is supported,
-* source is `gemini` or `fallback`,
-* weeklyPlan contains strings,
-* numbersUsed contains strings.
+- required fields exist,
+- string fields are non-empty,
+- arrays are arrays,
+- mode is supported,
+- source is `gemini` or `fallback`,
+- weeklyPlan contains strings,
+- numbersUsed contains strings.
 
 Do not add a schema dependency unless clearly necessary. Keep it simple.
 
@@ -289,13 +290,13 @@ choice_coach
 
 Should produce:
 
-* friendly summary,
-* explanation using deterministic context,
-* recommended next step from provided recommended actions,
-* short weekly plan from provided actions,
-* confidence note,
-* disclaimer,
-* `source: 'fallback'`.
+- friendly summary,
+- explanation using deterministic context,
+- recommended next step from provided recommended actions,
+- short weekly plan from provided actions,
+- confidence note,
+- disclaimer,
+- `source: 'fallback'`.
 
 It may use deterministic numbers from context.
 
@@ -305,13 +306,13 @@ Every number used must be included in `numbersUsed`.
 
 Should produce:
 
-* friendly choice summary,
-* explanation based on supplied option impact bands,
-* recommended next step from `recommendedOptionId`,
-* short plan or next-step list,
-* confidence note,
-* disclaimer,
-* `source: 'fallback'`.
+- friendly choice summary,
+- explanation based on supplied option impact bands,
+- recommended next step from `recommendedOptionId`,
+- short plan or next-step list,
+- confidence note,
+- disclaimer,
+- `source: 'fallback'`.
 
 It should avoid unsupported numeric claims.
 
@@ -319,9 +320,9 @@ It should avoid unsupported numeric claims.
 
 Tone support may be simple:
 
-* `simple`: shorter wording,
-* `detailed`: slightly fuller explanation,
-* `encouraging`: warmer wording.
+- `simple`: shorter wording,
+- `detailed`: slightly fuller explanation,
+- `encouraging`: warmer wording.
 
 Do not over-engineer.
 
@@ -382,11 +383,11 @@ negative numbers
 
 ## 8.2 Required behavior
 
-* If response has no numbers, pass.
-* If all generated numbers are allowed, pass.
-* If any generated number is unsupported, fail.
-* Normalize common formats consistently.
-* Do not convert written words to numbers in P0.
+- If response has no numbers, pass.
+- If all generated numbers are allowed, pass.
+- If any generated number is unsupported, fail.
+- Normalize common formats consistently.
+- Do not convert written words to numbers in P0.
 
 ## 8.3 Recommended normalization
 

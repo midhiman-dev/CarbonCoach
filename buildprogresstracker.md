@@ -127,7 +127,7 @@ npm audit --omit=dev
 | 004  | Recommendation Engine and Weekly Action Ranking                                   | Review Ready | Antigravity | CQ, TEST, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
 | 005  | Privacy, Redaction, and Local Data Safety Utilities                               | Not Started  | TBD         | SEC, TEST, CQ                   | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 006  | Coach Contracts, Fallback Composer, and Numeric Guard Contracts                   | Review Ready | Antigravity | SEC, TEST, CQ                   | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 007  | Gemini Coach Service with Timeout, Schema Validation, Numeric Guard, and Fallback | Not Started  | TBD         | SEC, EFF, TEST, ALIGN           | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 007  | Gemini Coach Service with Timeout, Schema Validation, Numeric Guard, and Fallback | Review Ready | Antigravity | SEC, EFF, TEST, ALIGN           | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 008  | Accessible UI Foundation and App Shell                                            | Not Started  | TBD         | CQ, A11Y, EFF                   | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 009  | Carbon Profile Onboarding Flow                                                    | Not Started  | TBD         | A11Y, CQ, ALIGN                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 010  | Footprint Summary and Action Plan UI                                              | Not Started  | TBD         | ALIGN, A11Y, CQ                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
@@ -257,31 +257,31 @@ Update this section after every completed task.
 
 ## Task 007 — Gemini Coach Service with Timeout, Schema Validation, Numeric Guard, and Fallback
 
-| Field                     | Value       |
-| ------------------------- | ----------- |
-| Status                    | Not Started |
-| Started At                |             |
-| Completed At              |             |
-| Agent / Tool              |             |
-| Commit Hash               |             |
-| Files Changed             |             |
-| Summary                   |             |
-| Verification Commands Run |             |
-| Verification Result       |             |
-| Human Review Result       |             |
-| Risks / Follow-ups        |             |
+| Field                     | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Started At                | 2026-06-16                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Completed At              | 2026-06-16                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Agent / Tool              | Antigravity                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Commit Hash               | Pending                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Files Changed             | services/api/package.json, services/api/src/server.ts, services/api/src/middleware/validateCoachRequest.ts, services/api/src/middleware/safeLogging.ts, services/api/src/llm/timeout.ts, services/api/src/llm/llmProvider.ts, services/api/src/llm/geminiProvider.ts, services/api/src/coach/promptBuilder.ts, services/api/src/coach/responseParser.ts, services/api/src/coach/coachController.ts, services/api/src/coach/coachRoutes.ts, services/api/test/*                                      |
+| Summary                   | Implemented the backend Gemini coach service endpoints, request validator middleware, safe logging helpers, timeout utility, LLM provider boundary, prompts with constraints, response parser, controller coordinating numeric guard, and vitest unit/integration suite.                                                                                                                                                                                                                   |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Verification Result       | Pass                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Human Review Result       | Pending                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Risks / Follow-ups        | None. Tests verify that error and validation boundaries trigger deterministic fallbacks correctly.                                                                                                                                                                                                                                                                                                                                                                                                |
 
 ### LLM Safety Evidence
 
-| Check                                | Result  | Notes |
-| ------------------------------------ | ------- | ----- |
-| Gemini key is server-side only       | Not Run |       |
-| Missing key fallback works           | Not Run |       |
-| Timeout fallback works               | Not Run |       |
-| Malformed response fallback works    | Not Run |       |
-| Unsupported number response rejected | Not Run |       |
-| Raw prompt not logged                | Not Run |       |
-| Raw profile not logged               | Not Run |       |
+| Check                                | Result | Notes                                                       |
+| ------------------------------------ | ------ | ----------------------------------------------------------- |
+| Gemini key is server-side only       | Pass   | Retrieved only in GeminiProvider backend                    |
+| Missing key fallback works           | Pass   | Tested in unit tests, returns fallback composer response    |
+| Timeout fallback works               | Pass   | Tested via withTimeout wrapper unit tests                   |
+| Malformed response fallback works    | Pass   | Parser throws on bad JSON, returning fallback               |
+| Unsupported number response rejected | Pass   | Numeric Invention Guard validates output and falls back     |
+| Raw prompt not logged                | Pass   | Prompts and context are excluded from safe logging helper   |
+| Raw profile not logged               | Pass   | Input context minimization limits fields sent to provider  |
 
 ---
 

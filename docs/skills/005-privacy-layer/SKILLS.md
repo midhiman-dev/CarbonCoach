@@ -1,8 +1,9 @@
 ---
-
 name: carboncoach-privacy-layer
 description: Use this skill when implementing Task 005 — Privacy, Redaction, and Local Data Safety Utilities for CarbonCoach. This task creates shared privacy utilities for redaction, coach-context minimization, local data policy metadata, and tests. It must not implement UI, Gemini, coach contracts, API endpoints, tracker, or deployment.
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
+
+---
 
 # Task 005 — Privacy, Redaction, and Local Data Safety Utilities
 
@@ -61,27 +62,27 @@ buildprogresstracker.md
 
 Implement:
 
-* lightweight redaction utilities,
-* coach context minimization helpers,
-* privacy-safe local data policy metadata,
-* tests for redaction and minimization,
-* exports from `@carboncoach/shared`.
+- lightweight redaction utilities,
+- coach context minimization helpers,
+- privacy-safe local data policy metadata,
+- tests for redaction and minimization,
+- exports from `@carboncoach/shared`.
 
 ## Out of Scope
 
 Do not implement:
 
-* UI privacy page,
-* clear-data UI,
-* browser localStorage adapter,
-* tracker persistence,
-* coach request/response contracts,
-* Gemini integration,
-* API routes,
-* Numeric Invention Guard implementation,
-* Daily Choice Lab,
-* Carbon World,
-* deployment.
+- UI privacy page,
+- clear-data UI,
+- browser localStorage adapter,
+- tracker persistence,
+- coach request/response contracts,
+- Gemini integration,
+- API routes,
+- Numeric Invention Guard implementation,
+- Daily Choice Lab,
+- Carbon World,
+- deployment.
 
 ---
 
@@ -149,11 +150,7 @@ packages/shared/src/types/privacy.ts
 Recommended types:
 
 ```ts
-export type RedactionKind =
-  | 'email'
-  | 'phone'
-  | 'possibleAddress'
-  | 'sensitiveToken';
+export type RedactionKind = 'email' | 'phone' | 'possibleAddress' | 'sensitiveToken';
 
 export interface RedactionMatch {
   kind: RedactionKind;
@@ -226,11 +223,11 @@ Suggested replacements:
 
 ## 5.2 Important constraints
 
-* Redaction must be deterministic.
-* Redaction must not throw on empty strings.
-* Redaction must preserve readable surrounding text.
-* Avoid false confidence. This is a basic safeguard, not a complete privacy scanner.
-* Do not introduce third-party dependencies for this task.
+- Redaction must be deterministic.
+- Redaction must not throw on empty strings.
+- Redaction must preserve readable surrounding text.
+- Avoid false confidence. This is a basic safeguard, not a complete privacy scanner.
+- Do not introduce third-party dependencies for this task.
 
 ---
 
@@ -345,10 +342,10 @@ raw coach prompt
 
 Be truthful:
 
-* Gemini API key is server-side only.
-* raw prompts should not be stored.
-* profile is local-first.
-* coach requests are transient server-side.
+- Gemini API key is server-side only.
+- raw prompts should not be stored.
+- profile is local-first.
+- coach requests are transient server-side.
 
 ---
 

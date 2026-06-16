@@ -1,8 +1,4 @@
-export type RedactionKind =
-  | 'email'
-  | 'phone'
-  | 'possibleAddress'
-  | 'sensitiveToken';
+export type RedactionKind = 'email' | 'phone' | 'possibleAddress' | 'sensitiveToken';
 
 export interface RedactionMatch {
   kind: RedactionKind;

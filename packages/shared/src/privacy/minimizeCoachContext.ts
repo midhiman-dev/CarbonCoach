@@ -34,7 +34,7 @@ export function summarizeFootprintContextForCoach(input: {
 
   const recommendedActionTitles = recommendedActions.map((a) => a.title);
   const impactBands = Array.from(new Set(recommendedActions.map((a) => a.impactBand)));
-  
+
   const estimatedMonthlyReductionValues = recommendedActions
     .map((a) => a.estimatedMonthlyReductionKgCO2e)
     .filter((val): val is number => val !== undefined);

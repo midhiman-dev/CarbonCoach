@@ -1,6 +1,10 @@
 import express from 'express';
+import { coachRouter } from './coach/coachRoutes';
 
 export const app = express();
+
+// Limit payloads to protect against large context inputs
+app.use(express.json({ limit: '10kb' }));
 
 app.get('/health', (_req, res) => {
   res.json({
@@ -8,6 +12,8 @@ app.get('/health', (_req, res) => {
     service: 'carboncoach-api',
   });
 });
+
+app.use('/api', coachRouter);
 
 const PORT = process.env.PORT || 8080;
 
