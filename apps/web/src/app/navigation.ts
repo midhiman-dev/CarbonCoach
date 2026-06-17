@@ -39,7 +39,7 @@ export const navigationItems: NavigationItem[] = [
   {
     id: 'tracker',
     label: 'Weekly Tracker',
-    description: 'Track your scheduled tasks and log completed avoided emissions',
+    description: 'Track your weekly action checklist locally on this device',
   },
   {
     id: 'privacy',

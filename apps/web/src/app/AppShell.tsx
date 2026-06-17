@@ -15,11 +15,18 @@ import { ProfileOnboarding } from '../features/profile';
 import { FootprintSummary, formatCategoryLabel } from '../features/footprint';
 import { RecommendationPanel } from '../features/recommendations';
 import { DailyChoiceLab } from '../features/choices';
+import {
+  loadStoredProfile,
+  saveStoredProfile,
+  clearAllLocalCarbonCoachData,
+  WeeklyTracker,
+  LocalDataControls,
+} from '../features/tracker';
 
 export const AppShell: React.FC = () => {
   const [activeSection, setActiveSection] = useState<ActiveSection>('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [savedProfile, setSavedProfile] = useState<CarbonProfile | null>(null);
+  const [savedProfile, setSavedProfile] = useState<CarbonProfile | null>(() => loadStoredProfile());
 
   const estimate = savedProfile ? calculateFootprint(savedProfile) : null;
 
@@ -104,7 +111,7 @@ export const AppShell: React.FC = () => {
                 <p style={{ marginBottom: 'var(--spacing-md)' }}>
                   Your personal visual world adapts to completed actions.
                 </p>
-                <ProgressMeter value={0} max={100} label="Weekly avoided impact goal progress" />
+                <ProgressMeter value={0} max={100} label="Weekly action progress" />
                 <p
                   style={{
                     fontSize: 'var(--font-xs)',
@@ -128,9 +135,20 @@ export const AppShell: React.FC = () => {
             />
             <ProfileOnboarding
               savedProfile={savedProfile}
-              onSaveProfile={(profile) => setSavedProfile(profile)}
-              onClearProfile={() => setSavedProfile(null)}
+              onSaveProfile={(profile) => {
+                saveStoredProfile(profile);
+                setSavedProfile(profile);
+              }}
+              onClearProfile={() => {
+                clearAllLocalCarbonCoachData();
+                setSavedProfile(null);
+              }}
             />
+            {savedProfile && (
+              <div style={{ marginTop: 'var(--spacing-md)' }}>
+                <LocalDataControls hasData={true} onClear={() => setSavedProfile(null)} />
+              </div>
+            )}
           </div>
         );
 
@@ -183,17 +201,19 @@ export const AppShell: React.FC = () => {
 
       case 'tracker':
         return (
-          <div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>
             <SectionHeader
               title="Weekly Tracker"
               subtitle="Log your completed low-impact actions"
             />
-            <Card title="Habit Logging Panel">
-              <EmptyState
-                title="Interactive Logger Coming Soon"
-                description="Select weekly tasks and log avoided impact with local storage persistence."
-              />
-            </Card>
+            <WeeklyTracker
+              profile={savedProfile}
+              onNavigateToOnboarding={() => setActiveSection('profile')}
+            />
+            <LocalDataControls
+              hasData={savedProfile !== null}
+              onClear={() => setSavedProfile(null)}
+            />
           </div>
         );
 

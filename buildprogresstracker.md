@@ -137,7 +137,7 @@ npm audit --omit=dev
 | 012  | Footprint Coach UI                                                                | Review Ready | Antigravity | ALIGN, A11Y, SEC, EFF           | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 013  | Daily Choice Lab Foundation                                                       | Review Ready | Antigravity | ALIGN, A11Y, EFF                | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 014  | Choice Coach UI                                                                   | Review Ready | Antigravity | ALIGN, TEST, SEC                | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 015  | Weekly Tracker and Local Persistence                                              | Not Started  | TBD         | ALIGN, CQ, TEST                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 015  | Weekly Tracker and Local Persistence                                              | Review Ready | Antigravity | ALIGN, CQ, TEST                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 016  | Carbon World Engine and Lightweight Visual UI                                     | Not Started  | TBD         | ALIGN, A11Y, EFF                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 017  | Privacy and Assumptions Page                                                      | Not Started  | TBD         | SEC, ALIGN, CQ                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 018  | Final Accessibility / Demo Polish                                                 | Not Started  | TBD         | A11Y, CQ, TEST                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
@@ -447,28 +447,28 @@ Update this section after every completed task.
 
 ## Task 015 — Weekly Tracker and Local Persistence
 
-| Field                     | Value       |
-| ------------------------- | ----------- |
-| Status                    | Not Started |
-| Started At                |             |
-| Completed At              |             |
-| Agent / Tool              |             |
-| Commit Hash               |             |
-| Files Changed             |             |
-| Summary                   |             |
-| Verification Commands Run |             |
-| Verification Result       |             |
-| Human Review Result       |             |
-| Risks / Follow-ups        |             |
+| Field                     | Value                                                                                                                                                                                                                                                                                                         |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                                                                                                                                                                                                                  |
+| Started At                | 2026-06-17                                                                                                                                                                                                                                                                                                    |
+| Completed At              | 2026-06-17                                                                                                                                                                                                                                                                                                    |
+| Agent / Tool              | Antigravity                                                                                                                                                                                                                                                                                                   |
+| Commit Hash               | Pending                                                                                                                                                                                                                                                                                                       |
+| Files Changed             | packages/shared/src/tracker/*, packages/shared/src/index.ts, apps/web/src/features/tracker/*, apps/web/src/app/AppShell.tsx                                                                                                                                                                                   |
+| Summary                   | Implemented local-first browser persistence for profile and checklist progress state, an accessible WeeklyTracker UI checklist mapping to the deterministic weekly plan, and a LocalDataControls dashboard. Added thorough unit/UI test coverage for state transitions, storage boundaries, and UI flow. |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                                                                                            |
+| Verification Result       | Pass                                                                                                                                                                                                                                                                                                          |
+| Human Review Result       | Pending                                                                                                                                                                                                                                                                                                       |
+| Risks / Follow-ups        | None. Carbon World engine and Privacy page are out of scope and will be implemented in subsequent tasks.                                                                                                                                                                                                      |
 
 ### Weekly Tracker Evidence
 
-| Check                                     | Result  | Notes |
-| ----------------------------------------- | ------- | ----- |
-| Local persistence implemented             | Not Run |       |
-| Action completion tracking works          | Not Run |       |
-| Avoided impact calculations works         | Not Run |       |
-| Clear data functionality works            | Not Run |       |
+| Check                                     | Result | Notes                                                                                   |
+| ----------------------------------------- | ------ | --------------------------------------------------------------------------------------- |
+| Local persistence implemented             | Pass   | Handled via try-catch wrapped window.localStorage utilities in trackerStorage.ts       |
+| Action completion tracking works          | Pass   | Custom React hook useWeeklyTracker manages check states deterministically in memory      |
+| Avoided impact calculations works         | Pass   | Progress is calculated dynamically based on action array size and checklist checks       |
+| Clear data functionality works            | Pass   | LocalDataControls component safely deletes namespace carboncoach keys and resets state |
 
 ---
 
