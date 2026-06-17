@@ -4,6 +4,8 @@
   "private": true,
   "main": "dist/server.js",
   "scripts": {
+    "dev": "tsc && node dist/server.js",
+    "start": "node dist/server.js",
     "build": "tsc",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
