@@ -19,13 +19,17 @@ describe('DailyChoiceLab Component', () => {
     vi.restoreAllMocks();
   });
 
-  it('renders Daily Choice Lab title, description, and future coach placeholder', () => {
+  it('renders Daily Choice Lab title, description, and interactive Choice Coach panel', () => {
     render(<DailyChoiceLab profile={mockProfile} />);
 
     expect(screen.getByText(choiceCopy.title)).toBeInTheDocument();
     expect(screen.getByText(choiceCopy.description)).toBeInTheDocument();
-    expect(screen.getByText(choiceCopy.placeholderCoachTitle)).toBeInTheDocument();
-    expect(screen.getByText(choiceCopy.placeholderCoachText)).toBeInTheDocument();
+    expect(screen.getByText('Choice Coach')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'Ask CarbonCoach to explain this deterministic choice comparison in plain language.',
+      ),
+    ).toBeInTheDocument();
   });
 
   it('renders scenario selector with default commuting scenario options', () => {

@@ -134,7 +134,7 @@ npm audit --omit=dev
 | 011  | Recommendation and Weekly Plan UI                                                 | Review Ready | Antigravity | ALIGN, TEST, CQ                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 012  | Footprint Coach UI                                                                | Review Ready | Antigravity | ALIGN, A11Y, SEC, EFF           | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 013  | Carbon World Engine and Lightweight Visual UI                                     | Review Ready | Antigravity | ALIGN, A11Y, EFF                | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 014  | Weekly Tracker and Local Persistence                                              | Not Started  | TBD         | ALIGN, TEST, SEC                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 014  | Choice Coach UI                                                                   | Review Ready | Antigravity | ALIGN, TEST, SEC                | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 015  | Security, Privacy, Assumptions, and Documentation Pass                            | Not Started  | TBD         | SEC, ALIGN, CQ                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 016  | Accessibility and Responsive Hardening                                            | Not Started  | TBD         | A11Y, CQ, TEST                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 017  | Cloud Run Deployment and Free-Tier Readiness                                      | Not Started  | TBD         | EFF, SEC, CQ                    | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
@@ -412,21 +412,33 @@ Update this section after every completed task.
 
 ---
 
-## Task 014 — Weekly Tracker and Local Persistence
+## Task 014 — Choice Coach UI
 
-| Field                     | Value       |
-| ------------------------- | ----------- |
-| Status                    | Not Started |
-| Started At                |             |
-| Completed At              |             |
-| Agent / Tool              |             |
-| Commit Hash               |             |
-| Files Changed             |             |
-| Summary                   |             |
-| Verification Commands Run |             |
-| Verification Result       |             |
-| Human Review Result       |             |
-| Risks / Follow-ups        |             |
+| Field                     | Value                                                                                                                                                                                                                                                                                         |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                                                                                                                                                                                                  |
+| Started At                | 2026-06-17                                                                                                                                                                                                                                                                                    |
+| Completed At              | 2026-06-17                                                                                                                                                                                                                                                                                    |
+| Agent / Tool              | Antigravity                                                                                                                                                                                                                                                                                   |
+| Commit Hash               | Pending                                                                                                                                                                                                                                                                                       |
+| Files Changed             | apps/web/src/features/coach/ChoiceCoachPanel.tsx, apps/web/src/features/coach/choiceCoachRequestBuilder.ts, apps/web/src/features/coach/coachClient.ts, apps/web/src/features/choices/DailyChoiceLab.tsx, apps/web/src/features/coach/ChoiceCoachPanel.test.tsx, apps/web/src/features/coach/choiceCoachRequestBuilder.test.ts, apps/web/src/features/choices/DailyChoiceLab.test.tsx |
+| Summary                   | Implemented interactive Choice Coach UI, payload request builder extracting scenario context & allowed numbers, backend client function, tests, and Daily Choice Lab integration.                                                                                                             |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                                                                            |
+| Verification Result       | Pass                                                                                                                                                                                                                                                                                          |
+| Human Review Result       | Pending                                                                                                                                                                                                                                                                                       |
+| Risks / Follow-ups        | None. Local persistence and Carbon World elements are excluded per task scope.                                                                                                                                                                                                                |
+
+### Choice Coach UI Evidence
+
+| Check                                     | Result | Notes                                                       |
+| ----------------------------------------- | ------ | ----------------------------------------------------------- |
+| Choice Coach is user-triggered only       | Pass   | Only requested when user clicks 'Ask Choice Coach' button   |
+| Choice Coach fallback works               | Pass   | Handled transparently by backend fallback composer          |
+| Choice Coach does not invent numbers      | Pass   | Uses allowedNumbers guard derived from choice context       |
+| Choice context is minimized               | Pass   | No raw onboarding profile or local storage data is sent     |
+| UI shows fallback/AI state clearly        | Pass   | Uses existing CoachResponseCard status badges               |
+| Response is cleared on scenario change    | Pass   | useEffect hook resets panel state when scenario ID changes  |
+
 
 ---
 

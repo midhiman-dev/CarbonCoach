@@ -5,6 +5,7 @@ import { ChoiceScenarioSelector } from './ChoiceScenarioSelector';
 import { ChoiceComparisonPanel } from './ChoiceComparisonPanel';
 import { choiceCopy } from './choiceCopy';
 import { formatCategoryLabel } from './choiceViewModel';
+import { ChoiceCoachPanel } from '../coach';
 
 interface DailyChoiceLabProps {
   profile: CarbonProfile | null;
@@ -63,26 +64,8 @@ export const DailyChoiceLab: React.FC<DailyChoiceLabProps> = ({ profile }) => {
           </div>
         </Card>
 
-        {/* Choice Coach Placeholder Card */}
-        <Card title={choiceCopy.placeholderCoachTitle}>
-          <p style={{ margin: 0, fontSize: 'var(--font-sm)', color: 'var(--text-secondary)' }}>
-            {choiceCopy.placeholderCoachText}
-          </p>
-          <div
-            style={{
-              marginTop: 'var(--spacing-md)',
-              padding: 'var(--spacing-sm)',
-              borderRadius: 'var(--radius-sm)',
-              background: 'rgba(255, 255, 255, 0.02)',
-              border: '1px dashed var(--border-glass)',
-              fontSize: 'var(--font-xs)',
-              color: 'var(--text-muted)',
-            }}
-          >
-            <strong>Note:</strong> Safe boundaries are active. The choice coach endpoint is not
-            called during this foundational stage.
-          </div>
-        </Card>
+        {/* Interactive Choice Coach Panel */}
+        <ChoiceCoachPanel scenario={selectedScenario} preference={profile?.preference} />
       </div>
 
       <div style={{ marginTop: 'var(--spacing-md)' }}>
