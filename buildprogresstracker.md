@@ -119,27 +119,30 @@ npm audit --omit=dev
 
 # Master Task Tracker
 
+*Note on controlled deviation: Choice Coach UI was pulled forward to complete the Daily Choice Lab coaching loop before tracker/persistence work. Weekly Tracker and Carbon World were shifted to the next tasks.*
+
 | Task | Title                                                                             | Status       | Owner/Agent | Scoring Focus                   | Build   | Typecheck | Tests   | Lint    | Format  | Human Review | Commit  |
 | ---- | --------------------------------------------------------------------------------- | ------------ | ----------- | ------------------------------- | ------- | --------- | ------- | ------- | ------- | ------------ | ------- |
 | 001  | Repo Foundation, Workspace, and Quality Gates                                     | Complete     | Antigravity | CQ, TEST, EFF                   | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
 | 002  | Shared Carbon Domain Model and Factor Registry                                    | Complete     | Antigravity | CQ, TEST, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
 | 003  | Deterministic Carbon Footprint Engine                                             | Complete     | Antigravity | CQ, TEST, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
-| 004  | Recommendation Engine and Weekly Action Ranking                                   | Review Ready | Antigravity | CQ, TEST, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
-| 005  | Privacy, Redaction, and Local Data Safety Utilities                               | Not Started  | TBD         | SEC, TEST, CQ                   | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 004  | Recommendation Engine and Weekly Action Ranking                                   | Complete     | Antigravity | CQ, TEST, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
+| 005  | Privacy, Redaction, and Local Data Safety Utilities                               | Complete     | Antigravity | SEC, TEST, CQ                   | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
 | 006  | Coach Contracts, Fallback Composer, and Numeric Guard Contracts                   | Review Ready | Antigravity | SEC, TEST, CQ                   | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 007  | Gemini Coach Service with Timeout, Schema Validation, Numeric Guard, and Fallback | Review Ready | Antigravity | SEC, EFF, TEST, ALIGN           | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 008  | Accessible UI Foundation and App Shell                                            | Review Ready | Antigravity | CQ, A11Y, EFF                   | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 009  | Carbon Profile Onboarding Flow                                                    | Review Ready | Antigravity | A11Y, CQ, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 010  | Footprint Summary and Action Plan UI                                              | Review Ready | Antigravity | ALIGN, A11Y, CQ                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
+| 010  | Footprint Summary UI                                                              | Review Ready | Antigravity | ALIGN, A11Y, CQ                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 011  | Recommendation and Weekly Plan UI                                                 | Review Ready | Antigravity | ALIGN, TEST, CQ                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 012  | Footprint Coach UI                                                                | Review Ready | Antigravity | ALIGN, A11Y, SEC, EFF           | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 013  | Carbon World Engine and Lightweight Visual UI                                     | Review Ready | Antigravity | ALIGN, A11Y, EFF                | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
+| 013  | Daily Choice Lab Foundation                                                       | Review Ready | Antigravity | ALIGN, A11Y, EFF                | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 014  | Choice Coach UI                                                                   | Review Ready | Antigravity | ALIGN, TEST, SEC                | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 015  | Security, Privacy, Assumptions, and Documentation Pass                            | Not Started  | TBD         | SEC, ALIGN, CQ                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 016  | Accessibility and Responsive Hardening                                            | Not Started  | TBD         | A11Y, CQ, TEST                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 017  | Cloud Run Deployment and Free-Tier Readiness                                      | Not Started  | TBD         | EFF, SEC, CQ                    | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 018  | LinkedIn Submission Docs, Prompt Strategy, and Architecture Evidence              | Not Started  | TBD         | ALIGN, CQ                       | N/A     | N/A       | N/A     | N/A     | Not Run | Not Run      | Pending |
-| 019  | Final Verification, Release Candidate, and Submission Gate                        | Not Started  | TBD         | CQ, SEC, EFF, TEST, A11Y, ALIGN | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 015  | Weekly Tracker and Local Persistence                                              | Not Started  | TBD         | ALIGN, CQ, TEST                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 016  | Carbon World Engine and Lightweight Visual UI                                     | Not Started  | TBD         | ALIGN, A11Y, EFF                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 017  | Privacy and Assumptions Page                                                      | Not Started  | TBD         | SEC, ALIGN, CQ                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 018  | Final Accessibility / Demo Polish                                                 | Not Started  | TBD         | A11Y, CQ, TEST                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 019  | Cloud Run Deployment                                                              | Not Started  | TBD         | EFF, SEC, CQ                    | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 020  | README, Submission Docs, LinkedIn Post                                            | Not Started  | TBD         | ALIGN, CQ                       | N/A     | N/A       | N/A     | N/A     | Not Run | Not Run      | Pending |
 
 ---
 
@@ -385,7 +388,7 @@ Update this section after every completed task.
 
 ---
 
-## Task 013 — Carbon World Engine and Lightweight Visual UI (Daily Choice Lab Foundation)
+## Task 013 — Daily Choice Lab Foundation
 
 | Field                     | Value                                                                                                                                                                      |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -442,7 +445,60 @@ Update this section after every completed task.
 
 ---
 
-## Task 015 — Security, Privacy, Assumptions, and Documentation Pass
+## Task 015 — Weekly Tracker and Local Persistence
+
+| Field                     | Value       |
+| ------------------------- | ----------- |
+| Status                    | Not Started |
+| Started At                |             |
+| Completed At              |             |
+| Agent / Tool              |             |
+| Commit Hash               |             |
+| Files Changed             |             |
+| Summary                   |             |
+| Verification Commands Run |             |
+| Verification Result       |             |
+| Human Review Result       |             |
+| Risks / Follow-ups        |             |
+
+### Weekly Tracker Evidence
+
+| Check                                     | Result  | Notes |
+| ----------------------------------------- | ------- | ----- |
+| Local persistence implemented             | Not Run |       |
+| Action completion tracking works          | Not Run |       |
+| Avoided impact calculations works         | Not Run |       |
+| Clear data functionality works            | Not Run |       |
+
+---
+
+## Task 016 — Carbon World Engine and Lightweight Visual UI
+
+| Field                     | Value       |
+| ------------------------- | ----------- |
+| Status                    | Not Started |
+| Started At                |             |
+| Completed At              |             |
+| Agent / Tool              |             |
+| Commit Hash               |             |
+| Files Changed             |             |
+| Summary                   |             |
+| Verification Commands Run |             |
+| Verification Result       |             |
+| Human Review Result       |             |
+| Risks / Follow-ups        |             |
+
+### Carbon World Evidence
+
+| Check                                     | Result  | Notes |
+| ----------------------------------------- | ------- | ----- |
+| Visual representation of footprint        | Not Run |       |
+| Text equivalent accessibility description  | Not Run |       |
+| SVG/CSS design states render              | Not Run |       |
+
+---
+
+## Task 017 — Privacy and Assumptions Page
 
 | Field                     | Value       |
 | ------------------------- | ----------- |
@@ -464,7 +520,7 @@ Update this section after every completed task.
 | ----------------------------------------- | ------- | ----- |
 | Privacy page implemented                  | Not Run |       |
 | Assumptions page implemented              | Not Run |       |
-| Clear data works                          | Not Run |       |
+| Clear data control works                  | Not Run |       |
 | README explains LLM usage                 | Not Run |       |
 | README explains deterministic calculation | Not Run |       |
 | README explains numeric guard             | Not Run |       |
@@ -472,7 +528,7 @@ Update this section after every completed task.
 
 ---
 
-## Task 016 — Accessibility and Responsive Hardening
+## Task 018 — Final Accessibility / Demo Polish
 
 | Field                     | Value       |
 | ------------------------- | ----------- |
@@ -503,7 +559,7 @@ Update this section after every completed task.
 
 ---
 
-## Task 017 — Cloud Run Deployment and Free-Tier Readiness
+## Task 019 — Cloud Run Deployment
 
 | Field                     | Value       |
 | ------------------------- | ----------- |
@@ -541,7 +597,7 @@ Pending
 
 ---
 
-## Task 018 — LinkedIn Submission Docs, Prompt Strategy, and Architecture Evidence
+## Task 020 — README, Submission Docs, LinkedIn Post
 
 | Field                     | Value       |
 | ------------------------- | ----------- |
@@ -568,24 +624,6 @@ Pending
 | Cloud Run rationale documented    | Not Run |       |
 | Gemini safety documented          | Not Run |       |
 | No unsupported claims             | Not Run |       |
-
----
-
-## Task 019 — Final Verification, Release Candidate, and Submission Gate
-
-| Field                     | Value       |
-| ------------------------- | ----------- |
-| Status                    | Not Started |
-| Started At                |             |
-| Completed At              |             |
-| Agent / Tool              |             |
-| Commit Hash               |             |
-| Files Changed             |             |
-| Summary                   |             |
-| Verification Commands Run |             |
-| Verification Result       |             |
-| Human Review Result       |             |
-| Risks / Follow-ups        |             |
 
 ---
 

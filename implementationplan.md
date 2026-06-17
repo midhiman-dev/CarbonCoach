@@ -134,48 +134,44 @@ CarbonCoach/
 
 ## Phase 3 — Core Web Experience
 
-| Task | Title                                            | Skill File                                    |
-| ---- | ------------------------------------------------ | --------------------------------------------- |
-| 008  | Accessible UI Foundation and App Shell           | `docs/skills/008-ui-foundation/SKILLS.md`     |
-| 009  | Carbon Profile Onboarding Flow                   | `docs/skills/009-onboarding/SKILLS.md`        |
-| 010  | Footprint Summary and Action Plan UI             | `docs/skills/010-footprint-summary/SKILLS.md` |
-| 011  | Daily Choice Lab Engine and Tests                | `docs/skills/011-choice-lab-engine/SKILLS.md` |
-| 012  | Daily Choice Lab UI and Choice Coach Integration | `docs/skills/012-choice-lab-ui/SKILLS.md`     |
-| 013  | Carbon World Engine and Lightweight Visual UI    | `docs/skills/013-carbon-world/SKILLS.md`      |
-| 014  | Weekly Tracker and Local Persistence             | `docs/skills/014-weekly-tracker/SKILLS.md`    |
+*Note on controlled deviation: Choice Coach UI was pulled forward to complete the Daily Choice Lab coaching loop before tracker/persistence work. Weekly Tracker and Carbon World were shifted to the next tasks.*
+
+| Task | Title                                            | Skill File                                                |
+| ---- | ------------------------------------------------ | --------------------------------------------------------- |
+| 008  | Accessible UI Foundation and App Shell           | `docs/skills/008-ui-foundation/SKILLS.md`                 |
+| 009  | Carbon Profile Onboarding Flow                   | `docs/skills/009-carbon-profile-onboarding/SKILLS.md`     |
+| 010  | Footprint Summary UI                             | `docs/skills/010-footprint-summary-ui/SKILLS.md`          |
+| 011  | Recommendation and Weekly Plan UI                | `docs/skills/011-recommendation-weekly-plan-ui/SKILLS.md` |
+| 012  | Footprint Coach UI                               | `docs/skills/012-footprint-coach-ui/SKILLS.md`            |
+| 013  | Daily Choice Lab Foundation                      | `docs/skills/013-daily-choice-lab/SKILLS.md`              |
+| 014  | Choice Coach UI                                  | `docs/skills/014-choice-coach-ui/SKILLS.md`               |
 
 ---
 
-## Phase 4 — Trust, Security, and Accessibility
+## Phase 4 — Tracker & Visual Progress
 
-| Task | Title                                                  | Skill File                                           |
-| ---- | ------------------------------------------------------ | ---------------------------------------------------- |
-| 015  | Security, Privacy, Assumptions, and Documentation Pass | `docs/skills/015-security-and-assumptions/SKILLS.md` |
-| 016  | Accessibility and Responsive Hardening                 | `docs/skills/016-accessibility-hardening/SKILLS.md`  |
-
----
-
-## Phase 5 — Deployment
-
-| Task | Title                                        | Skill File                                       |
-| ---- | -------------------------------------------- | ------------------------------------------------ |
-| 017  | Cloud Run Deployment and Free-Tier Readiness | `docs/skills/017-cloud-run-deployment/SKILLS.md` |
+| Task | Title                                            | Skill File                                  |
+| ---- | ------------------------------------------------ | ------------------------------------------- |
+| 015  | Weekly Tracker and Local Persistence             | `docs/skills/015-weekly-tracker/SKILLS.md`  |
+| 016  | Carbon World Engine and Lightweight Visual UI    | `docs/skills/016-carbon-world/SKILLS.md`    |
 
 ---
 
-## Phase 6 — Submission Assets
+## Phase 5 — Trust, Security, and Accessibility
 
-| Task | Title                                                                | Skill File                                           |
-| ---- | -------------------------------------------------------------------- | ---------------------------------------------------- |
-| 018  | LinkedIn Submission Docs, Prompt Strategy, and Architecture Evidence | `docs/skills/018-linkedin-submission-docs/SKILLS.md` |
+| Task | Title                                            | Skill File                                          |
+| ---- | ------------------------------------------------ | --------------------------------------------------- |
+| 017  | Privacy and Assumptions Page                     | `docs/skills/017-privacy-and-assumptions/SKILLS.md` |
+| 018  | Final Accessibility / Demo Polish                | `docs/skills/018-accessibility-polish/SKILLS.md`    |
 
 ---
 
-## Phase 7 — Final Verification
+## Phase 6 — Deployment & Submission
 
-| Task | Title                                                      | Skill File                                     |
-| ---- | ---------------------------------------------------------- | ---------------------------------------------- |
-| 019  | Final Verification, Release Candidate, and Submission Gate | `docs/skills/019-final-verification/SKILLS.md` |
+| Task | Title                                            | Skill File                                          |
+| ---- | ------------------------------------------------ | --------------------------------------------------- |
+| 019  | Cloud Run Deployment                             | `docs/skills/019-cloud-run-deployment/SKILLS.md`    |
+| 020  | README, Submission Docs, LinkedIn Post           | `docs/skills/020-readme-submission-docs/SKILLS.md`  |
 
 ---
 
@@ -244,7 +240,7 @@ Only the latest submission counts.
 
 Do not submit speculative or incomplete builds.
 
-Submit only after Task 019 confirms:
+Submit only after Task 020 confirms:
 
 ```text
 Build PASS
