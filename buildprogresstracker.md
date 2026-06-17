@@ -131,7 +131,7 @@ npm audit --omit=dev
 | 008  | Accessible UI Foundation and App Shell                                            | Review Ready | Antigravity | CQ, A11Y, EFF                   | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 009  | Carbon Profile Onboarding Flow                                                    | Review Ready | Antigravity | A11Y, CQ, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 010  | Footprint Summary and Action Plan UI                                              | Review Ready | Antigravity | ALIGN, A11Y, CQ                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 011  | Daily Choice Lab Engine and Tests                                                 | Not Started  | TBD         | ALIGN, TEST, CQ                 | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 011  | Recommendation and Weekly Plan UI                                                 | Review Ready | Antigravity | ALIGN, TEST, CQ                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 012  | Daily Choice Lab UI and Choice Coach Integration                                  | Not Started  | TBD         | ALIGN, A11Y, SEC, EFF           | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 013  | Carbon World Engine and Lightweight Visual UI                                     | Not Started  | TBD         | ALIGN, A11Y, EFF                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 014  | Weekly Tracker and Local Persistence                                              | Not Started  | TBD         | ALIGN, TEST, SEC                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
@@ -323,37 +323,37 @@ Update this section after every completed task.
 
 ## Task 010 — Footprint Summary and Action Plan UI
 
-| Field                     | Value                                                                                                                                                                                                            |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Status                    | Review Ready                                                                                                                                                                                                     |
-| Started At                | 2026-06-16                                                                                                                                                                                                        |
-| Completed At              | 2026-06-16                                                                                                                                                                                                        |
-| Agent / Tool              | Antigravity                                                                                                                                                                                                      |
-| Commit Hash               | Pending                                                                                                                                                                                                          |
-| Files Changed             | apps/web/src/features/footprint/footprintViewModel.ts, apps/web/src/features/footprint/FootprintSummary.tsx, apps/web/src/features/footprint/index.ts, apps/web/src/features/footprint/*.test.*, apps/web/src/app/AppShell.tsx   |
-| Summary                   | Connected in-memory profile to shared deterministic calculator. Implemented approximate footprint summary UI, category breakdowns with impact/confidence badges, top contributor card, and scientific assumptions.|
-| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                               |
-| Verification Result       | Pass                                                                                                                                                                                                             |
-| Human Review Result       | Pending                                                                                                                                                                                                          |
-| Risks / Follow-ups        | Local-first in-memory profile only. AI coaching and weekly action recommendation details will be integrated in subsequent tasks.                                                                                 |
+| Field                     | Value                                                                                                                                                                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Status                    | Review Ready                                                                                                                                                                                                                   |
+| Started At                | 2026-06-16                                                                                                                                                                                                                     |
+| Completed At              | 2026-06-16                                                                                                                                                                                                                     |
+| Agent / Tool              | Antigravity                                                                                                                                                                                                                    |
+| Commit Hash               | Pending                                                                                                                                                                                                                        |
+| Files Changed             | apps/web/src/features/footprint/footprintViewModel.ts, apps/web/src/features/footprint/FootprintSummary.tsx, apps/web/src/features/footprint/index.ts, apps/web/src/features/footprint/_.test._, apps/web/src/app/AppShell.tsx |
+| Summary                   | Connected in-memory profile to shared deterministic calculator. Implemented approximate footprint summary UI, category breakdowns with impact/confidence badges, top contributor card, and scientific assumptions.             |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                             |
+| Verification Result       | Pass                                                                                                                                                                                                                           |
+| Human Review Result       | Pending                                                                                                                                                                                                                        |
+| Risks / Follow-ups        | Local-first in-memory profile only. AI coaching and weekly action recommendation details will be integrated in subsequent tasks.                                                                                               |
 
 ---
 
-## Task 011 — Daily Choice Lab Engine and Tests
+## Task 011 — Recommendation and Weekly Plan UI
 
-| Field                     | Value       |
-| ------------------------- | ----------- |
-| Status                    | Not Started |
-| Started At                |             |
-| Completed At              |             |
-| Agent / Tool              |             |
-| Commit Hash               |             |
-| Files Changed             |             |
-| Summary                   |             |
-| Verification Commands Run |             |
-| Verification Result       |             |
-| Human Review Result       |             |
-| Risks / Follow-ups        |             |
+| Field                     | Value                                                                                                                                                                                                                             |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                                                                                                                                      |
+| Started At                | 2026-06-17                                                                                                                                                                                                                        |
+| Completed At              | 2026-06-17                                                                                                                                                                                                                        |
+| Agent / Tool              | Antigravity                                                                                                                                                                                                                       |
+| Commit Hash               | Pending                                                                                                                                                                                                                           |
+| Files Changed             | apps/web/src/app/routes.ts, apps/web/src/app/navigation.ts, apps/web/src/app/AppShell.tsx, apps/web/src/features/recommendations/\*                                                                                               |
+| Summary                   | Connected in-memory profile to shared deterministic recommendation engine and weekly plan generator. Rendered action cards, suggested weekly plan checklists, priority badge, disclaimers, empty states, and comprehensive tests. |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                |
+| Verification Result       | Pass                                                                                                                                                                                                                              |
+| Human Review Result       | Pending                                                                                                                                                                                                                           |
+| Risks / Follow-ups        | None. No coach API integration, choice labs, or state persistence yet. Runs fully client-side on deterministic shared calculations.                                                                                               |
 
 ---
 

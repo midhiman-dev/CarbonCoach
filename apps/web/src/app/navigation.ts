@@ -22,6 +22,11 @@ export const navigationItems: NavigationItem[] = [
     description: 'Calculated totals, categories breakdown, and AI coaching explanations',
   },
   {
+    id: 'recommendations',
+    label: 'Recommendations',
+    description: 'Ranked carbon reduction actions and suggested weekly plan',
+  },
+  {
     id: 'choice-lab',
     label: 'Daily Choice Lab',
     description: 'Compare impact scenarios and receive choice coaching nudges',

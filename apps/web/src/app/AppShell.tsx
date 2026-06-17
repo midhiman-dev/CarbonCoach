@@ -13,6 +13,7 @@ import {
 import { CarbonProfile, calculateFootprint } from '@carboncoach/shared';
 import { ProfileOnboarding } from '../features/profile';
 import { FootprintSummary, formatCategoryLabel } from '../features/footprint';
+import { RecommendationPanel } from '../features/recommendations';
 
 export const AppShell: React.FC = () => {
   const [activeSection, setActiveSection] = useState<ActiveSection>('overview');
@@ -140,6 +141,20 @@ export const AppShell: React.FC = () => {
               subtitle="Review breakdowns derived from your lifestyle profile inputs"
             />
             <FootprintSummary
+              profile={savedProfile}
+              onNavigateToProfile={() => setActiveSection('profile')}
+            />
+          </div>
+        );
+
+      case 'recommendations':
+        return (
+          <div>
+            <SectionHeader
+              title="Recommendations & Action Plan"
+              subtitle="Practical, deterministic steps to reduce your daily carbon footprint"
+            />
+            <RecommendationPanel
               profile={savedProfile}
               onNavigateToProfile={() => setActiveSection('profile')}
             />
