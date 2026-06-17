@@ -19,6 +19,6 @@ export const recommendationCopy = {
     highestImpact: 'Priority: Highest impact',
   },
   placeholders: {
-    aiCoach: 'AI Coach will explain these deterministic recommendations in a later task.',
+    aiCoach: 'Footprint Coach is available in the Recommendations section.',
   },
 };

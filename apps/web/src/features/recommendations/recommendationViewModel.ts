@@ -44,7 +44,7 @@ export function formatEffort(effort: ActionEffort): string {
  */
 export function formatCostEffect(costEffect: CostEffect): string {
   const labels = {
-    savesMoney: 'Saves Cost',
+    savesMoney: 'Cost-friendly',
     neutral: 'No Cost',
     mayCostMore: 'May Cost More',
   };

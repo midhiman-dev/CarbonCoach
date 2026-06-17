@@ -29,7 +29,7 @@ describe('recommendationViewModel helper tests', () => {
   });
 
   it('formats cost effect', () => {
-    expect(formatCostEffect('savesMoney')).toBe('Saves Cost');
+    expect(formatCostEffect('savesMoney')).toBe('Cost-friendly');
     expect(formatCostEffect('neutral')).toBe('No Cost');
     expect(formatCostEffect('mayCostMore')).toBe('May Cost More');
   });

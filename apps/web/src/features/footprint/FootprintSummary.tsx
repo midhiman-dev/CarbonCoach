@@ -289,7 +289,7 @@ export const FootprintSummary: React.FC<FootprintSummaryProps> = ({
           }}
         >
           <div style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
-            AI Coach & Recommendations Coming Soon
+            Footprint Coach & Recommendations Ready
           </div>
           <p
             style={{
@@ -299,8 +299,8 @@ export const FootprintSummary: React.FC<FootprintSummaryProps> = ({
               margin: 0,
             }}
           >
-            Your calculated footprint is ready. The next tasks will enable personalized coaching
-            summaries, action plans, and everyday lifestyle decisions using the Choice Lab.
+            Footprint Coach is available in the Recommendations section. Visit the Recommendations
+            tab to view personalized explanations and your weekly action plan.
           </p>
         </div>
       </Card>

@@ -83,6 +83,7 @@ export const profileCopy = {
     title: 'Profile Saved',
     summary:
       'Profile ready. Your approximate footprint summary will be calculated in the next step.',
-    placeholderNextStep: 'Footprint summary will appear after calculator UI is connected.',
+    placeholderNextStep:
+      'Your profile is saved locally. Visit Footprint to review your approximate estimate.',
   },
 };

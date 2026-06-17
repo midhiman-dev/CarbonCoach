@@ -43,7 +43,7 @@ export const navigationItems: NavigationItem[] = [
   },
   {
     id: 'privacy',
-    label: 'Privacy',
+    label: 'Privacy & Local Data',
     description: 'Review local-first data isolation policies and details',
   },
   {

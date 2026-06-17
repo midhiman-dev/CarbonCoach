@@ -21,7 +21,7 @@ export const actionCatalog: CarbonAction[] = [
     impactBand: 'low',
     effort: 'medium',
     costEffect: 'savesMoney',
-    reason: 'Walking and cycling produce zero tailpipe emissions.',
+    reason: 'Walking and cycling produce no direct tailpipe emissions.',
     assumptionNote: 'Estimated reduction assumes a typical 2-4 km short trip.',
   },
 
@@ -35,7 +35,7 @@ export const actionCatalog: CarbonAction[] = [
     costEffect: 'savesMoney',
     reason: 'Plant-based meals generally have a much lower carbon footprint than meat-heavy meals.',
     assumptionNote:
-      'Savings based on replacing one typical meat-heavy meal with a vegetarian option.',
+      'Impact depends on replacing one typical meat-heavy meal with a vegetarian option.',
   },
   {
     id: 'food.reduce_meat_heavy_meal_once',
@@ -69,7 +69,7 @@ export const actionCatalog: CarbonAction[] = [
     costEffect: 'savesMoney',
     reason: 'Heating and cooling are usually the largest drivers of home energy use.',
     assumptionNote:
-      'Savings assume average HVAC consumption. Exact amount varies by unit efficiency.',
+      'Estimate depends on average HVAC consumption. Impact varies by unit efficiency.',
   },
 
   // Shopping
@@ -92,7 +92,7 @@ export const actionCatalog: CarbonAction[] = [
     costEffect: 'savesMoney',
     reason: 'Manufacturing new goods often involves high embodied carbon.',
     assumptionNote:
-      'Savings depend on the specific material and manufacturing process of the item.',
+      'Impact depends on the specific material and manufacturing process of the item.',
   },
 
   // Flights
@@ -105,7 +105,7 @@ export const actionCatalog: CarbonAction[] = [
     costEffect: 'neutral',
     reason:
       'Trains typically produce a fraction of the emissions per passenger compared to flights.',
-    assumptionNote: 'Savings based on average short-haul flight vs electric rail.',
+    assumptionNote: 'Impact depends on average short-haul flight vs electric rail.',
   },
   {
     id: 'flights.plan_lower_frequency_air_travel',
@@ -115,7 +115,7 @@ export const actionCatalog: CarbonAction[] = [
     effort: 'medium',
     costEffect: 'savesMoney',
     reason: 'Taking fewer flights is one of the most effective ways to lower your footprint.',
-    assumptionNote: 'Eliminating a single flight produces large immediate carbon savings.',
+    assumptionNote: 'Eliminating a single flight has a large immediate estimated impact.',
   },
 ];
 

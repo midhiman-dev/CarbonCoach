@@ -4,7 +4,6 @@ import { ActiveSection } from './routes';
 import {
   Card,
   Container,
-  EmptyState,
   SectionHeader,
   TrustIndicator,
   StatusBadge,
@@ -71,7 +70,7 @@ export const AppShell: React.FC = () => {
                       <p>
                         Largest source: <strong>{formatCategoryLabel(estimate.topCategory)}</strong>
                       </p>
-                      <StatusBadge variant="high" label="Analysis Ready" />
+                      <StatusBadge variant="high" label="Calculated from profile" />
                     </>
                   ) : (
                     <>
@@ -86,7 +85,10 @@ export const AppShell: React.FC = () => {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
                   {savedProfile ? (
                     <>
-                      <p>Custom weekly plan actions are available in the actions tracker.</p>
+                      <p>
+                        Custom weekly plan actions are ready. Visit the Weekly Tracker to track your
+                        actions.
+                      </p>
                       <StatusBadge variant="low" label="Plan Generated" />
                     </>
                   ) : (
@@ -100,20 +102,31 @@ export const AppShell: React.FC = () => {
             </div>
 
             <div className="grid-two-cols" style={{ marginTop: 'var(--spacing-md)' }}>
-              <Card title="Daily Choice Lab Preview">
+              <Card title="Daily Choice Lab">
                 <p style={{ marginBottom: 'var(--spacing-md)' }}>
-                  Compare transit, meal, and shipping decisions using clear impact bands and get
-                  Scenario-based choice guidance will be added in a later task.
+                  Compare everyday scenarios using deterministic impact bands and receive
+                  AI-assisted coaching on lower-impact options.
                 </p>
-                <EmptyState
-                  title="Scenario Comparisons Coming Soon"
-                  description="Choice scenario lab will be connected in a later task."
-                />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
+                  <StatusBadge variant="low" label="Daily Choice Lab Ready" />
+                  <button
+                    onClick={() => setActiveSection('choice-lab')}
+                    className="btn btn-primary"
+                    style={{
+                      alignSelf: 'start',
+                      marginTop: 'var(--spacing-xs)',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Go to Daily Choice Lab
+                  </button>
+                </div>
               </Card>
 
               <Card title="Carbon World Status">
                 <p style={{ marginBottom: 'var(--spacing-md)' }}>
-                  Your personal visual world adapts to completed actions.
+                  Your personal visual world grows based on your weekly action progress. Complete
+                  actions to clear the sky and plant trees!
                 </p>
                 {savedProfile && trackerState && weeklyPlanActions.length > 0 ? (
                   <>
@@ -256,16 +269,33 @@ export const AppShell: React.FC = () => {
         return (
           <div>
             <SectionHeader
-              title="Privacy Policy"
+              title="Privacy & Local Data"
               subtitle="How your carbon lifestyle data is managed"
             />
-            <Card title="Local-First Isolation Policy">
-              <p style={{ marginBottom: 'var(--spacing-md)' }}>
-                CarbonCoach utilizes a local-first design. All lifestyle configurations, tracker
-                entries, and calculation results remain strictly isolated within your browser's
-                local sandbox storage.
-              </p>
-              <StatusBadge variant="info" label="Local-first active" />
+            <Card title="Local-First Data Isolation">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
+                <p style={{ margin: 0 }}>
+                  CarbonCoach is built with a local-first design. Your profile preferences and
+                  weekly tracker progress stay strictly in this browser.
+                </p>
+                <p style={{ margin: 0 }}>
+                  No login, database, or cloud-hosted user profile is used. You remain completely
+                  anonymous.
+                </p>
+                <p style={{ margin: 0 }}>
+                  When you explicitly trigger a Coach request, minimized, anonymous calculation or
+                  scenario context is sent to our backend to fetch AI coaching responses. Raw
+                  profile details and full tracker history are never sent as local data dumps.
+                </p>
+                <p style={{ margin: 0 }}>
+                  You retain complete control of your data. Local data can be cleared at any time
+                  from this device using the controls on the Profile page.
+                </p>
+                <div style={{ display: 'flex', gap: 'var(--spacing-xs)', flexWrap: 'wrap' }}>
+                  <StatusBadge variant="info" label="Local Data Stored" />
+                  <StatusBadge variant="info" label="No Account Required" />
+                </div>
+              </div>
             </Card>
           </div>
         );
@@ -274,14 +304,14 @@ export const AppShell: React.FC = () => {
         return (
           <div>
             <SectionHeader
-              title="透明 Estimates & Assumptions"
+              title="Estimates & Assumptions"
               subtitle="How our calculations map to carbon coefficients"
             />
-            <Card title="Transparent Science Reference">
-              <p>
-                Carbon totals are approximations derived from transparent, standard emission
-                factors. Avoided-emission calculations rely on audited TypeScript logic mapped to
-                domestic averages.
+            <Card title="Transparency: Estimates & Assumptions">
+              <p style={{ margin: 0 }}>
+                CarbonCoach uses deterministic TypeScript logic and simplified demo emission factors
+                to estimate lifestyle footprint patterns. Results are approximate and intended for
+                awareness, not formal reporting.
               </p>
             </Card>
           </div>

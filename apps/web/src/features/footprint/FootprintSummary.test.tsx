@@ -54,7 +54,7 @@ describe('FootprintSummary Component', () => {
     render(<FootprintSummary profile={mockProfile} />);
 
     // AI Coach UI should not show real responses/actions, only the placeholder
-    expect(screen.getByText('AI Coach & Recommendations Coming Soon')).toBeInTheDocument();
+    expect(screen.getByText('Footprint Coach & Recommendations Ready')).toBeInTheDocument();
     expect(screen.queryByText('Based on your Gemini suggestions')).not.toBeInTheDocument();
 
     // No network requests should have been made

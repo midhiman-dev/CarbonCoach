@@ -57,7 +57,7 @@ describe('RecommendationPanel Component', () => {
 
     expect(screen.getAllByText('High Impact')[0]).toBeInTheDocument();
     expect(screen.getAllByText('Low Effort')[0]).toBeInTheDocument();
-    expect(screen.getAllByText('Saves Cost')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Cost-friendly')[0]).toBeInTheDocument();
   });
 
   it('renders deterministic reduction only when present', () => {

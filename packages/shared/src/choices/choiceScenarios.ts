@@ -16,7 +16,7 @@ export const choiceScenarios: ChoiceScenario[] = [
         description: 'Commute alone in a standard petrol-powered vehicle.',
         impactBand: 'high',
         reasons: [
-          'High emissions per passenger-kilometer when driving alone.',
+          'Usually higher impact per passenger than shared transit.',
           'Contributes to local traffic congestion and idle emissions.',
         ],
       },
@@ -27,7 +27,7 @@ export const choiceScenarios: ChoiceScenario[] = [
         impactBand: 'low',
         reasons: [
           'High efficiency due to electric power and high passenger volume.',
-          'Zero tailpipe emissions during the journey.',
+          'No direct tailpipe emissions during the ride; electricity source assumptions vary.',
         ],
       },
       {

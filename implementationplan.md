@@ -155,6 +155,8 @@ _Note on controlled deviation: Choice Coach UI was pulled forward to complete th
 | 015  | Weekly Tracker and Local Persistence          | `docs/skills/015-weekly-tracker/SKILLS.md` |
 | 016  | Carbon World Engine and Lightweight Visual UI | `docs/skills/016-carbon-world/SKILLS.md`   |
 
+_Note: Pre-Task 017 Smoke Polish Patch was implemented before Task 017 to remove stale placeholders, clean up risky/overstrong user-facing claims, and align documentation._
+
 ---
 
 ## Phase 5 — Trust, Security, and Accessibility
