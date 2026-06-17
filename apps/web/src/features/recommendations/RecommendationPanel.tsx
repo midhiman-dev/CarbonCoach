@@ -5,6 +5,7 @@ import { Card, EmptyState, StatusBadge } from '../../components/ui';
 import { recommendationCopy } from './recommendationCopy';
 import { RecommendationCard } from './RecommendationCard';
 import { WeeklyPlanPanel } from './WeeklyPlanPanel';
+import { FootprintCoachPanel } from '../coach';
 
 export interface RecommendationPanelProps {
   profile: CarbonProfile | null;
@@ -62,18 +63,13 @@ export const RecommendationPanel: React.FC<RecommendationPanelProps> = ({
         {/* Weekly Plan Panel */}
         <WeeklyPlanPanel plan={weeklyPlan} />
 
-        {/* AI Coach Placeholder */}
-        <Card title="AI Insights Coach" style={{ height: '100%' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
-            <p style={{ margin: 0, color: 'var(--text-secondary)' }}>
-              {recommendationCopy.placeholders.aiCoach}
-            </p>
-            <EmptyState
-              title="AI Coach Offline"
-              description="Gemini integration is disabled in this step. Visual coach interface will be added in a later task."
-            />
-          </div>
-        </Card>
+        {/* AI Coach Panel */}
+        <FootprintCoachPanel
+          footprint={estimate}
+          recommendedActions={recommendations}
+          weeklyPlan={weeklyPlan}
+          preference={profile.preference}
+        />
       </div>
 
       {/* Ranked Action Recommendations */}

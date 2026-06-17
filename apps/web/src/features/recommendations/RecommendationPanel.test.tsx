@@ -70,15 +70,13 @@ describe('RecommendationPanel Component', () => {
     expect(screen.queryByText(/Estimated reduction:.*meal swap/)).not.toBeInTheDocument();
   });
 
-  it('does not render AI coach response and does not call /api/coach', () => {
+  it('renders FootprintCoachPanel and does not call /api/coach on initial load', () => {
     render(<RecommendationPanel profile={mockProfile} onNavigateToProfile={vi.fn()} />);
 
-    // Truthful placeholder only
-    expect(
-      screen.getByText(
-        'AI Coach will explain these deterministic recommendations in a later task.',
-      ),
-    ).toBeInTheDocument();
+    // Renders the coach panel controls
+    expect(screen.getByText('Footprint Coach')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Ask Footprint Coach' })).toBeInTheDocument();
+    expect(screen.getByLabelText('Select Tone')).toBeInTheDocument();
 
     expect(global.fetch).not.toHaveBeenCalled();
   });

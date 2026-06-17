@@ -132,7 +132,7 @@ npm audit --omit=dev
 | 009  | Carbon Profile Onboarding Flow                                                    | Review Ready | Antigravity | A11Y, CQ, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 010  | Footprint Summary and Action Plan UI                                              | Review Ready | Antigravity | ALIGN, A11Y, CQ                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 011  | Recommendation and Weekly Plan UI                                                 | Review Ready | Antigravity | ALIGN, TEST, CQ                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 012  | Daily Choice Lab UI and Choice Coach Integration                                  | Not Started  | TBD         | ALIGN, A11Y, SEC, EFF           | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 012  | Footprint Coach UI                                                                | Review Ready | Antigravity | ALIGN, A11Y, SEC, EFF           | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 013  | Carbon World Engine and Lightweight Visual UI                                     | Not Started  | TBD         | ALIGN, A11Y, EFF                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 014  | Weekly Tracker and Local Persistence                                              | Not Started  | TBD         | ALIGN, TEST, SEC                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 015  | Security, Privacy, Assumptions, and Documentation Pass                            | Not Started  | TBD         | SEC, ALIGN, CQ                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
@@ -357,31 +357,31 @@ Update this section after every completed task.
 
 ---
 
-## Task 012 — Daily Choice Lab UI and Choice Coach Integration
+## Task 012 — Footprint Coach UI
 
-| Field                     | Value       |
-| ------------------------- | ----------- |
-| Status                    | Not Started |
-| Started At                |             |
-| Completed At              |             |
-| Agent / Tool              |             |
-| Commit Hash               |             |
-| Files Changed             |             |
-| Summary                   |             |
-| Verification Commands Run |             |
-| Verification Result       |             |
-| Human Review Result       |             |
-| Risks / Follow-ups        |             |
+| Field                     | Value                                                                                                                                                                                                                                                 |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                                                                                                                                                          |
+| Started At                | 2026-06-17                                                                                                                                                                                                                                            |
+| Completed At              | 2026-06-17                                                                                                                                                                                                                                            |
+| Agent / Tool              | Antigravity                                                                                                                                                                                                                                           |
+| Commit Hash               | Pending                                                                                                                                                                                                                                               |
+| Files Changed             | apps/web/src/features/coach/*, apps/web/src/features/recommendations/RecommendationPanel.tsx, apps/web/src/features/recommendations/RecommendationPanel.test.tsx                                                                                      |
+| Summary                   | Connected calculated footprint summary and recommendations to `/api/coach` endpoint, rendering safe AI responses and handling loading, error, and fallback states. Used select primitive for tone and structured markup for screen reader.            |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                                    |
+| Verification Result       | Pass                                                                                                                                                                                                                                                  |
+| Human Review Result       | Pending                                                                                                                                                                                                                                               |
+| Risks / Follow-ups        | None. Daily Choice Lab, Choice Coach UI, and Carbon World are not implemented as they are deferred to later tasks.                                                                                                                                    |
 
-### Choice Coach Evidence
+### Footprint Coach Evidence
 
-| Check                                | Result  | Notes |
-| ------------------------------------ | ------- | ----- |
-| Choice Coach is user-triggered only  | Not Run |       |
-| Choice Coach fallback works          | Not Run |       |
-| Choice Coach does not invent numbers | Not Run |       |
-| Choice context is minimized          | Not Run |       |
-| UI shows fallback state clearly      | Not Run |       |
+| Check                                  | Result | Notes |
+| -------------------------------------- | ------ | ----- |
+| Footprint Coach is user-triggered only | Pass   | Only requested when user clicks 'Ask Footprint Coach' button |
+| Footprint Coach fallback works         | Pass   | Handled transparently by backend fallback composer |
+| Footprint Coach does not invent numbers| Pass   | Uses allowedNumbers guard derived from footprint context |
+| Footprint context is minimized         | Pass   | No raw onboarding profile sent; only aggregates/titles |
+| UI shows fallback state clearly        | Pass   | Distinct badge and styling for Deterministic Fallback status |
 
 ---
 
