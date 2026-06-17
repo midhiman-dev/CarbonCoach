@@ -21,12 +21,16 @@ import {
   clearAllLocalCarbonCoachData,
   WeeklyTracker,
   LocalDataControls,
+  useWeeklyTracker,
 } from '../features/tracker';
+import { CarbonWorld } from '../features/world';
 
 export const AppShell: React.FC = () => {
   const [activeSection, setActiveSection] = useState<ActiveSection>('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [savedProfile, setSavedProfile] = useState<CarbonProfile | null>(() => loadStoredProfile());
+  const { trackerState, weeklyPlanActions, toggleAction, resetTracker, progress } =
+    useWeeklyTracker(savedProfile);
 
   const estimate = savedProfile ? calculateFootprint(savedProfile) : null;
 
@@ -111,16 +115,46 @@ export const AppShell: React.FC = () => {
                 <p style={{ marginBottom: 'var(--spacing-md)' }}>
                   Your personal visual world adapts to completed actions.
                 </p>
-                <ProgressMeter value={0} max={100} label="Weekly action progress" />
-                <p
-                  style={{
-                    fontSize: 'var(--font-xs)',
-                    color: 'var(--text-muted)',
-                    marginTop: 'var(--spacing-sm)',
-                  }}
-                >
-                  Carbon World is currently clear and ready for tracker actions.
-                </p>
+                {savedProfile && trackerState && weeklyPlanActions.length > 0 ? (
+                  <>
+                    <ProgressMeter
+                      value={progress.percent}
+                      max={100}
+                      label="Weekly action progress"
+                    />
+                    <p
+                      style={{
+                        fontSize: 'var(--font-size-xs)',
+                        color: 'var(--color-text-secondary)',
+                        marginTop: 'var(--spacing-sm)',
+                        fontWeight: 600,
+                      }}
+                    >
+                      Current stage:{' '}
+                      {progress.percent === 0
+                        ? 'Seed'
+                        : progress.percent <= 33
+                          ? 'Sprout'
+                          : progress.percent <= 66
+                            ? 'Garden'
+                            : 'Grove'}{' '}
+                      ({progress.completed} of {progress.total} actions)
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <ProgressMeter value={0} max={100} label="Weekly action progress" />
+                    <p
+                      style={{
+                        fontSize: 'var(--font-size-xs)',
+                        color: 'var(--color-text-secondary)',
+                        marginTop: 'var(--spacing-sm)',
+                      }}
+                    >
+                      Set up your profile and start your weekly tracker to grow your Carbon World.
+                    </p>
+                  </>
+                )}
               </Card>
             </div>
           </div>
@@ -185,18 +219,13 @@ export const AppShell: React.FC = () => {
 
       case 'carbon-world':
         return (
-          <div>
-            <SectionHeader
-              title="Carbon World"
-              subtitle="Visual display of your environment based on habits"
-            />
-            <Card title="World Simulation Canvas">
-              <EmptyState
-                title="Simulation Canvas Coming Soon"
-                description="A lightweight SVG/CSS environment reflecting your actions will be built in Task 013."
-              />
-            </Card>
-          </div>
+          <CarbonWorld
+            profile={savedProfile}
+            weeklyPlanActions={weeklyPlanActions}
+            trackerState={trackerState}
+            onNavigateToOnboarding={() => setActiveSection('profile')}
+            onNavigateToTracker={() => setActiveSection('tracker')}
+          />
         );
 
       case 'tracker':
@@ -209,7 +238,13 @@ export const AppShell: React.FC = () => {
             <WeeklyTracker
               profile={savedProfile}
               onNavigateToOnboarding={() => setActiveSection('profile')}
+              trackerState={trackerState}
+              weeklyPlanActions={weeklyPlanActions}
+              toggleAction={toggleAction}
+              resetTracker={resetTracker}
+              progress={progress}
             />
+
             <LocalDataControls
               hasData={savedProfile !== null}
               onClear={() => setSavedProfile(null)}

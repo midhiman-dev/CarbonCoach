@@ -1,8 +1,9 @@
 ---
-
 name: carboncoach-weekly-tracker
 description: Use this skill when implementing Task 015 — Weekly Tracker and Local Persistence for CarbonCoach. This task implements local-first browser persistence for profile/tracker state and an accessible weekly action tracker UI. It must not implement Carbon World, privacy page, assumptions page, deployment, backend storage, authentication, database, analytics, or fake impact claims.
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
+
+---
 
 # Task 015 — Weekly Tracker and Local Persistence
 
@@ -89,31 +90,31 @@ buildprogresstracker.md
 
 Implement:
 
-* weekly tracker UI,
-* action completion state,
-* local browser persistence,
-* saved profile restoration if appropriate,
-* clear local data control,
-* local data status/trust messaging,
-* safe progress summary,
-* tests.
+- weekly tracker UI,
+- action completion state,
+- local browser persistence,
+- saved profile restoration if appropriate,
+- clear local data control,
+- local data status/trust messaging,
+- safe progress summary,
+- tests.
 
 ## Out of Scope
 
 Do not implement:
 
-* backend persistence,
-* database,
-* authentication/login,
-* analytics,
-* cloud sync,
-* Carbon World,
-* privacy page,
-* assumptions page,
-* deployment,
-* AI-generated tracker claims,
-* automatic coach requests,
-* exact avoided-emissions totals unless derived deterministically and already available.
+- backend persistence,
+- database,
+- authentication/login,
+- analytics,
+- cloud sync,
+- Carbon World,
+- privacy page,
+- assumptions page,
+- deployment,
+- AI-generated tracker claims,
+- automatic coach requests,
+- exact avoided-emissions totals unless derived deterministically and already available.
 
 ---
 
@@ -230,19 +231,14 @@ Recommended shared/helper functions:
 ```ts
 export function createCurrentWeekId(date?: Date): string;
 
-export function createInitialWeeklyTrackerState(
-  weekId?: string,
-): WeeklyTrackerState;
+export function createInitialWeeklyTrackerState(weekId?: string): WeeklyTrackerState;
 
 export function toggleTrackedAction(
   state: WeeklyTrackerState,
   actionId: string,
 ): WeeklyTrackerState;
 
-export function isActionCompleted(
-  state: WeeklyTrackerState,
-  actionId: string,
-): boolean;
+export function isActionCompleted(state: WeeklyTrackerState, actionId: string): boolean;
 
 export function calculateTrackerProgress(
   state: WeeklyTrackerState,

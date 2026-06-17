@@ -119,30 +119,30 @@ npm audit --omit=dev
 
 # Master Task Tracker
 
-*Note on controlled deviation: Choice Coach UI was pulled forward to complete the Daily Choice Lab coaching loop before tracker/persistence work. Weekly Tracker and Carbon World were shifted to the next tasks.*
+_Note on controlled deviation: Choice Coach UI was pulled forward to complete the Daily Choice Lab coaching loop before tracker/persistence work. Weekly Tracker and Carbon World were shifted to the next tasks._
 
-| Task | Title                                                                             | Status       | Owner/Agent | Scoring Focus                   | Build   | Typecheck | Tests   | Lint    | Format  | Human Review | Commit  |
-| ---- | --------------------------------------------------------------------------------- | ------------ | ----------- | ------------------------------- | ------- | --------- | ------- | ------- | ------- | ------------ | ------- |
-| 001  | Repo Foundation, Workspace, and Quality Gates                                     | Complete     | Antigravity | CQ, TEST, EFF                   | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
-| 002  | Shared Carbon Domain Model and Factor Registry                                    | Complete     | Antigravity | CQ, TEST, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
-| 003  | Deterministic Carbon Footprint Engine                                             | Complete     | Antigravity | CQ, TEST, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
-| 004  | Recommendation Engine and Weekly Action Ranking                                   | Complete     | Antigravity | CQ, TEST, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
-| 005  | Privacy, Redaction, and Local Data Safety Utilities                               | Complete     | Antigravity | SEC, TEST, CQ                   | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
-| 006  | Coach Contracts, Fallback Composer, and Numeric Guard Contracts                   | Review Ready | Antigravity | SEC, TEST, CQ                   | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 007  | Gemini Coach Service with Timeout, Schema Validation, Numeric Guard, and Fallback | Review Ready | Antigravity | SEC, EFF, TEST, ALIGN           | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 008  | Accessible UI Foundation and App Shell                                            | Review Ready | Antigravity | CQ, A11Y, EFF                   | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 009  | Carbon Profile Onboarding Flow                                                    | Review Ready | Antigravity | A11Y, CQ, ALIGN                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 010  | Footprint Summary UI                                                              | Review Ready | Antigravity | ALIGN, A11Y, CQ                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 011  | Recommendation and Weekly Plan UI                                                 | Review Ready | Antigravity | ALIGN, TEST, CQ                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 012  | Footprint Coach UI                                                                | Review Ready | Antigravity | ALIGN, A11Y, SEC, EFF           | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 013  | Daily Choice Lab Foundation                                                       | Review Ready | Antigravity | ALIGN, A11Y, EFF                | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 014  | Choice Coach UI                                                                   | Review Ready | Antigravity | ALIGN, TEST, SEC                | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 015  | Weekly Tracker and Local Persistence                                              | Review Ready | Antigravity | ALIGN, CQ, TEST                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 016  | Carbon World Engine and Lightweight Visual UI                                     | Not Started  | TBD         | ALIGN, A11Y, EFF                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 017  | Privacy and Assumptions Page                                                      | Not Started  | TBD         | SEC, ALIGN, CQ                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 018  | Final Accessibility / Demo Polish                                                 | Not Started  | TBD         | A11Y, CQ, TEST                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 019  | Cloud Run Deployment                                                              | Not Started  | TBD         | EFF, SEC, CQ                    | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
-| 020  | README, Submission Docs, LinkedIn Post                                            | Not Started  | TBD         | ALIGN, CQ                       | N/A     | N/A       | N/A     | N/A     | Not Run | Not Run      | Pending |
+| Task | Title                                                                             | Status       | Owner/Agent | Scoring Focus         | Build   | Typecheck | Tests   | Lint    | Format  | Human Review | Commit  |
+| ---- | --------------------------------------------------------------------------------- | ------------ | ----------- | --------------------- | ------- | --------- | ------- | ------- | ------- | ------------ | ------- |
+| 001  | Repo Foundation, Workspace, and Quality Gates                                     | Complete     | Antigravity | CQ, TEST, EFF         | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
+| 002  | Shared Carbon Domain Model and Factor Registry                                    | Complete     | Antigravity | CQ, TEST, ALIGN       | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
+| 003  | Deterministic Carbon Footprint Engine                                             | Complete     | Antigravity | CQ, TEST, ALIGN       | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
+| 004  | Recommendation Engine and Weekly Action Ranking                                   | Complete     | Antigravity | CQ, TEST, ALIGN       | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
+| 005  | Privacy, Redaction, and Local Data Safety Utilities                               | Complete     | Antigravity | SEC, TEST, CQ         | Pass    | Pass      | Pass    | Pass    | Pass    | Accepted     | Pending |
+| 006  | Coach Contracts, Fallback Composer, and Numeric Guard Contracts                   | Review Ready | Antigravity | SEC, TEST, CQ         | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
+| 007  | Gemini Coach Service with Timeout, Schema Validation, Numeric Guard, and Fallback | Review Ready | Antigravity | SEC, EFF, TEST, ALIGN | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
+| 008  | Accessible UI Foundation and App Shell                                            | Review Ready | Antigravity | CQ, A11Y, EFF         | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
+| 009  | Carbon Profile Onboarding Flow                                                    | Review Ready | Antigravity | A11Y, CQ, ALIGN       | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
+| 010  | Footprint Summary UI                                                              | Review Ready | Antigravity | ALIGN, A11Y, CQ       | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
+| 011  | Recommendation and Weekly Plan UI                                                 | Review Ready | Antigravity | ALIGN, TEST, CQ       | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
+| 012  | Footprint Coach UI                                                                | Review Ready | Antigravity | ALIGN, A11Y, SEC, EFF | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
+| 013  | Daily Choice Lab Foundation                                                       | Review Ready | Antigravity | ALIGN, A11Y, EFF      | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
+| 014  | Choice Coach UI                                                                   | Review Ready | Antigravity | ALIGN, TEST, SEC      | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
+| 015  | Weekly Tracker and Local Persistence                                              | Review Ready | Antigravity | ALIGN, CQ, TEST       | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
+| 016  | Carbon World Engine and Lightweight Visual UI                                     | Review Ready | Antigravity | ALIGN, A11Y, EFF      | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
+| 017  | Privacy and Assumptions Page                                                      | Not Started  | TBD         | SEC, ALIGN, CQ        | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 018  | Final Accessibility / Demo Polish                                                 | Not Started  | TBD         | A11Y, CQ, TEST        | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 019  | Cloud Run Deployment                                                              | Not Started  | TBD         | EFF, SEC, CQ          | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 020  | README, Submission Docs, LinkedIn Post                                            | Not Started  | TBD         | ALIGN, CQ             | N/A     | N/A       | N/A     | N/A     | Not Run | Not Run      | Pending |
 
 ---
 
@@ -417,84 +417,83 @@ Update this section after every completed task.
 
 ## Task 014 — Choice Coach UI
 
-| Field                     | Value                                                                                                                                                                                                                                                                                         |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Status                    | Review Ready                                                                                                                                                                                                                                                                                  |
-| Started At                | 2026-06-17                                                                                                                                                                                                                                                                                    |
-| Completed At              | 2026-06-17                                                                                                                                                                                                                                                                                    |
-| Agent / Tool              | Antigravity                                                                                                                                                                                                                                                                                   |
-| Commit Hash               | Pending                                                                                                                                                                                                                                                                                       |
+| Field                     | Value                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                                                                                                                                                                                                                                                                                          |
+| Started At                | 2026-06-17                                                                                                                                                                                                                                                                                                                                                                            |
+| Completed At              | 2026-06-17                                                                                                                                                                                                                                                                                                                                                                            |
+| Agent / Tool              | Antigravity                                                                                                                                                                                                                                                                                                                                                                           |
+| Commit Hash               | Pending                                                                                                                                                                                                                                                                                                                                                                               |
 | Files Changed             | apps/web/src/features/coach/ChoiceCoachPanel.tsx, apps/web/src/features/coach/choiceCoachRequestBuilder.ts, apps/web/src/features/coach/coachClient.ts, apps/web/src/features/choices/DailyChoiceLab.tsx, apps/web/src/features/coach/ChoiceCoachPanel.test.tsx, apps/web/src/features/coach/choiceCoachRequestBuilder.test.ts, apps/web/src/features/choices/DailyChoiceLab.test.tsx |
-| Summary                   | Implemented interactive Choice Coach UI, payload request builder extracting scenario context & allowed numbers, backend client function, tests, and Daily Choice Lab integration.                                                                                                             |
-| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                                                                            |
-| Verification Result       | Pass                                                                                                                                                                                                                                                                                          |
-| Human Review Result       | Pending                                                                                                                                                                                                                                                                                       |
-| Risks / Follow-ups        | None. Local persistence and Carbon World elements are excluded per task scope.                                                                                                                                                                                                                |
+| Summary                   | Implemented interactive Choice Coach UI, payload request builder extracting scenario context & allowed numbers, backend client function, tests, and Daily Choice Lab integration.                                                                                                                                                                                                     |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                                                                                                                                                                    |
+| Verification Result       | Pass                                                                                                                                                                                                                                                                                                                                                                                  |
+| Human Review Result       | Pending                                                                                                                                                                                                                                                                                                                                                                               |
+| Risks / Follow-ups        | None. Local persistence and Carbon World elements are excluded per task scope.                                                                                                                                                                                                                                                                                                        |
 
 ### Choice Coach UI Evidence
 
-| Check                                     | Result | Notes                                                       |
-| ----------------------------------------- | ------ | ----------------------------------------------------------- |
-| Choice Coach is user-triggered only       | Pass   | Only requested when user clicks 'Ask Choice Coach' button   |
-| Choice Coach fallback works               | Pass   | Handled transparently by backend fallback composer          |
-| Choice Coach does not invent numbers      | Pass   | Uses allowedNumbers guard derived from choice context       |
-| Choice context is minimized               | Pass   | No raw onboarding profile or local storage data is sent     |
-| UI shows fallback/AI state clearly        | Pass   | Uses existing CoachResponseCard status badges               |
-| Response is cleared on scenario change    | Pass   | useEffect hook resets panel state when scenario ID changes  |
-
+| Check                                  | Result | Notes                                                      |
+| -------------------------------------- | ------ | ---------------------------------------------------------- |
+| Choice Coach is user-triggered only    | Pass   | Only requested when user clicks 'Ask Choice Coach' button  |
+| Choice Coach fallback works            | Pass   | Handled transparently by backend fallback composer         |
+| Choice Coach does not invent numbers   | Pass   | Uses allowedNumbers guard derived from choice context      |
+| Choice context is minimized            | Pass   | No raw onboarding profile or local storage data is sent    |
+| UI shows fallback/AI state clearly     | Pass   | Uses existing CoachResponseCard status badges              |
+| Response is cleared on scenario change | Pass   | useEffect hook resets panel state when scenario ID changes |
 
 ---
 
 ## Task 015 — Weekly Tracker and Local Persistence
 
-| Field                     | Value                                                                                                                                                                                                                                                                                                         |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Status                    | Review Ready                                                                                                                                                                                                                                                                                                  |
-| Started At                | 2026-06-17                                                                                                                                                                                                                                                                                                    |
-| Completed At              | 2026-06-17                                                                                                                                                                                                                                                                                                    |
-| Agent / Tool              | Antigravity                                                                                                                                                                                                                                                                                                   |
-| Commit Hash               | Pending                                                                                                                                                                                                                                                                                                       |
-| Files Changed             | packages/shared/src/tracker/*, packages/shared/src/index.ts, apps/web/src/features/tracker/*, apps/web/src/app/AppShell.tsx                                                                                                                                                                                   |
+| Field                     | Value                                                                                                                                                                                                                                                                                                    |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                                                                                                                                                                                                             |
+| Started At                | 2026-06-17                                                                                                                                                                                                                                                                                               |
+| Completed At              | 2026-06-17                                                                                                                                                                                                                                                                                               |
+| Agent / Tool              | Antigravity                                                                                                                                                                                                                                                                                              |
+| Commit Hash               | Pending                                                                                                                                                                                                                                                                                                  |
+| Files Changed             | packages/shared/src/tracker/_, packages/shared/src/index.ts, apps/web/src/features/tracker/_, apps/web/src/app/AppShell.tsx                                                                                                                                                                              |
 | Summary                   | Implemented local-first browser persistence for profile and checklist progress state, an accessible WeeklyTracker UI checklist mapping to the deterministic weekly plan, and a LocalDataControls dashboard. Added thorough unit/UI test coverage for state transitions, storage boundaries, and UI flow. |
-| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                                                                                            |
-| Verification Result       | Pass                                                                                                                                                                                                                                                                                                          |
-| Human Review Result       | Pending                                                                                                                                                                                                                                                                                                       |
-| Risks / Follow-ups        | None. Carbon World engine and Privacy page are out of scope and will be implemented in subsequent tasks.                                                                                                                                                                                                      |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                                                                                       |
+| Verification Result       | Pass                                                                                                                                                                                                                                                                                                     |
+| Human Review Result       | Pending                                                                                                                                                                                                                                                                                                  |
+| Risks / Follow-ups        | None. Carbon World engine and Privacy page are out of scope and will be implemented in subsequent tasks.                                                                                                                                                                                                 |
 
 ### Weekly Tracker Evidence
 
-| Check                                     | Result | Notes                                                                                   |
-| ----------------------------------------- | ------ | --------------------------------------------------------------------------------------- |
-| Local persistence implemented             | Pass   | Handled via try-catch wrapped window.localStorage utilities in trackerStorage.ts       |
-| Action completion tracking works          | Pass   | Custom React hook useWeeklyTracker manages check states deterministically in memory      |
-| Avoided impact calculations works         | Pass   | Progress is calculated dynamically based on action array size and checklist checks       |
-| Clear data functionality works            | Pass   | LocalDataControls component safely deletes namespace carboncoach keys and resets state |
+| Check                             | Result | Notes                                                                                  |
+| --------------------------------- | ------ | -------------------------------------------------------------------------------------- |
+| Local persistence implemented     | Pass   | Handled via try-catch wrapped window.localStorage utilities in trackerStorage.ts       |
+| Action completion tracking works  | Pass   | Custom React hook useWeeklyTracker manages check states deterministically in memory    |
+| Avoided impact calculations works | Pass   | Progress is calculated dynamically based on action array size and checklist checks     |
+| Clear data functionality works    | Pass   | LocalDataControls component safely deletes namespace carboncoach keys and resets state |
 
 ---
 
 ## Task 016 — Carbon World Engine and Lightweight Visual UI
 
-| Field                     | Value       |
-| ------------------------- | ----------- |
-| Status                    | Not Started |
-| Started At                |             |
-| Completed At              |             |
-| Agent / Tool              |             |
-| Commit Hash               |             |
-| Files Changed             |             |
-| Summary                   |             |
-| Verification Commands Run |             |
-| Verification Result       |             |
-| Human Review Result       |             |
-| Risks / Follow-ups        |             |
+| Field                     | Value                                                                                                                                                                           |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                                                                                    |
+| Started At                | 2026-06-17                                                                                                                                                                      |
+| Completed At              | 2026-06-17                                                                                                                                                                      |
+| Agent / Tool              | Antigravity                                                                                                                                                                     |
+| Commit Hash               | Pending                                                                                                                                                                         |
+| Files Changed             | packages/shared/src/world/_, packages/shared/src/index.ts, apps/web/src/features/world/_, apps/web/src/app/AppShell.tsx, apps/web/src/features/tracker/WeeklyTracker.tsx        |
+| Summary                   | Implemented shared Carbon World stage/state engine, SVG-based stages visual component (CarbonWorldScene), status panel (CarbonWorldStatus), view model, tests, and integration. |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                              |
+| Verification Result       | Pass                                                                                                                                                                            |
+| Human Review Result       | Pending                                                                                                                                                                         |
+| Risks / Follow-ups        | None. Privacy and Assumptions pages are not implemented in this task.                                                                                                           |
 
 ### Carbon World Evidence
 
-| Check                                     | Result  | Notes |
-| ----------------------------------------- | ------- | ----- |
-| Visual representation of footprint        | Not Run |       |
-| Text equivalent accessibility description  | Not Run |       |
-| SVG/CSS design states render              | Not Run |       |
+| Check                                     | Result | Notes                                                                                 |
+| ----------------------------------------- | ------ | ------------------------------------------------------------------------------------- |
+| Visual representation of footprint        | Pass   | SVG-based stages (seed, sprout, garden, grove) render progress meter/checklist states |
+| Text equivalent accessibility description | Pass   | aria-label on SVG wrapper is set to dynamic text descriptive of current stage         |
+| SVG/CSS design states render              | Pass   | Verified in RTL tests rendering correct classes and stage texts                       |
 
 ---
 

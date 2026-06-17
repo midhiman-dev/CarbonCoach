@@ -4,17 +4,36 @@ import { Card, ProgressMeter, Button } from '../../components/ui';
 import { useWeeklyTracker } from './trackerViewModel';
 import { formatActionCategory } from '../recommendations/recommendationViewModel';
 
+import { WeeklyTrackerState, RankedCarbonAction } from '@carboncoach/shared';
+
 interface WeeklyTrackerProps {
   profile: CarbonProfile | null;
   onNavigateToOnboarding: () => void;
+  trackerState?: WeeklyTrackerState | null;
+  weeklyPlanActions?: RankedCarbonAction[];
+  toggleAction?: (actionId: string) => void;
+  resetTracker?: () => void;
+  progress?: { completed: number; total: number; percent: number };
 }
 
 export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
   profile,
   onNavigateToOnboarding,
+  trackerState,
+  weeklyPlanActions,
+  toggleAction,
+  resetTracker,
+  progress,
 }) => {
-  const { trackerState, weeklyPlanActions, planSummary, toggleAction, resetTracker, progress } =
-    useWeeklyTracker(profile);
+  const localTracker = useWeeklyTracker(profile);
+
+  const activeTrackerState = trackerState !== undefined ? trackerState : localTracker.trackerState;
+  const activeWeeklyPlanActions =
+    weeklyPlanActions !== undefined ? weeklyPlanActions : localTracker.weeklyPlanActions;
+  const activeToggleAction = toggleAction !== undefined ? toggleAction : localTracker.toggleAction;
+  const activeResetTracker = resetTracker !== undefined ? resetTracker : localTracker.resetTracker;
+  const activeProgress = progress !== undefined ? progress : localTracker.progress;
+  const activePlanSummary = trackerState !== undefined ? '' : localTracker.planSummary;
 
   const [resetAnnouncement, setResetAnnouncement] = useState('');
 
@@ -36,20 +55,20 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
   }
 
   const handleReset = () => {
-    resetTracker();
+    activeResetTracker();
     setResetAnnouncement('Tracker completion state has been reset for the week.');
     setTimeout(() => setResetAnnouncement(''), 3000);
   };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>
-      <Card title={`Current Week: ${trackerState?.weekId || ''}`}>
+      <Card title={`Current Week: ${activeTrackerState?.weekId || ''}`}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
           <div>
             <p style={{ margin: '0 0 var(--spacing-xs)', color: 'var(--text-secondary)' }}>
               Track a few suggested actions for this week. Progress is stored only in this browser.
             </p>
-            {planSummary && (
+            {activePlanSummary && (
               <p
                 style={{
                   margin: 0,
@@ -58,7 +77,7 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
                   color: 'var(--color-accent)',
                 }}
               >
-                Focus: {planSummary}
+                Focus: {activePlanSummary}
               </p>
             )}
           </div>
@@ -72,7 +91,7 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
             }}
           >
             <ProgressMeter
-              value={progress.percent}
+              value={activeProgress.percent}
               max={100}
               label="Weekly action checklist completion"
             />
@@ -86,11 +105,11 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
               }}
             >
               <span>
-                {progress.completed} of {progress.total} actions completed
+                {activeProgress.completed} of {activeProgress.total} actions completed
               </span>
-              <span>{progress.percent}% Completed</span>
+              <span>{activeProgress.percent}% Completed</span>
             </div>
-            {progress.percent === 100 && (
+            {activeProgress.percent === 100 && (
               <p
                 style={{
                   margin: 'var(--spacing-xs) 0 0',
@@ -130,8 +149,9 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
                 gap: 'var(--spacing-sm)',
               }}
             >
-              {weeklyPlanActions.map((action) => {
-                const isCompleted = trackerState?.completedActionIds.includes(action.id) || false;
+              {activeWeeklyPlanActions.map((action) => {
+                const isCompleted =
+                  activeTrackerState?.completedActionIds.includes(action.id) || false;
                 return (
                   <li
                     key={action.id}
@@ -149,7 +169,7 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
                       type="checkbox"
                       id={`action-check-${action.id}`}
                       checked={isCompleted}
-                      onChange={() => toggleAction(action.id)}
+                      onChange={() => activeToggleAction(action.id)}
                       style={{
                         marginTop: '4px',
                         cursor: 'pointer',
@@ -221,7 +241,7 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
             </ul>
           </fieldset>
 
-          {weeklyPlanActions.length > 0 && (
+          {activeWeeklyPlanActions.length > 0 && (
             <div
               style={{
                 display: 'flex',
