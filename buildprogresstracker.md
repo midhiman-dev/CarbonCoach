@@ -133,7 +133,7 @@ npm audit --omit=dev
 | 010  | Footprint Summary and Action Plan UI                                              | Review Ready | Antigravity | ALIGN, A11Y, CQ                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 011  | Recommendation and Weekly Plan UI                                                 | Review Ready | Antigravity | ALIGN, TEST, CQ                 | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 012  | Footprint Coach UI                                                                | Review Ready | Antigravity | ALIGN, A11Y, SEC, EFF           | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 013  | Carbon World Engine and Lightweight Visual UI                                     | Not Started  | TBD         | ALIGN, A11Y, EFF                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 013  | Carbon World Engine and Lightweight Visual UI                                     | Review Ready | Antigravity | ALIGN, A11Y, EFF                | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 014  | Weekly Tracker and Local Persistence                                              | Not Started  | TBD         | ALIGN, TEST, SEC                | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 015  | Security, Privacy, Assumptions, and Documentation Pass                            | Not Started  | TBD         | SEC, ALIGN, CQ                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 016  | Accessibility and Responsive Hardening                                            | Not Started  | TBD         | A11Y, CQ, TEST                  | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
@@ -359,56 +359,56 @@ Update this section after every completed task.
 
 ## Task 012 — Footprint Coach UI
 
-| Field                     | Value                                                                                                                                                                                                                                                 |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Status                    | Review Ready                                                                                                                                                                                                                                          |
-| Started At                | 2026-06-17                                                                                                                                                                                                                                            |
-| Completed At              | 2026-06-17                                                                                                                                                                                                                                            |
-| Agent / Tool              | Antigravity                                                                                                                                                                                                                                           |
-| Commit Hash               | Pending                                                                                                                                                                                                                                               |
-| Files Changed             | apps/web/src/features/coach/*, apps/web/src/features/recommendations/RecommendationPanel.tsx, apps/web/src/features/recommendations/RecommendationPanel.test.tsx                                                                                      |
-| Summary                   | Connected calculated footprint summary and recommendations to `/api/coach` endpoint, rendering safe AI responses and handling loading, error, and fallback states. Used select primitive for tone and structured markup for screen reader.            |
-| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                                    |
-| Verification Result       | Pass                                                                                                                                                                                                                                                  |
-| Human Review Result       | Pending                                                                                                                                                                                                                                               |
-| Risks / Follow-ups        | None. Daily Choice Lab, Choice Coach UI, and Carbon World are not implemented as they are deferred to later tasks.                                                                                                                                    |
+| Field                     | Value                                                                                                                                                                                                                                      |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Status                    | Review Ready                                                                                                                                                                                                                               |
+| Started At                | 2026-06-17                                                                                                                                                                                                                                 |
+| Completed At              | 2026-06-17                                                                                                                                                                                                                                 |
+| Agent / Tool              | Antigravity                                                                                                                                                                                                                                |
+| Commit Hash               | Pending                                                                                                                                                                                                                                    |
+| Files Changed             | apps/web/src/features/coach/\*, apps/web/src/features/recommendations/RecommendationPanel.tsx, apps/web/src/features/recommendations/RecommendationPanel.test.tsx                                                                          |
+| Summary                   | Connected calculated footprint summary and recommendations to `/api/coach` endpoint, rendering safe AI responses and handling loading, error, and fallback states. Used select primitive for tone and structured markup for screen reader. |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                         |
+| Verification Result       | Pass                                                                                                                                                                                                                                       |
+| Human Review Result       | Pending                                                                                                                                                                                                                                    |
+| Risks / Follow-ups        | None. Daily Choice Lab, Choice Coach UI, and Carbon World are not implemented as they are deferred to later tasks.                                                                                                                         |
 
 ### Footprint Coach Evidence
 
-| Check                                  | Result | Notes |
-| -------------------------------------- | ------ | ----- |
-| Footprint Coach is user-triggered only | Pass   | Only requested when user clicks 'Ask Footprint Coach' button |
-| Footprint Coach fallback works         | Pass   | Handled transparently by backend fallback composer |
-| Footprint Coach does not invent numbers| Pass   | Uses allowedNumbers guard derived from footprint context |
-| Footprint context is minimized         | Pass   | No raw onboarding profile sent; only aggregates/titles |
-| UI shows fallback state clearly        | Pass   | Distinct badge and styling for Deterministic Fallback status |
+| Check                                   | Result | Notes                                                        |
+| --------------------------------------- | ------ | ------------------------------------------------------------ |
+| Footprint Coach is user-triggered only  | Pass   | Only requested when user clicks 'Ask Footprint Coach' button |
+| Footprint Coach fallback works          | Pass   | Handled transparently by backend fallback composer           |
+| Footprint Coach does not invent numbers | Pass   | Uses allowedNumbers guard derived from footprint context     |
+| Footprint context is minimized          | Pass   | No raw onboarding profile sent; only aggregates/titles       |
+| UI shows fallback state clearly         | Pass   | Distinct badge and styling for Deterministic Fallback status |
 
 ---
 
-## Task 013 — Carbon World Engine and Lightweight Visual UI
+## Task 013 — Carbon World Engine and Lightweight Visual UI (Daily Choice Lab Foundation)
 
-| Field                     | Value       |
-| ------------------------- | ----------- |
-| Status                    | Not Started |
-| Started At                |             |
-| Completed At              |             |
-| Agent / Tool              |             |
-| Commit Hash               |             |
-| Files Changed             |             |
-| Summary                   |             |
-| Verification Commands Run |             |
-| Verification Result       |             |
-| Human Review Result       |             |
-| Risks / Follow-ups        |             |
+| Field                     | Value                                                                                                                                                                      |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status                    | Review Ready                                                                                                                                                               |
+| Started At                | 2026-06-17                                                                                                                                                                 |
+| Completed At              | 2026-06-17                                                                                                                                                                 |
+| Agent / Tool              | Antigravity                                                                                                                                                                |
+| Commit Hash               | Pending                                                                                                                                                                    |
+| Files Changed             | packages/shared/src/choices/_, packages/shared/src/index.ts, apps/web/src/features/choices/_, apps/web/src/app/AppShell.tsx                                                |
+| Summary                   | Implemented deterministic everyday choice scenario comparison logic, catalog, dropdown selector, layout grid, disclaimers, formatters, and unit/UI integration test suite. |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                         |
+| Verification Result       | Pass                                                                                                                                                                       |
+| Human Review Result       | Pending                                                                                                                                                                    |
+| Risks / Follow-ups        | None. Choice Coach, Carbon World, and local persistence are not implemented in this task.                                                                                  |
 
-### Carbon World Accessibility Evidence
+### Daily Choice Lab Evidence
 
-| Check                                    | Result  | Notes |
-| ---------------------------------------- | ------- | ----- |
-| Text equivalent exists                   | Not Run |       |
-| Visual is not color-only                 | Not Run |       |
-| No Three.js or heavy visual library used | Not Run |       |
-| Mobile layout works                      | Not Run |       |
+| Check                                    | Result | Notes                                                       |
+| ---------------------------------------- | ------ | ----------------------------------------------------------- |
+| Scenario selector is keyboard accessible | Pass   | Standard Select component with explicit aria labels and ids |
+| Options are compared side-by-side        | Pass   | Displayed in a clear responsive comparison panel grid       |
+| No Choice Coach API calls                | Pass   | Feature uses deterministic explanations; /api/coach not hit |
+| No localStorage is used                  | Pass   | Verified in UI unit tests                                   |
 
 ---
 

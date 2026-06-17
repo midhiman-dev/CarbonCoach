@@ -14,6 +14,7 @@ import { CarbonProfile, calculateFootprint } from '@carboncoach/shared';
 import { ProfileOnboarding } from '../features/profile';
 import { FootprintSummary, formatCategoryLabel } from '../features/footprint';
 import { RecommendationPanel } from '../features/recommendations';
+import { DailyChoiceLab } from '../features/choices';
 
 export const AppShell: React.FC = () => {
   const [activeSection, setActiveSection] = useState<ActiveSection>('overview');
@@ -162,20 +163,7 @@ export const AppShell: React.FC = () => {
         );
 
       case 'choice-lab':
-        return (
-          <div>
-            <SectionHeader
-              title="Daily Choice Lab"
-              subtitle="Evaluate scenarios and receive immediate nudges"
-            />
-            <Card title="Scenario Sandbox">
-              <EmptyState
-                title="Interactive Lab Coming Soon"
-                description="Compare everyday choices (like train vs taxi, or vegetarian meal vs chicken) using deterministic impact calculations."
-              />
-            </Card>
-          </div>
-        );
+        return <DailyChoiceLab profile={savedProfile} />;
 
       case 'carbon-world':
         return (
