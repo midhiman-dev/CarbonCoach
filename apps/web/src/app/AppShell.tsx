@@ -23,6 +23,8 @@ import {
   useWeeklyTracker,
 } from '../features/tracker';
 import { CarbonWorld } from '../features/world';
+import { PrivacyLocalDataPage } from '../features/privacy';
+import { AssumptionsPage } from '../features/assumptions';
 
 export const AppShell: React.FC = () => {
   const [activeSection, setActiveSection] = useState<ActiveSection>('overview');
@@ -267,55 +269,14 @@ export const AppShell: React.FC = () => {
 
       case 'privacy':
         return (
-          <div>
-            <SectionHeader
-              title="Privacy & Local Data"
-              subtitle="How your carbon lifestyle data is managed"
-            />
-            <Card title="Local-First Data Isolation">
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
-                <p style={{ margin: 0 }}>
-                  CarbonCoach is built with a local-first design. Your profile preferences and
-                  weekly tracker progress stay strictly in this browser.
-                </p>
-                <p style={{ margin: 0 }}>
-                  No login, database, or cloud-hosted user profile is used. You remain completely
-                  anonymous.
-                </p>
-                <p style={{ margin: 0 }}>
-                  When you explicitly trigger a Coach request, minimized, anonymous calculation or
-                  scenario context is sent to our backend to fetch AI coaching responses. Raw
-                  profile details and full tracker history are never sent as local data dumps.
-                </p>
-                <p style={{ margin: 0 }}>
-                  You retain complete control of your data. Local data can be cleared at any time
-                  from this device using the controls on the Profile page.
-                </p>
-                <div style={{ display: 'flex', gap: 'var(--spacing-xs)', flexWrap: 'wrap' }}>
-                  <StatusBadge variant="info" label="Local Data Stored" />
-                  <StatusBadge variant="info" label="No Account Required" />
-                </div>
-              </div>
-            </Card>
-          </div>
+          <PrivacyLocalDataPage
+            hasData={savedProfile !== null}
+            onClear={() => setSavedProfile(null)}
+          />
         );
 
       case 'assumptions':
-        return (
-          <div>
-            <SectionHeader
-              title="Estimates & Assumptions"
-              subtitle="How our calculations map to carbon coefficients"
-            />
-            <Card title="Transparency: Estimates & Assumptions">
-              <p style={{ margin: 0 }}>
-                CarbonCoach uses deterministic TypeScript logic and simplified demo emission factors
-                to estimate lifestyle footprint patterns. Results are approximate and intended for
-                awareness, not formal reporting.
-              </p>
-            </Card>
-          </div>
-        );
+        return <AssumptionsPage />;
 
       default:
         return null;

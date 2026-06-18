@@ -140,7 +140,7 @@ _Note on controlled deviation: Choice Coach UI was pulled forward to complete th
 | 015   | Weekly Tracker and Local Persistence                                              | Review Ready | Antigravity | ALIGN, CQ, TEST       | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 016   | Carbon World Engine and Lightweight Visual UI                                     | Review Ready | Antigravity | ALIGN, A11Y, EFF      | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | Patch | Pre-Task 017 Smoke Polish Patch                                                   | Review Ready | Antigravity | CQ, ALIGN             | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
-| 017   | Privacy and Assumptions Page                                                      | Not Started  | TBD         | SEC, ALIGN, CQ        | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
+| 017   | Privacy and Assumptions Page                                                      | Review Ready | Antigravity | SEC, ALIGN, CQ        | Pass    | Pass      | Pass    | Pass    | Pass    | Pending      | Pending |
 | 018   | Final Accessibility / Demo Polish                                                 | Not Started  | TBD         | A11Y, CQ, TEST        | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 019   | Cloud Run Deployment                                                              | Not Started  | TBD         | EFF, SEC, CQ          | Not Run | Not Run   | Not Run | Not Run | Not Run | Not Run      | Pending |
 | 020   | README, Submission Docs, LinkedIn Post                                            | Not Started  | TBD         | ALIGN, CQ             | N/A     | N/A       | N/A     | N/A     | Not Run | Not Run      | Pending |
@@ -518,31 +518,31 @@ Update this section after every completed task.
 
 ## Task 017 — Privacy and Assumptions Page
 
-| Field                     | Value       |
-| ------------------------- | ----------- |
-| Status                    | Not Started |
-| Started At                |             |
-| Completed At              |             |
-| Agent / Tool              |             |
-| Commit Hash               |             |
-| Files Changed             |             |
-| Summary                   |             |
-| Verification Commands Run |             |
-| Verification Result       |             |
-| Human Review Result       |             |
-| Risks / Follow-ups        |             |
+| Field                     | Value                                                                                                                                                                                                                                                        |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Status                    | Review Ready                                                                                                                                                                                                                                                 |
+| Started At                | 2026-06-18                                                                                                                                                                                                                                                   |
+| Completed At              | 2026-06-18                                                                                                                                                                                                                                                   |
+| Agent / Tool              | Antigravity                                                                                                                                                                                                                                                  |
+| Commit Hash               | Pending                                                                                                                                                                                                                                                      |
+| Files Changed             | apps/web/src/features/privacy/_, apps/web/src/features/assumptions/_, apps/web/src/app/AppShell.tsx                                                                                                                                                          |
+| Summary                   | Implemented real in-app Privacy & Local Data and Estimates & Assumptions pages, local data policy items table, coach data-flow step panel, methodology boundaries, cleared local data controls integration, and thorough accessibility and compliance tests. |
+| Verification Commands Run | npm run build, npm run typecheck, npm run test, npm run lint, npm run format:check                                                                                                                                                                           |
+| Verification Result       | Pass                                                                                                                                                                                                                                                         |
+| Human Review Result       | Pending                                                                                                                                                                                                                                                      |
+| Risks / Follow-ups        | None. README changes and submission docs are deferred to Task 020.                                                                                                                                                                                           |
 
 ### Trust Documentation Evidence
 
-| Check                                     | Result  | Notes |
-| ----------------------------------------- | ------- | ----- |
-| Privacy page implemented                  | Not Run |       |
-| Assumptions page implemented              | Not Run |       |
-| Clear data control works                  | Not Run |       |
-| README explains LLM usage                 | Not Run |       |
-| README explains deterministic calculation | Not Run |       |
-| README explains numeric guard             | Not Run |       |
-| README avoids scientific overclaiming     | Not Run |       |
+| Check                                     | Result  | Notes                                                                               |
+| ----------------------------------------- | ------- | ----------------------------------------------------------------------------------- |
+| Privacy page implemented                  | Pass    | Real page with intro, commits, no-account note, and policy table is rendered        |
+| Assumptions page implemented              | Pass    | Real page with disclaimer, categories section, and factors table is rendered        |
+| Clear data control works                  | Pass    | Reuses LocalDataControls component and hooks it to clear profile state successfully |
+| README explains LLM usage                 | Not Run | Deferred to Task 020 (Scope boundaries)                                             |
+| README explains deterministic calculation | Not Run | Deferred to Task 020 (Scope boundaries)                                             |
+| README explains numeric guard             | Not Run | Deferred to Task 020 (Scope boundaries)                                             |
+| README avoids scientific overclaiming     | Not Run | Deferred to Task 020 (Scope boundaries)                                             |
 
 ---
 
