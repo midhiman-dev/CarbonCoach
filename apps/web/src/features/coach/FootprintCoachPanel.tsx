@@ -29,6 +29,7 @@ export const FootprintCoachPanel: React.FC<FootprintCoachPanelProps> = ({
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [response, setResponse] = useState<CoachResponse | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [showSafetyInfo, setShowSafetyInfo] = useState(false);
 
   if (!footprint) {
     return (
@@ -155,8 +156,31 @@ export const FootprintCoachPanel: React.FC<FootprintCoachPanelProps> = ({
             marginTop: 'var(--spacing-xs)',
           }}
         >
-          <strong>Numeric Safety Rule:</strong> The coach can only use calculated numbers already
-          shown in your estimate.
+          <button
+            onClick={() => setShowSafetyInfo(!showSafetyInfo)}
+            aria-expanded={showSafetyInfo}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              padding: 0,
+              fontSize: 'var(--font-xs)',
+              cursor: 'pointer',
+              color: 'var(--color-accent)',
+              textDecoration: 'underline',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 'var(--spacing-3xs)',
+              minHeight: '24px',
+            }}
+          >
+            How coach numbers are kept safe {showSafetyInfo ? '▴' : '▾'}
+          </button>
+          {showSafetyInfo && (
+            <p style={{ margin: 'var(--spacing-xs) 0 0 0', lineHeight: 1.4 }}>
+              <strong>Numeric Safety Rule:</strong> The coach can only use calculated numbers
+              already shown in your estimate.
+            </p>
+          )}
         </div>
       </div>
     </Card>

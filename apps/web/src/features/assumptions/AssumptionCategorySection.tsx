@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Card } from '../../components/ui';
 import { assumptionsCopy } from './assumptionsCopy';
 import { getFactorsByCategory, FootprintCategory } from '@carboncoach/shared';
 
@@ -21,8 +20,34 @@ export const AssumptionCategorySection: React.FC = () => {
         const isExpanded = expandedCategory === section.id;
 
         return (
-          <Card key={section.id} title={section.title}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
+          <details
+            key={section.id}
+            style={{
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-glass)',
+              borderRadius: 'var(--radius-sm)',
+              padding: 'var(--spacing-md)',
+              cursor: 'pointer',
+            }}
+          >
+            <summary
+              style={{
+                fontSize: 'var(--font-md)',
+                fontWeight: 700,
+                color: 'var(--text-primary)',
+                outline: 'none',
+              }}
+            >
+              {section.title}
+            </summary>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 'var(--spacing-sm)',
+                marginTop: 'var(--spacing-md)',
+              }}
+            >
               <div>
                 <strong style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)' }}>
                   WHAT IS ESTIMATED:
@@ -134,7 +159,7 @@ export const AssumptionCategorySection: React.FC = () => {
                 </div>
               )}
             </div>
-          </Card>
+          </details>
         );
       })}
     </div>

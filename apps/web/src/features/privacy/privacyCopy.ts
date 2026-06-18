@@ -7,7 +7,7 @@ export const privacyCopy = {
     'Local-first: Your data stays on your device by default.',
     'Data Minimization: When you ask the AI for advice, we only send aggregated summaries, not your raw profile.',
     'No Ad Tracking: We do not track or sell your data.',
-    "Transparent AI: We bounded the AI to use our calculations so it doesn't invent numbers.",
+    'Transparent AI: Unsupported generated numbers are rejected before coach responses are shown.',
   ],
   noAccountSection: {
     title: 'No Accounts, No Databases',

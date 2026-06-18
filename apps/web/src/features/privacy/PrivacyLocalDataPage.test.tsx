@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { PrivacyLocalDataPage } from './PrivacyLocalDataPage';
 import { privacyCopy } from './privacyCopy';
 
@@ -42,9 +42,23 @@ describe('PrivacyLocalDataPage Component', () => {
     expect(screen.getByText(/API keys or sensitive tokens/i)).toBeInTheDocument();
   });
 
-  it('renders local data policy items and their storage locations', () => {
+  it('renders local data policy items and their storage locations after expanding', () => {
     render(<PrivacyLocalDataPage hasData={true} onClear={mockClear} />);
 
+    // Initially collapsed: Lifestyle Profile should NOT be in the document
+    expect(screen.queryByText('Lifestyle Profile')).not.toBeInTheDocument();
+
+    // Find and click the toggle control
+    const summary = screen.getByText('View detailed policy table');
+    expect(summary).toBeInTheDocument();
+
+    // Simulate opening the details element
+    const details = summary.parentElement as HTMLDetailsElement;
+    details.open = true;
+    fireEvent(details, new Event('toggle'));
+
+    // Now it should be expanded, and items should be visible
+    expect(screen.getByText('Hide detailed policy table')).toBeInTheDocument();
     expect(screen.getByText('Lifestyle Profile')).toBeInTheDocument();
     expect(screen.getByText('Weekly Tracker')).toBeInTheDocument();
     expect(screen.getByText('AI Coach Request')).toBeInTheDocument();

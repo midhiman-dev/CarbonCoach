@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, SectionHeader, EmptyState } from '../../components/ui';
+import { Card, SectionHeader, EmptyState, Button } from '../../components/ui';
 import { getChoiceScenarios, compareChoiceScenario, CarbonProfile } from '@carboncoach/shared';
 import { ChoiceScenarioSelector } from './ChoiceScenarioSelector';
 import { ChoiceComparisonPanel } from './ChoiceComparisonPanel';
@@ -9,11 +9,31 @@ import { ChoiceCoachPanel } from '../coach';
 
 interface DailyChoiceLabProps {
   profile: CarbonProfile | null;
+  onNavigateToProfile?: () => void;
 }
 
-export const DailyChoiceLab: React.FC<DailyChoiceLabProps> = ({ profile }) => {
+export const DailyChoiceLab: React.FC<DailyChoiceLabProps> = ({ profile, onNavigateToProfile }) => {
   const scenarios = getChoiceScenarios();
   const [selectedScenarioId, setSelectedScenarioId] = useState<string>(scenarios[0]?.id || '');
+
+  if (!profile) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>
+        <SectionHeader title={choiceCopy.title} subtitle={choiceCopy.description} />
+        <EmptyState
+          title="Profile Onboarding Required"
+          description="Set up your profile to compare choices with your coaching preference."
+          action={
+            onNavigateToProfile ? (
+              <Button onClick={onNavigateToProfile} variant="primary">
+                Set up your profile
+              </Button>
+            ) : undefined
+          }
+        />
+      </div>
+    );
+  }
 
   if (scenarios.length === 0) {
     return (
@@ -25,7 +45,7 @@ export const DailyChoiceLab: React.FC<DailyChoiceLabProps> = ({ profile }) => {
   }
 
   const selectedScenario = scenarios.find((s) => s.id === selectedScenarioId) || scenarios[0];
-  const comparison = compareChoiceScenario(selectedScenario.id, profile?.preference);
+  const comparison = compareChoiceScenario(selectedScenario.id, profile.preference);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>

@@ -12,10 +12,10 @@ export const localDataPolicyItems: LocalDataPolicyItem[] = [
   {
     key: 'footprintEstimate',
     label: 'Footprint Estimate',
-    storage: 'browserLocalStorage',
-    purpose: 'Saved locally to show your progress without recalculating constantly.',
+    storage: 'notStored',
+    purpose: 'Calculated in the browser from your saved profile when needed.',
     userVisible: true,
-    clearable: true,
+    clearable: false,
   },
   {
     key: 'weeklyTracker',

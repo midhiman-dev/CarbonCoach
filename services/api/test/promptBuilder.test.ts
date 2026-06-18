@@ -53,15 +53,15 @@ describe('promptBuilder', () => {
         options: [
           {
             id: 'opt_1',
-            label: 'Vegetarian salad',
+            label: 'Vegetarian Thali',
             impactBand: 'low',
             reasons: ['No meat products.'],
           },
           {
             id: 'opt_2',
-            label: 'Beef burger',
+            label: 'Mutton Biryani Meal',
             impactBand: 'high',
-            reasons: ['High beef footprint.'],
+            reasons: ['Higher ruminant footprint.'],
           },
         ],
         recommendedOptionId: 'opt_1',
@@ -73,7 +73,7 @@ describe('promptBuilder', () => {
     const prompt = buildCoachPrompt(request);
     expect(prompt).toContain('choice_coach');
     expect(prompt).toContain('Lunch Options');
-    expect(prompt).toContain('Vegetarian salad');
+    expect(prompt).toContain('Vegetarian Thali');
     expect(prompt).toContain('opt_1');
     expect(prompt).toContain('Do not shame, blame, or guilt');
     expect(prompt).toContain('valid JSON');

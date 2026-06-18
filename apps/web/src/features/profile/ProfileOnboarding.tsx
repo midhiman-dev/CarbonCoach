@@ -8,13 +8,15 @@ import { profileCopy } from './profileCopy';
 interface ProfileOnboardingProps {
   savedProfile: CarbonProfile | null;
   onSaveProfile: (profile: CarbonProfile) => void;
-  onClearProfile: () => void;
+  onNavigateToFootprint?: () => void;
+  onNavigateToPrivacy?: () => void;
 }
 
 export const ProfileOnboarding: React.FC<ProfileOnboardingProps> = ({
   savedProfile,
   onSaveProfile,
-  onClearProfile,
+  onNavigateToFootprint,
+  onNavigateToPrivacy,
 }) => {
   const [formData, setFormData] = useState<Partial<CarbonProfile>>(
     () => savedProfile || { ...defaultProfile },
@@ -77,13 +79,6 @@ export const ProfileOnboarding: React.FC<ProfileOnboardingProps> = ({
   const handleReset = () => {
     setFormData({ ...defaultProfile });
     setErrors({});
-  };
-
-  const handleClear = () => {
-    onClearProfile();
-    setFormData({ ...defaultProfile });
-    setErrors({});
-    setIsSubmitted(false);
   };
 
   const handleEdit = () => {
@@ -172,13 +167,44 @@ export const ProfileOnboarding: React.FC<ProfileOnboardingProps> = ({
             </p>
 
             <div style={{ display: 'flex', gap: 'var(--spacing-sm)', flexWrap: 'wrap' }}>
-              <Button onClick={handleEdit} variant="primary">
+              <Button onClick={handleEdit} variant="secondary">
                 {profileCopy.buttons.edit}
               </Button>
-              <Button onClick={handleClear} variant="danger">
-                Clear Profile Data
-              </Button>
+              {onNavigateToFootprint && (
+                <Button onClick={onNavigateToFootprint} variant="primary">
+                  View footprint summary
+                </Button>
+              )}
             </div>
+            {onNavigateToPrivacy && (
+              <div
+                style={{
+                  marginTop: 'var(--spacing-sm)',
+                  textAlign: 'center',
+                  fontSize: 'var(--font-xs)',
+                  color: 'var(--text-muted)',
+                }}
+              >
+                Stored locally in this browser ·{' '}
+                <button
+                  onClick={onNavigateToPrivacy}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: 'var(--color-accent)',
+                    textDecoration: 'underline',
+                    cursor: 'pointer',
+                    fontSize: 'var(--font-xs)',
+                    fontFamily: 'inherit',
+                    display: 'inline',
+                    padding: 0,
+                  }}
+                  aria-label="Manage local data in privacy settings"
+                >
+                  Manage local data
+                </button>
+              </div>
+            )}
           </div>
         </Card>
       </div>
@@ -432,12 +458,36 @@ export const ProfileOnboarding: React.FC<ProfileOnboardingProps> = ({
             <Button type="button" variant="secondary" onClick={handleReset}>
               {profileCopy.buttons.reset}
             </Button>
-            {savedProfile && (
-              <Button type="button" variant="danger" onClick={handleClear}>
-                Clear Data
-              </Button>
-            )}
           </div>
+          {savedProfile && onNavigateToPrivacy && (
+            <div
+              style={{
+                marginTop: 'var(--spacing-md)',
+                fontSize: 'var(--font-xs)',
+                color: 'var(--text-muted)',
+              }}
+            >
+              Stored locally in this browser ·{' '}
+              <button
+                type="button"
+                onClick={onNavigateToPrivacy}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: 'var(--color-accent)',
+                  textDecoration: 'underline',
+                  cursor: 'pointer',
+                  fontSize: 'var(--font-xs)',
+                  fontFamily: 'inherit',
+                  display: 'inline',
+                  padding: 0,
+                }}
+                aria-label="Manage local data in privacy settings"
+              >
+                Manage local data
+              </button>
+            </div>
+          )}
         </form>
       </Card>
     </div>

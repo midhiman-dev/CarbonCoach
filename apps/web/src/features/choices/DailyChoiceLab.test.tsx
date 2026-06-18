@@ -19,6 +19,20 @@ describe('DailyChoiceLab Component', () => {
     vi.restoreAllMocks();
   });
 
+  it('renders empty state when profile is missing', () => {
+    const handleNavigate = vi.fn();
+    render(<DailyChoiceLab profile={null} onNavigateToProfile={handleNavigate} />);
+
+    expect(screen.getByText('Profile Onboarding Required')).toBeInTheDocument();
+    expect(
+      screen.getByText('Set up your profile to compare choices with your coaching preference.'),
+    ).toBeInTheDocument();
+
+    const btn = screen.getByRole('button', { name: /Set up your profile/i });
+    fireEvent.click(btn);
+    expect(handleNavigate).toHaveBeenCalled();
+  });
+
   it('renders Daily Choice Lab title, description, and interactive Choice Coach panel', () => {
     render(<DailyChoiceLab profile={mockProfile} />);
 
@@ -41,9 +55,9 @@ describe('DailyChoiceLab Component', () => {
     expect(select).toHaveValue('commute-choice');
 
     // Default scenario options are rendered
-    expect(screen.getByText('Take the Metro')).toBeInTheDocument();
-    expect(screen.getByText('Drive Private Car')).toBeInTheDocument();
-    expect(screen.getByText('Carpool with Coworkers')).toBeInTheDocument();
+    expect(screen.getByText('Metro or urban rail, where available')).toBeInTheDocument();
+    expect(screen.getByText('Solo car trip')).toBeInTheDocument();
+    expect(screen.getByText('Carpool')).toBeInTheDocument();
   });
 
   it('changing scenario updates displayed options, descriptions, and assumptions', () => {
@@ -53,13 +67,13 @@ describe('DailyChoiceLab Component', () => {
     fireEvent.change(select, { target: { value: 'meal-choice' } });
 
     // Options updated
-    expect(screen.getByText('Locally Sourced Vegetarian Bowl')).toBeInTheDocument();
-    expect(screen.getByText('Beef Burger Combo')).toBeInTheDocument();
-    expect(screen.getByText('Chicken Salad')).toBeInTheDocument();
+    expect(screen.getByText('Vegetarian Thali')).toBeInTheDocument();
+    expect(screen.getByText('Mutton Biryani Meal')).toBeInTheDocument();
+    expect(screen.getByText('Chicken Biryani Meal')).toBeInTheDocument();
 
     // Context changes
     expect(
-      screen.getByText(/Assumes average agricultural and supply chain footprint/i),
+      screen.getByText(/This comparison uses simplified meal-category assumptions/i),
     ).toBeInTheDocument();
   });
 
@@ -79,7 +93,9 @@ describe('DailyChoiceLab Component', () => {
 
     // Explanation should contain recommended option and preference-specific text
     expect(
-      screen.getByText(/We recommend "Take the Metro" because it is rated as a low-impact choice/i),
+      screen.getByText(
+        /We recommend "Metro or urban rail, where available" because it is rated as a low-impact choice/i,
+      ),
     ).toBeInTheDocument();
     expect(screen.getByText(/saving costs/i)).toBeInTheDocument(); // Because preference is 'saveMoney'
   });
@@ -101,5 +117,21 @@ describe('DailyChoiceLab Component', () => {
     expect(rootElement?.textContent).not.toContain('%');
     expect(rootElement?.textContent).not.toContain('₹');
     expect(rootElement?.textContent).not.toContain('$');
+  });
+
+  it('contains rail-specific wording for the metro option and does not mention public bus', () => {
+    render(<DailyChoiceLab profile={mockProfile} />);
+
+    const metroOption = screen.getByText('Metro or urban rail, where available');
+    expect(metroOption).toBeInTheDocument();
+
+    const parentCard = metroOption.closest('section');
+    expect(parentCard?.textContent).toContain(
+      'Use metro or urban rail for your commute where it is available.',
+    );
+    expect(parentCard?.textContent).toContain(
+      'Electric rail has no direct tailpipe emissions during travel; electricity-source assumptions vary.',
+    );
+    expect(parentCard?.textContent).not.toContain('public bus');
   });
 });

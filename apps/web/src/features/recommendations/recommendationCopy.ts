@@ -1,15 +1,14 @@
 export const recommendationCopy = {
   title: 'Recommended actions',
-  description:
-    'These actions are selected from CarbonCoach’s deterministic action catalog based on your profile, estimated footprint, and selected priority.',
+  description: 'Personalized from your profile and priority.',
   emptyState: {
     title: 'Profile Not Set Up',
-    description: 'Set up your profile first to see recommended actions.',
-    buttonText: 'Set Up Profile',
+    description: 'Set up your profile to view an approximate estimate.',
+    buttonText: 'Set up your profile',
   },
   disclaimer:
     'This is a lightweight action plan based on deterministic recommendations. Adjust it to your real routine.',
-  planTitle: 'Suggested weekly plan',
+  planTitle: 'Weekly action plan',
   planDescription:
     'A customized weekly action plan constructed from your top lifestyle carbon impacts and preferred priorities.',
   priorityLabels: {

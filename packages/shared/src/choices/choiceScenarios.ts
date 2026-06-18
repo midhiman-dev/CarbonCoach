@@ -12,32 +12,32 @@ export const choiceScenarios: ChoiceScenario[] = [
     options: [
       {
         id: 'private-car',
-        label: 'Drive Private Car',
-        description: 'Commute alone in a standard petrol-powered vehicle.',
+        label: 'Solo car trip',
+        description: 'Commute alone in a standard petrol-powered vehicle or single-occupancy cab.',
         impactBand: 'high',
         reasons: [
-          'Usually higher impact per passenger than shared transit.',
-          'Contributes to local traffic congestion and idle emissions.',
+          'Shared transit can often have a lower estimated impact per passenger than travelling alone by car.',
+          'Solo car trips do not share vehicle emissions with other passengers.',
         ],
       },
       {
         id: 'metro',
-        label: 'Take the Metro',
-        description: 'Use the electric rapid transit metro system.',
+        label: 'Metro or urban rail, where available',
+        description: 'Use metro or urban rail for your commute where it is available.',
         impactBand: 'low',
         reasons: [
-          'High efficiency due to electric power and high passenger volume.',
-          'No direct tailpipe emissions during the ride; electricity source assumptions vary.',
+          'High passenger density usually lowers the estimated impact per traveler.',
+          'Electric rail has no direct tailpipe emissions during travel; electricity-source assumptions vary.',
         ],
       },
       {
         id: 'carpool',
-        label: 'Carpool with Coworkers',
-        description: 'Share a ride with three colleagues in a single private car.',
+        label: 'Carpool',
+        description: 'Share a journey with other passengers in a single vehicle.',
         impactBand: 'medium',
         reasons: [
-          'Divides the travel emissions among all occupants.',
-          'Reduces the number of active single-occupancy vehicles on the road.',
+          'Carpooling shares a journey with other passengers and may lower the estimated impact per person compared with a solo car trip.',
+          'Reduces the estimated per-person impact by spreading fuel consumption across multiple riders.',
         ],
       },
     ],
@@ -48,37 +48,38 @@ export const choiceScenarios: ChoiceScenario[] = [
     category: 'food',
     description: 'Decide what to eat for lunch today.',
     assumptionNote:
-      'Assumes average agricultural and supply chain footprint differences between plant-based and beef/chicken production.',
-    recommendedOptionId: 'vegetarian-local',
+      'This comparison uses simplified meal-category assumptions. It does not account for exact ingredients, dairy quantity, portion size, cooking fuel, restaurant practices, food sourcing, or food waste.',
+    recommendedOptionId: 'vegetarian-thali',
     options: [
       {
-        id: 'beef-burger',
-        label: 'Beef Burger Combo',
-        description: 'A traditional beef burger with a side of fries.',
+        id: 'mutton-biryani',
+        label: 'Mutton Biryani Meal',
+        description: 'A rice-based meal with mutton and richer accompaniments.',
         impactBand: 'high',
         reasons: [
-          'Beef production is resource-intensive, requiring significant land and water.',
-          'High methane footprint associated with livestock farming.',
+          'Ruminant meat generally has a higher estimated footprint than poultry or plant-forward meals.',
+          'Preparation, portion size, and sourcing can change the estimate.',
         ],
       },
       {
-        id: 'vegetarian-local',
-        label: 'Locally Sourced Vegetarian Bowl',
-        description: 'A seasonal grain and vegetable bowl sourced from nearby farms.',
+        id: 'vegetarian-thali',
+        label: 'Vegetarian Thali',
+        description:
+          'A balanced meal with seasonal vegetables, dal, rice or roti, and simple sides.',
         impactBand: 'low',
         reasons: [
-          'Plant-based ingredients generally have a substantially lower growth footprint.',
-          'Fewer transportation emissions by choosing local, seasonal produce.',
+          'Plant-forward meals are generally estimated as lower impact than meals centered on meat.',
+          'Ingredients, dairy content, preparation, and sourcing can affect the estimate.',
         ],
       },
       {
-        id: 'chicken-salad',
-        label: 'Chicken Salad',
-        description: 'A fresh green salad topped with grilled chicken breast.',
+        id: 'chicken-biryani',
+        label: 'Chicken Biryani Meal',
+        description: 'A rice-based meal with chicken and standard accompaniments.',
         impactBand: 'medium',
         reasons: [
-          'Poultry has a lower greenhouse gas footprint compared to beef, but is higher than plant proteins.',
-          'Requires feed production and processing resources.',
+          'Poultry is generally estimated lower than ruminant meat, but higher than many plant-forward meals.',
+          'Ingredients, portion size, and cooking method can affect the estimate.',
         ],
       },
     ],
@@ -89,17 +90,27 @@ export const choiceScenarios: ChoiceScenario[] = [
     category: 'shopping',
     description: 'Select a shipping speed for your online order of household goods.',
     assumptionNote:
-      'Assumes freight optimization. Instant/express options often lead to half-empty delivery trucks running ad-hoc routes.',
+      'Actual delivery impact depends on distance, route planning, load size, delivery vehicle, packaging, and fulfilment practices.',
     recommendedOptionId: 'consolidated',
     options: [
       {
         id: 'express',
         label: 'Instant / Same-Day Delivery',
-        description: 'Get your item delivered within 4–6 hours via dedicated dispatch.',
+        description: 'Get your item delivered within a few hours via dedicated dispatch.',
         impactBand: 'high',
         reasons: [
           'Often forces dedicated, less-optimized delivery routes.',
           'Harder to combine shipments, resulting in more vehicle miles traveled per item.',
+        ],
+      },
+      {
+        id: 'standard',
+        label: 'Standard Delivery',
+        description: 'Get your items delivered within 2–3 business days via regular logistics.',
+        impactBand: 'medium',
+        reasons: [
+          'Typically uses standard transit networks with some route consolidation.',
+          'Slower than express but may still result in multiple separate deliveries.',
         ],
       },
       {
@@ -108,25 +119,25 @@ export const choiceScenarios: ChoiceScenario[] = [
         description: 'Wait and have all your orders delivered together on a designated day.',
         impactBand: 'low',
         reasons: [
-          'Allows the delivery company to optimize routes and maximize truck capacity.',
-          'Fewer delivery vehicles visiting your neighborhood.',
+          'Consolidating purchases may allow fewer separate deliveries and is treated as a lower-impact option in this simplified comparison.',
+          'Fewer delivery vehicle trips to your residence.',
         ],
       },
     ],
   },
   {
     id: 'home-energy-choice',
-    title: 'Summer Temperature Settings',
+    title: 'Summer AC Settings',
     category: 'homeEnergy',
-    description: 'Select your home thermostat setting during a warm summer day.',
+    description: 'Select your home cooling preference on a warm summer day.',
     assumptionNote:
-      'Assumes standard air conditioning efficiency parameters and electrical grid fuel mixes.',
+      'Actual energy use varies with room size, insulation, outdoor temperature, appliance efficiency, occupancy, and local electricity supply.',
     recommendedOptionId: 'moderate-cooling',
     options: [
       {
         id: 'deep-freeze',
-        label: 'Set Thermostat to 20°C (68°F)',
-        description: 'Keep the home highly chilled throughout the day.',
+        label: 'AC at 20°C',
+        description: 'Running the AC at a low temperature setting for deep cooling.',
         impactBand: 'high',
         reasons: [
           'Air conditioning units consume significantly more energy to maintain lower temperatures.',
@@ -135,12 +146,12 @@ export const choiceScenarios: ChoiceScenario[] = [
       },
       {
         id: 'moderate-cooling',
-        label: 'Set Thermostat to 24°C (75°F) with Fan',
-        description: 'Maintain a moderate cooling level, using a ceiling fan to circulate air.',
+        label: 'AC at 24°C with ceiling fan',
+        description: 'Moderate cooling setting combined with fan support.',
         impactBand: 'low',
         reasons: [
-          'Substantially reduces electricity demand compared to deep cooling.',
-          'Ceiling fans consume very little power while maintaining comfort.',
+          'A moderate AC setting with fan support can be a practical lower-impact choice in this simplified comparison.',
+          'Fans circulate air efficiently, reducing the need for continuous low AC temperatures.',
         ],
       },
     ],

@@ -63,4 +63,21 @@ describe('AssumptionsPage Component', () => {
     // Verify it doesn't contain accidental mixed-language header or characters
     expect(htmlContent).not.toContain('透明');
   });
+
+  it('has correct updated wording for AI Coach and Carbon World without stale scaling/forbidden claims', () => {
+    render(<AssumptionsPage />);
+
+    const htmlContent = document.body.innerHTML;
+
+    expect(htmlContent).toContain(
+      'Coach prompts prohibit new calculations, and response validation plus Numeric Guard reject unsupported generated numbers before they are shown.',
+    );
+    expect(htmlContent).toContain(
+      'The visual scene changes across deterministic progress stages based on weekly action-completion thresholds.',
+    );
+
+    expect(htmlContent).not.toContain('strictly forbidden from inventing numbers');
+    expect(htmlContent).not.toContain('scale mathematically');
+    expect(htmlContent).not.toContain('scale linearly');
+  });
 });

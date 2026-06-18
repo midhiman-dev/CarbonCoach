@@ -13,6 +13,7 @@ interface CarbonWorldProps {
   trackerState: WeeklyTrackerState | null;
   onNavigateToOnboarding: () => void;
   onNavigateToTracker: () => void;
+  onNavigateToRecommendations?: () => void;
 }
 
 export const CarbonWorld: React.FC<CarbonWorldProps> = ({
@@ -21,6 +22,7 @@ export const CarbonWorld: React.FC<CarbonWorldProps> = ({
   trackerState,
   onNavigateToOnboarding,
   onNavigateToTracker,
+  onNavigateToRecommendations,
 }) => {
   const { worldState, hasProfile, hasTracker } = useCarbonWorld({
     profile,
@@ -58,27 +60,31 @@ export const CarbonWorld: React.FC<CarbonWorldProps> = ({
       </div>
 
       {!hasProfile ? (
-        <Card>
-          <EmptyState
-            title="Profile Onboarding Required"
-            description="Set up your profile and start your weekly tracker to grow your Carbon World."
-            action={<Button onClick={onNavigateToOnboarding}>Go to Profile Onboarding</Button>}
-          />
-        </Card>
+        <EmptyState
+          title="Profile Onboarding Required"
+          description="Set up your profile to view your Carbon World."
+          action={
+            <Button onClick={onNavigateToOnboarding} variant="primary">
+              Set up your profile
+            </Button>
+          }
+        />
       ) : !hasTracker || !worldState ? (
-        <Card>
-          <EmptyState
-            title="Weekly Actions Needed"
-            description="Your profile is set up! Go to the Weekly Tracker to choose some actions and start growing your Carbon World."
-            action={<Button onClick={onNavigateToTracker}>Go to Weekly Tracker</Button>}
-          />
-        </Card>
+        <EmptyState
+          title="Weekly Actions Needed"
+          description="Create a weekly action plan to start tracking progress."
+          action={
+            <Button onClick={onNavigateToTracker} variant="primary">
+              Start weekly tracker
+            </Button>
+          }
+        />
       ) : (
         <Card>
           <div
+            className="carbon-world-grid"
             style={{
               display: 'grid',
-              gridTemplateColumns: '1fr',
               gap: 'var(--spacing-lg)',
             }}
           >
@@ -89,10 +95,57 @@ export const CarbonWorld: React.FC<CarbonWorldProps> = ({
             />
 
             {/* Stage description & action statistics */}
-            <CarbonWorldStatus state={worldState} />
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                height: '100%',
+              }}
+            >
+              <CarbonWorldStatus state={worldState} />
+
+              <div
+                style={{
+                  display: 'flex',
+                  gap: 'var(--spacing-sm)',
+                  marginTop: 'var(--spacing-md)',
+                }}
+              >
+                {(() => {
+                  const isComplete = worldState.progressPercent === 100;
+                  const buttonText = isComplete
+                    ? 'Review recommended actions'
+                    : 'Return to weekly tracker';
+                  const handleButtonClick =
+                    isComplete && onNavigateToRecommendations
+                      ? onNavigateToRecommendations
+                      : onNavigateToTracker;
+                  return (
+                    <Button onClick={handleButtonClick} variant="primary">
+                      {buttonText}
+                    </Button>
+                  );
+                })()}
+              </div>
+            </div>
           </div>
         </Card>
       )}
+
+      <style>{`
+        @media (min-width: 1024px) {
+          .carbon-world-grid {
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+          }
+        }
+        @media (max-width: 1023px) {
+          .carbon-world-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
     </section>
   );
 };

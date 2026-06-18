@@ -6,12 +6,9 @@ import { profileCopy } from './profileCopy';
 
 describe('ProfileOnboarding Component', () => {
   const mockSave = vi.fn();
-  const mockClear = vi.fn();
 
   it('renders onboarding title, description, and required sections', () => {
-    render(
-      <ProfileOnboarding savedProfile={null} onSaveProfile={mockSave} onClearProfile={mockClear} />,
-    );
+    render(<ProfileOnboarding savedProfile={null} onSaveProfile={mockSave} />);
 
     // Title and description
     expect(screen.getByText(profileCopy.title)).toBeInTheDocument();
@@ -27,9 +24,7 @@ describe('ProfileOnboarding Component', () => {
   });
 
   it('inputs and selects have accessible labels and default values', () => {
-    render(
-      <ProfileOnboarding savedProfile={null} onSaveProfile={mockSave} onClearProfile={mockClear} />,
-    );
+    render(<ProfileOnboarding savedProfile={null} onSaveProfile={mockSave} />);
 
     // Check input/select by accessible label text
     const commuteModeSelect = screen.getByLabelText(
@@ -46,9 +41,7 @@ describe('ProfileOnboarding Component', () => {
   });
 
   it('invalid submit shows inline validation errors (e.g. negative values)', async () => {
-    render(
-      <ProfileOnboarding savedProfile={null} onSaveProfile={mockSave} onClearProfile={mockClear} />,
-    );
+    render(<ProfileOnboarding savedProfile={null} onSaveProfile={mockSave} />);
 
     const distanceInput = screen.getByLabelText(
       profileCopy.sections.transport.weeklyCommuteKmLabel,
@@ -64,9 +57,7 @@ describe('ProfileOnboarding Component', () => {
   });
 
   it('flight count requires whole number', () => {
-    render(
-      <ProfileOnboarding savedProfile={null} onSaveProfile={mockSave} onClearProfile={mockClear} />,
-    );
+    render(<ProfileOnboarding savedProfile={null} onSaveProfile={mockSave} />);
 
     const flightsInput = screen.getByLabelText(profileCopy.sections.flights.flightsPerYearLabel);
     fireEvent.change(flightsInput, { target: { value: '2.5' } });
@@ -79,9 +70,7 @@ describe('ProfileOnboarding Component', () => {
   });
 
   it('valid submit triggers onSaveProfile and shows profile-ready summary without footprint total or coach API call', () => {
-    render(
-      <ProfileOnboarding savedProfile={null} onSaveProfile={mockSave} onClearProfile={mockClear} />,
-    );
+    render(<ProfileOnboarding savedProfile={null} onSaveProfile={mockSave} />);
 
     const submitBtn = screen.getByRole('button', { name: profileCopy.buttons.submit });
     fireEvent.click(submitBtn);
@@ -90,13 +79,7 @@ describe('ProfileOnboarding Component', () => {
   });
 
   it('shows profile summary when savedProfile is provided', () => {
-    render(
-      <ProfileOnboarding
-        savedProfile={defaultProfile}
-        onSaveProfile={mockSave}
-        onClearProfile={mockClear}
-      />,
-    );
+    render(<ProfileOnboarding savedProfile={defaultProfile} onSaveProfile={mockSave} />);
 
     expect(screen.getByText(profileCopy.success.title)).toBeInTheDocument();
     expect(screen.getByText(profileCopy.success.summary)).toBeInTheDocument();
@@ -105,9 +88,7 @@ describe('ProfileOnboarding Component', () => {
   });
 
   it('reset button restores default values', () => {
-    render(
-      <ProfileOnboarding savedProfile={null} onSaveProfile={mockSave} onClearProfile={mockClear} />,
-    );
+    render(<ProfileOnboarding savedProfile={null} onSaveProfile={mockSave} />);
 
     const distanceInput = screen.getByLabelText(
       profileCopy.sections.transport.weeklyCommuteKmLabel,
@@ -119,5 +100,31 @@ describe('ProfileOnboarding Component', () => {
     fireEvent.click(resetBtn);
 
     expect(distanceInput).toHaveValue(defaultProfile.weeklyCommuteKm);
+  });
+
+  it('renders compact local-data shortcut routing to privacy, and does not render large clear data controls', () => {
+    const handleNavigateToPrivacy = vi.fn();
+    render(
+      <ProfileOnboarding
+        savedProfile={defaultProfile}
+        onSaveProfile={mockSave}
+        onNavigateToPrivacy={handleNavigateToPrivacy}
+      />,
+    );
+
+    // Compact shortcut should render
+    expect(screen.getByText(/Stored locally in this browser/i)).toBeInTheDocument();
+    const shortcutBtn = screen.getByRole('button', {
+      name: /Manage local data in privacy settings/i,
+    });
+    expect(shortcutBtn).toBeInTheDocument();
+
+    // Clicking shortcut should trigger navigation
+    fireEvent.click(shortcutBtn);
+    expect(handleNavigateToPrivacy).toHaveBeenCalled();
+
+    // Large clear local data controls panel should NOT render
+    expect(screen.queryByText('Clear Local Data')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /clear all local data/i })).not.toBeInTheDocument();
   });
 });

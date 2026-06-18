@@ -1,14 +1,53 @@
 import React, { useState } from 'react';
 import { CarbonProfile } from '@carboncoach/shared';
-import { Card, ProgressMeter, Button } from '../../components/ui';
+import { Card, ProgressMeter, Button, EmptyState } from '../../components/ui';
 import { useWeeklyTracker } from './trackerViewModel';
 import { formatActionCategory } from '../recommendations/recommendationViewModel';
 
-import { WeeklyTrackerState, RankedCarbonAction } from '@carboncoach/shared';
+import {
+  WeeklyTrackerState,
+  RankedCarbonAction,
+  createCarbonWorldState,
+} from '@carboncoach/shared';
+
+function formatWeekId(weekId?: string): string {
+  if (!weekId) return '';
+  const parts = weekId.split('-');
+  if (parts.length !== 3) return weekId;
+  const year = parseInt(parts[0], 10);
+  const month = parseInt(parts[1], 10) - 1;
+  const day = parseInt(parts[2], 10);
+  const date = new Date(year, month, day);
+
+  try {
+    const dayStr = date.getDate();
+    const monthNames = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    const monthStr = monthNames[date.getMonth()];
+    const yearStr = date.getFullYear();
+    return `Week of ${dayStr} ${monthStr} ${yearStr}`;
+  } catch {
+    return `Week of ${weekId}`;
+  }
+}
 
 interface WeeklyTrackerProps {
   profile: CarbonProfile | null;
   onNavigateToOnboarding: () => void;
+  onNavigateToWorld?: () => void;
+  onNavigateToPrivacy?: () => void;
   trackerState?: WeeklyTrackerState | null;
   weeklyPlanActions?: RankedCarbonAction[];
   toggleAction?: (actionId: string) => void;
@@ -19,6 +58,8 @@ interface WeeklyTrackerProps {
 export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
   profile,
   onNavigateToOnboarding,
+  onNavigateToWorld,
+  onNavigateToPrivacy,
   trackerState,
   weeklyPlanActions,
   toggleAction,
@@ -39,18 +80,15 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
 
   if (!profile) {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
-        <Card title="Tracker Inactive">
-          <div style={{ textAlign: 'center', padding: 'var(--spacing-xl) 0' }}>
-            <p style={{ margin: '0 0 var(--spacing-lg)', color: 'var(--text-secondary)' }}>
-              Set up your profile first to create a weekly action tracker.
-            </p>
-            <Button variant="secondary" onClick={onNavigateToOnboarding}>
-              Go to Profile Onboarding
-            </Button>
-          </div>
-        </Card>
-      </div>
+      <EmptyState
+        title="Tracker Inactive"
+        description="Set up your profile to view an approximate estimate."
+        action={
+          <Button variant="primary" onClick={onNavigateToOnboarding}>
+            Set up your profile
+          </Button>
+        }
+      />
     );
   }
 
@@ -60,85 +98,267 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
     setTimeout(() => setResetAnnouncement(''), 3000);
   };
 
+  // Find the first incomplete planned action
+  const firstIncompleteAction = activeWeeklyPlanActions.find(
+    (action) => !activeTrackerState?.completedActionIds.includes(action.id),
+  );
+
+  // Synchronize state with Carbon World engine
+  const worldState = createCarbonWorldState({
+    completedActions: activeProgress.completed,
+    totalActions: activeProgress.total,
+  });
+
+  const isAllComplete = activeProgress.percent === 100;
+  const ctaText = isAllComplete ? `View ${worldState.title}` : 'See your Carbon World';
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>
-      <Card title={`Current Week: ${activeTrackerState?.weekId || ''}`}>
+      <Card title="This week’s actions">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
-          <div>
-            <p style={{ margin: '0 0 var(--spacing-xs)', color: 'var(--text-secondary)' }}>
-              Track a few suggested actions for this week. Progress is stored only in this browser.
-            </p>
+          {/* Subheader and Focus Area */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'baseline',
+              flexWrap: 'wrap',
+              gap: 'var(--spacing-xs)',
+            }}
+          >
+            <span
+              style={{
+                fontSize: 'var(--font-sm)',
+                fontWeight: 600,
+                color: 'var(--color-accent)',
+              }}
+            >
+              {formatWeekId(activeTrackerState?.weekId)}
+            </span>
             {activePlanSummary && (
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: 'var(--font-sm)',
-                  fontWeight: 600,
-                  color: 'var(--color-accent)',
-                }}
-              >
+              <span style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)' }}>
                 Focus: {activePlanSummary}
-              </p>
+              </span>
             )}
           </div>
 
+          {/* Progress Section */}
           <div
             style={{
               padding: 'var(--spacing-md)',
               border: '1px solid var(--border-glass)',
               borderRadius: 'var(--radius-sm)',
               background: 'var(--bg-deep-navy)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--spacing-xs)',
             }}
           >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+              <span
+                style={{
+                  fontSize: 'var(--font-xs)',
+                  color: 'var(--text-muted)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                }}
+              >
+                Weekly action progress
+              </span>
+              <span
+                style={{
+                  fontSize: 'var(--font-lg)',
+                  fontWeight: 700,
+                  color: 'var(--text-primary)',
+                }}
+              >
+                {activeProgress.completed} of {activeProgress.total} complete
+              </span>
+            </div>
+
             <ProgressMeter
               value={activeProgress.percent}
               max={100}
-              label="Weekly action checklist completion"
+              label={`Weekly action progress: ${activeProgress.completed} of ${activeProgress.total} planned actions complete.`}
             />
+
             <div
               style={{
                 display: 'flex',
-                justifyContent: 'space-between',
-                fontSize: 'var(--font-xs)',
-                color: 'var(--text-muted)',
-                marginTop: 'var(--spacing-xs)',
+                flexDirection: 'column',
+                gap: '2px',
+                marginTop: 'var(--spacing-2xs)',
               }}
             >
-              <span>
-                {activeProgress.completed} of {activeProgress.total} actions completed
-              </span>
-              <span>{activeProgress.percent}% Completed</span>
-            </div>
-            {activeProgress.percent === 100 && (
               <p
                 style={{
-                  margin: 'var(--spacing-xs) 0 0',
-                  color: '#4caf50',
+                  margin: 0,
+                  color: isAllComplete ? 'var(--color-primary)' : 'var(--text-primary)',
                   fontWeight: 600,
                   fontSize: 'var(--font-sm)',
                 }}
               >
-                Nice progress. Keep going at your own pace.
+                {isAllComplete
+                  ? 'Weekly plan complete'
+                  : activeProgress.completed > 0
+                    ? 'Action completed'
+                    : 'Your next action is ready.'}
               </p>
+              <p style={{ margin: 0, fontSize: 'var(--font-xs)', color: 'var(--text-secondary)' }}>
+                {isAllComplete
+                  ? 'Your Carbon World is ready to explore.'
+                  : activeProgress.completed > 0
+                    ? 'Nice work — your weekly progress has moved forward.'
+                    : 'Get started by checking off your first action below.'}
+              </p>
+              <p
+                style={{
+                  margin: '4px 0 0 0',
+                  fontSize: 'var(--font-xs)',
+                  color: 'var(--text-muted)',
+                }}
+              >
+                Your Carbon World reflects weekly action progress.
+              </p>
+            </div>
+          </div>
+
+          {/* Highlighted Next Action or Complete Banner */}
+          <div
+            style={{
+              padding: 'var(--spacing-md)',
+              border: '1px solid var(--color-accent)',
+              borderRadius: 'var(--radius-sm)',
+              background: 'var(--color-accent-bg)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--spacing-sm)',
+            }}
+          >
+            {firstIncompleteAction ? (
+              <>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: 'var(--font-xs)',
+                      fontWeight: 800,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      color: 'var(--color-accent)',
+                    }}
+                  >
+                    Next action
+                  </span>
+                </div>
+                <div>
+                  <h4
+                    style={{
+                      margin: '0 0 var(--spacing-2xs)',
+                      fontSize: 'var(--font-md)',
+                      fontWeight: 700,
+                      color: 'var(--text-primary)',
+                    }}
+                  >
+                    {firstIncompleteAction.title}
+                  </h4>
+                  <div
+                    style={{
+                      display: 'flex',
+                      gap: 'var(--spacing-xs)',
+                      alignItems: 'center',
+                      marginBottom: 'var(--spacing-xs)',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: '10px',
+                        padding: '2px 6px',
+                        background: 'rgba(255, 255, 255, 0.08)',
+                        borderRadius: '4px',
+                        color: 'var(--text-secondary)',
+                      }}
+                    >
+                      {formatActionCategory(firstIncompleteAction.category)}
+                    </span>
+                    <span style={{ color: 'var(--text-muted)', fontSize: '10px' }}>·</span>
+                    <span
+                      style={{
+                        fontSize: '10px',
+                        padding: '2px 6px',
+                        background: 'rgba(255, 255, 255, 0.08)',
+                        borderRadius: '4px',
+                        color: 'var(--text-secondary)',
+                      }}
+                    >
+                      {firstIncompleteAction.effort.charAt(0).toUpperCase() +
+                        firstIncompleteAction.effort.slice(1)}{' '}
+                      effort
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      margin: 0,
+                      fontSize: 'var(--font-xs)',
+                      color: 'var(--text-secondary)',
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {firstIncompleteAction.reason}
+                  </p>
+                </div>
+                <div style={{ marginTop: 'var(--spacing-2xs)' }}>
+                  <Button
+                    onClick={() => activeToggleAction(firstIncompleteAction.id)}
+                    aria-label={`Mark "${firstIncompleteAction.title}" as complete`}
+                  >
+                    Complete next action
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <h4
+                    style={{
+                      margin: '0 0 var(--spacing-2xs)',
+                      fontSize: 'var(--font-md)',
+                      fontWeight: 700,
+                      color: 'var(--text-primary)',
+                    }}
+                  >
+                    This week is complete
+                  </h4>
+                  <p
+                    style={{
+                      margin: 0,
+                      fontSize: 'var(--font-xs)',
+                      color: 'var(--text-secondary)',
+                    }}
+                  >
+                    Your Carbon World is ready to explore.
+                  </p>
+                </div>
+                {onNavigateToWorld && (
+                  <div style={{ marginTop: 'var(--spacing-2xs)' }}>
+                    <Button onClick={onNavigateToWorld} aria-label={`View ${worldState.title}`}>
+                      View {worldState.title}
+                    </Button>
+                  </div>
+                )}
+              </>
             )}
           </div>
 
+          {/* Action Checklist Fieldset */}
           <fieldset style={{ border: 'none', padding: 0, margin: 0 }}>
-            <legend
-              className="sr-only"
-              style={{
-                position: 'absolute',
-                width: '1px',
-                height: '1px',
-                padding: 0,
-                margin: '-1px',
-                overflow: 'hidden',
-                clip: 'rect(0, 0, 0, 0)',
-                border: 0,
-              }}
-            >
-              Weekly Checklist Actions
-            </legend>
+            <legend className="sr-only">Weekly Checklist Actions</legend>
             <ul
               style={{
                 listStyle: 'none',
@@ -160,9 +380,11 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
                       alignItems: 'flex-start',
                       gap: 'var(--spacing-md)',
                       padding: 'var(--spacing-sm)',
-                      background: 'rgba(255, 255, 255, 0.02)',
-                      borderRadius: 'var(--radius-xs)',
+                      background: 'var(--bg-card)',
+                      borderRadius: 'var(--radius-sm)',
                       border: '1px solid var(--border-glass)',
+                      opacity: isCompleted ? 0.7 : 1,
+                      transition: 'opacity var(--transition-fast)',
                     }}
                   >
                     <input
@@ -173,9 +395,14 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
                       style={{
                         marginTop: '4px',
                         cursor: 'pointer',
-                        width: '18px',
-                        height: '18px',
+                        width: '20px',
+                        height: '20px',
+                        minWidth: '20px',
+                        minHeight: '20px',
                       }}
+                      aria-label={`Mark "${action.title}" as ${
+                        isCompleted ? 'incomplete' : 'complete'
+                      }`}
                     />
                     <label
                       htmlFor={`action-check-${action.id}`}
@@ -195,20 +422,14 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
                       >
                         {action.title}
                       </span>
-                      <span
-                        style={{
-                          fontSize: 'var(--font-xs)',
-                          color: 'var(--text-secondary)',
-                          marginTop: '2px',
-                        }}
-                      >
-                        {action.reason}
-                      </span>
                       <div
                         style={{
                           display: 'flex',
-                          gap: 'var(--spacing-sm)',
-                          marginTop: 'var(--spacing-xs)',
+                          gap: 'var(--spacing-xs)',
+                          alignItems: 'center',
+                          marginTop: 'var(--spacing-2xs)',
+                          marginBottom: 'var(--spacing-2xs)',
+                          flexWrap: 'wrap',
                         }}
                       >
                         <span
@@ -217,23 +438,33 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
                             padding: '2px 6px',
                             background: 'rgba(255, 255, 255, 0.05)',
                             borderRadius: '4px',
-                            color: 'var(--text-muted)',
+                            color: 'var(--text-secondary)',
                           }}
                         >
                           {formatActionCategory(action.category)}
                         </span>
+                        <span style={{ color: 'var(--text-muted)', fontSize: '10px' }}>·</span>
                         <span
                           style={{
                             fontSize: '10px',
                             padding: '2px 6px',
                             background: 'rgba(255, 255, 255, 0.05)',
                             borderRadius: '4px',
-                            color: 'var(--text-muted)',
+                            color: 'var(--text-secondary)',
                           }}
                         >
-                          Impact: {action.impactBand.toUpperCase()}
+                          {action.effort.charAt(0).toUpperCase() + action.effort.slice(1)} effort
                         </span>
                       </div>
+                      <span
+                        style={{
+                          fontSize: 'var(--font-xs)',
+                          color: 'var(--text-muted)',
+                          lineHeight: 1.4,
+                        }}
+                      >
+                        {action.reason}
+                      </span>
                     </label>
                   </li>
                 );
@@ -241,36 +472,73 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
             </ul>
           </fieldset>
 
+          {/* Action Buttons */}
           {activeWeeklyPlanActions.length > 0 && (
             <div
               style={{
                 display: 'flex',
-                justifyContent: 'flex-start',
+                gap: 'var(--spacing-md)',
                 marginTop: 'var(--spacing-xs)',
+                flexWrap: 'wrap',
               }}
             >
               <Button variant="secondary" onClick={handleReset} aria-label="Reset tracker progress">
                 Reset Progress
               </Button>
+              {activeProgress.completed > 0 && !isAllComplete && onNavigateToWorld && (
+                <Button onClick={onNavigateToWorld} aria-label={ctaText}>
+                  {ctaText}
+                </Button>
+              )}
             </div>
           )}
         </div>
       </Card>
 
+      {/* Compact Local Data Section */}
       <div
-        aria-live="polite"
-        className="sr-only"
         style={{
-          position: 'absolute',
-          width: '1px',
-          height: '1px',
-          padding: 0,
-          margin: '-1px',
-          overflow: 'hidden',
-          clip: 'rect(0, 0, 0, 0)',
-          border: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 'var(--spacing-2xs)',
+          padding: 'var(--spacing-md)',
+          border: '1px dashed var(--border-glass)',
+          borderRadius: 'var(--radius-sm)',
+          background: 'rgba(255, 255, 255, 0.01)',
+          marginTop: 'var(--spacing-xs)',
+          textAlign: 'center',
         }}
       >
+        <span style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)' }}>
+          Local progress is stored in this browser.
+        </span>
+        {onNavigateToPrivacy && (
+          <button
+            onClick={onNavigateToPrivacy}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--color-accent)',
+              textDecoration: 'underline',
+              cursor: 'pointer',
+              padding: '4px var(--spacing-sm)',
+              fontSize: 'var(--font-xs)',
+              fontWeight: 600,
+              fontFamily: 'inherit',
+              minHeight: '44px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            aria-label="Manage local data in privacy settings"
+          >
+            Manage local data
+          </button>
+        )}
+      </div>
+
+      <div aria-live="polite" className="sr-only">
         {resetAnnouncement}
       </div>
     </div>

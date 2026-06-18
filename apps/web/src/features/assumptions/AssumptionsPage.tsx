@@ -13,7 +13,7 @@ export const AssumptionsPage: React.FC = () => {
 
       <Card title="Approximate Nature of Calculations">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
-          <p style={{ margin: 0 }}>{intro}</p>
+          <p style={{ margin: 0, fontWeight: 600 }}>{intro}</p>
           <p
             style={{
               margin: 0,

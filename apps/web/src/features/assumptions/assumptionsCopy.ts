@@ -84,7 +84,7 @@ export const assumptionsCopy = {
       title: 'AI Coach Role',
       estimated: 'Explanations and coaching tips.',
       assumptions:
-        'The AI reads deterministic values and provides conversational summaries. It is strictly forbidden from inventing numbers.',
+        'The AI reads deterministic values and provides conversational summaries. Coach prompts prohibit new calculations, and response validation plus Numeric Guard reject unsupported generated numbers before they are shown.',
       notClaimed:
         'Does not calculate footprints or verify numbers. Its output is explanatory only.',
     },
@@ -100,7 +100,8 @@ export const assumptionsCopy = {
       id: 'carbonWorld',
       title: 'Carbon World',
       estimated: 'A visual progress landscape showing completed actions.',
-      assumptions: 'Sky clarity and trees scale mathematically based on completed tracker tasks.',
+      assumptions:
+        'The visual scene changes across deterministic progress stages based on weekly action-completion thresholds.',
       notClaimed:
         'Visual representations are motivational metaphors and do not represent measured scientific changes.',
     },

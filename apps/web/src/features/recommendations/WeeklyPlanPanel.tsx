@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { WeeklyActionPlan } from '@carboncoach/shared';
-import { Card, StatusBadge } from '../../components/ui';
+import { Card, StatusBadge, Button } from '../../components/ui';
 import { recommendationCopy } from './recommendationCopy';
 import { formatActionCategory, formatImpactBand } from './recommendationViewModel';
 
 export interface WeeklyPlanPanelProps {
   plan: WeeklyActionPlan;
+  onNavigateToTracker?: () => void;
+  hasTrackerProgress?: boolean;
 }
 
-export const WeeklyPlanPanel: React.FC<WeeklyPlanPanelProps> = ({ plan }) => {
+export const WeeklyPlanPanel: React.FC<WeeklyPlanPanelProps> = ({
+  plan,
+  onNavigateToTracker,
+  hasTrackerProgress = false,
+}) => {
+  const [showAssumptions, setShowAssumptions] = useState(false);
+
   return (
     <Card title={recommendationCopy.planTitle}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
@@ -77,32 +85,56 @@ export const WeeklyPlanPanel: React.FC<WeeklyPlanPanelProps> = ({ plan }) => {
               borderTop: '1px solid var(--border-glass)',
             }}
           >
-            <h5
+            <button
+              onClick={() => setShowAssumptions(!showAssumptions)}
+              aria-expanded={showAssumptions}
               style={{
+                background: 'transparent',
+                border: '1px solid var(--border-glass)',
+                padding: 'var(--spacing-xs) var(--spacing-sm)',
                 fontSize: 'var(--font-xs)',
-                fontWeight: 600,
-                color: 'var(--text-muted)',
-                margin: '0 0 var(--spacing-xs) 0',
-              }}
-            >
-              Plan Assumptions
-            </h5>
-            <ul
-              style={{
-                margin: 0,
-                paddingLeft: 'var(--spacing-md)',
-                fontSize: 'var(--font-xs)',
-                color: 'var(--text-muted)',
+                cursor: 'pointer',
+                borderRadius: 'var(--radius-xs)',
+                color: 'var(--text-secondary)',
+                minHeight: '44px',
                 display: 'flex',
-                flexDirection: 'column',
-                gap: 'var(--spacing-3xs)',
+                alignItems: 'center',
+                gap: 'var(--spacing-2xs)',
+                width: '100%',
+                justifyContent: 'center',
+                marginBottom: showAssumptions ? 'var(--spacing-sm)' : 0,
               }}
             >
-              {plan.assumptionNotes.map((note, idx) => (
-                <li key={idx}>{note}</li>
-              ))}
-            </ul>
+              How this plan is selected {showAssumptions ? '▴' : '▾'}
+            </button>
+            {showAssumptions && (
+              <ul
+                style={{
+                  margin: 0,
+                  paddingLeft: 'var(--spacing-md)',
+                  fontSize: 'var(--font-xs)',
+                  color: 'var(--text-muted)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 'var(--spacing-3xs)',
+                }}
+              >
+                {plan.assumptionNotes.map((note, idx) => (
+                  <li key={idx}>{note}</li>
+                ))}
+              </ul>
+            )}
           </div>
+        )}
+
+        {onNavigateToTracker && (
+          <Button
+            onClick={onNavigateToTracker}
+            variant="primary"
+            style={{ marginTop: 'var(--spacing-md)', width: '100%', cursor: 'pointer' }}
+          >
+            {hasTrackerProgress ? 'View weekly tracker' : 'Start weekly tracker'}
+          </Button>
         )}
       </div>
     </Card>

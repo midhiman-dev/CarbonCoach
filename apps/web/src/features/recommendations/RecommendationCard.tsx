@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RankedCarbonAction } from '@carboncoach/shared';
 import { Card, StatusBadge } from '../../components/ui';
 import {
@@ -15,6 +15,8 @@ export interface RecommendationCardProps {
 }
 
 export const RecommendationCard: React.FC<RecommendationCardProps> = ({ action, rank }) => {
+  const [showWhy, setShowWhy] = useState(false);
+  const [showAssumptions, setShowAssumptions] = useState(false);
   const reductionText = formatReductionKgCO2e(action.estimatedMonthlyReductionKgCO2e);
 
   // Map Impact Band to Badge Variant
@@ -46,7 +48,9 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({ action, 
           <StatusBadge variant={costVariant} label={formatCostEffect(action.costEffect)} />
         </div>
 
-        <p style={{ margin: 0, color: 'var(--text-primary)' }}>{action.reason}</p>
+        <p style={{ margin: 0, color: 'var(--text-primary)', fontSize: 'var(--font-sm)' }}>
+          {action.reason}
+        </p>
 
         {reductionText && (
           <p
@@ -61,8 +65,60 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({ action, 
           </p>
         )}
 
-        {action.fitReasons && action.fitReasons.length > 0 && (
-          <div style={{ marginTop: 'var(--spacing-2xs)' }}>
+        <div style={{ display: 'flex', gap: 'var(--spacing-md)', marginTop: 'var(--spacing-xs)' }}>
+          {action.fitReasons && action.fitReasons.length > 0 && (
+            <button
+              onClick={() => setShowWhy(!showWhy)}
+              aria-expanded={showWhy}
+              style={{
+                background: 'transparent',
+                border: '1px solid var(--border-glass)',
+                padding: 'var(--spacing-xs) var(--spacing-sm)',
+                fontSize: 'var(--font-xs)',
+                cursor: 'pointer',
+                borderRadius: 'var(--radius-xs)',
+                color: 'var(--text-secondary)',
+                minHeight: '44px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 'var(--spacing-2xs)',
+              }}
+            >
+              Why this action? {showWhy ? '▴' : '▾'}
+            </button>
+          )}
+
+          <button
+            onClick={() => setShowAssumptions(!showAssumptions)}
+            aria-expanded={showAssumptions}
+            style={{
+              background: 'transparent',
+              border: '1px solid var(--border-glass)',
+              padding: 'var(--spacing-xs) var(--spacing-sm)',
+              fontSize: 'var(--font-xs)',
+              cursor: 'pointer',
+              borderRadius: 'var(--radius-xs)',
+              color: 'var(--text-secondary)',
+              minHeight: '44px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 'var(--spacing-2xs)',
+            }}
+          >
+            View assumptions {showAssumptions ? '▴' : '▾'}
+          </button>
+        </div>
+
+        {showWhy && action.fitReasons && action.fitReasons.length > 0 && (
+          <div
+            style={{
+              marginTop: 'var(--spacing-sm)',
+              padding: 'var(--spacing-sm)',
+              background: 'rgba(255, 255, 255, 0.02)',
+              borderRadius: 'var(--radius-xs)',
+              borderLeft: '3px solid var(--color-accent)',
+            }}
+          >
             <span
               style={{
                 fontSize: 'var(--font-xs)',
@@ -89,17 +145,19 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({ action, 
           </div>
         )}
 
-        <div
-          style={{
-            fontSize: 'var(--font-xs)',
-            color: 'var(--text-muted)',
-            borderTop: '1px solid var(--border-glass)',
-            paddingTop: 'var(--spacing-xs)',
-            marginTop: 'var(--spacing-xs)',
-          }}
-        >
-          <strong>Assumption:</strong> {action.assumptionNote}
-        </div>
+        {showAssumptions && (
+          <div
+            style={{
+              fontSize: 'var(--font-xs)',
+              color: 'var(--text-muted)',
+              borderTop: '1px solid var(--border-glass)',
+              paddingTop: 'var(--spacing-xs)',
+              marginTop: 'var(--spacing-xs)',
+            }}
+          >
+            <strong>Assumption:</strong> {action.assumptionNote}
+          </div>
+        )}
       </div>
     </Card>
   );

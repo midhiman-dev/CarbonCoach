@@ -23,7 +23,7 @@ export const navigationItems: NavigationItem[] = [
   },
   {
     id: 'recommendations',
-    label: 'Recommendations',
+    label: 'Recommendations & Action Plan',
     description: 'Ranked carbon reduction actions and suggested weekly plan',
   },
   {

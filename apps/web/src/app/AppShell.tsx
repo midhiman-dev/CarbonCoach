@@ -1,35 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { navigationItems } from './navigation';
 import { ActiveSection } from './routes';
-import {
-  Card,
-  Container,
-  SectionHeader,
-  TrustIndicator,
-  StatusBadge,
-  ProgressMeter,
-} from '../components/ui';
+import { Container, SectionHeader } from '../components/ui';
 import { CarbonProfile, calculateFootprint } from '@carboncoach/shared';
 import { ProfileOnboarding } from '../features/profile';
-import { FootprintSummary, formatCategoryLabel } from '../features/footprint';
+import { FootprintSummary } from '../features/footprint';
 import { RecommendationPanel } from '../features/recommendations';
 import { DailyChoiceLab } from '../features/choices';
 import {
   loadStoredProfile,
   saveStoredProfile,
-  clearAllLocalCarbonCoachData,
   WeeklyTracker,
-  LocalDataControls,
   useWeeklyTracker,
 } from '../features/tracker';
 import { CarbonWorld } from '../features/world';
 import { PrivacyLocalDataPage } from '../features/privacy';
 import { AssumptionsPage } from '../features/assumptions';
+import { OverviewDashboard } from '../features/overview';
 
 export const AppShell: React.FC = () => {
   const [activeSection, setActiveSection] = useState<ActiveSection>('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [savedProfile, setSavedProfile] = useState<CarbonProfile | null>(() => loadStoredProfile());
+
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Manage body scroll locking when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      closeButtonRef.current?.focus();
+    } else {
+      document.body.style.overflow = '';
+      menuButtonRef.current?.focus();
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  // Handle Escape key to close navigation drawer
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      setMobileMenuOpen(false);
+    }
+  };
+
   const { trackerState, weeklyPlanActions, toggleAction, resetTracker, progress } =
     useWeeklyTracker(savedProfile);
 
@@ -39,140 +66,13 @@ export const AppShell: React.FC = () => {
     switch (activeSection) {
       case 'overview':
         return (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>
-            <SectionHeader title="Overview" subtitle="Welcome to your CarbonCoach dashboard" />
-
-            <div style={{ marginBottom: 'var(--spacing-md)' }}>
-              <TrustIndicator />
-            </div>
-
-            <div className="grid-responsive">
-              <Card title="Carbon Profile Status">
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
-                  {savedProfile ? (
-                    <>
-                      <p>
-                        Your profile is configured. You can view or edit details in the Profile tab.
-                      </p>
-                      <StatusBadge variant="low" label="Configured" />
-                    </>
-                  ) : (
-                    <>
-                      <p>Estimate will appear after onboarding.</p>
-                      <StatusBadge variant="moderate" label="Not Configured" />
-                    </>
-                  )}
-                </div>
-              </Card>
-
-              <Card title="Top Contributor">
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
-                  {estimate && estimate.topCategory ? (
-                    <>
-                      <p>
-                        Largest source: <strong>{formatCategoryLabel(estimate.topCategory)}</strong>
-                      </p>
-                      <StatusBadge variant="high" label="Calculated from profile" />
-                    </>
-                  ) : (
-                    <>
-                      <p>Top category impact band analysis will be calculated after onboarding.</p>
-                      <StatusBadge variant="info" label="Awaiting Profile" />
-                    </>
-                  )}
-                </div>
-              </Card>
-
-              <Card title="Active Week Action Plan">
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
-                  {savedProfile ? (
-                    <>
-                      <p>
-                        Custom weekly plan actions are ready. Visit the Weekly Tracker to track your
-                        actions.
-                      </p>
-                      <StatusBadge variant="low" label="Plan Generated" />
-                    </>
-                  ) : (
-                    <>
-                      <p>A customized weekly plan will be generated based on your profile.</p>
-                      <StatusBadge variant="info" label="Awaiting Profile" />
-                    </>
-                  )}
-                </div>
-              </Card>
-            </div>
-
-            <div className="grid-two-cols" style={{ marginTop: 'var(--spacing-md)' }}>
-              <Card title="Daily Choice Lab">
-                <p style={{ marginBottom: 'var(--spacing-md)' }}>
-                  Compare everyday scenarios using deterministic impact bands and receive
-                  AI-assisted coaching on lower-impact options.
-                </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
-                  <StatusBadge variant="low" label="Daily Choice Lab Ready" />
-                  <button
-                    onClick={() => setActiveSection('choice-lab')}
-                    className="btn btn-primary"
-                    style={{
-                      alignSelf: 'start',
-                      marginTop: 'var(--spacing-xs)',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    Go to Daily Choice Lab
-                  </button>
-                </div>
-              </Card>
-
-              <Card title="Carbon World Status">
-                <p style={{ marginBottom: 'var(--spacing-md)' }}>
-                  Your personal visual world grows based on your weekly action progress. Complete
-                  actions to clear the sky and plant trees!
-                </p>
-                {savedProfile && trackerState && weeklyPlanActions.length > 0 ? (
-                  <>
-                    <ProgressMeter
-                      value={progress.percent}
-                      max={100}
-                      label="Weekly action progress"
-                    />
-                    <p
-                      style={{
-                        fontSize: 'var(--font-size-xs)',
-                        color: 'var(--color-text-secondary)',
-                        marginTop: 'var(--spacing-sm)',
-                        fontWeight: 600,
-                      }}
-                    >
-                      Current stage:{' '}
-                      {progress.percent === 0
-                        ? 'Seed'
-                        : progress.percent <= 33
-                          ? 'Sprout'
-                          : progress.percent <= 66
-                            ? 'Garden'
-                            : 'Grove'}{' '}
-                      ({progress.completed} of {progress.total} actions)
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <ProgressMeter value={0} max={100} label="Weekly action progress" />
-                    <p
-                      style={{
-                        fontSize: 'var(--font-size-xs)',
-                        color: 'var(--color-text-secondary)',
-                        marginTop: 'var(--spacing-sm)',
-                      }}
-                    >
-                      Set up your profile and start your weekly tracker to grow your Carbon World.
-                    </p>
-                  </>
-                )}
-              </Card>
-            </div>
-          </div>
+          <OverviewDashboard
+            savedProfile={savedProfile}
+            estimate={estimate}
+            weeklyPlanActionsCount={weeklyPlanActions.length}
+            trackerProgress={progress}
+            onNavigate={(section) => setActiveSection(section)}
+          />
         );
 
       case 'profile':
@@ -188,16 +88,9 @@ export const AppShell: React.FC = () => {
                 saveStoredProfile(profile);
                 setSavedProfile(profile);
               }}
-              onClearProfile={() => {
-                clearAllLocalCarbonCoachData();
-                setSavedProfile(null);
-              }}
+              onNavigateToFootprint={() => setActiveSection('footprint')}
+              onNavigateToPrivacy={() => setActiveSection('privacy')}
             />
-            {savedProfile && (
-              <div style={{ marginTop: 'var(--spacing-md)' }}>
-                <LocalDataControls hasData={true} onClear={() => setSavedProfile(null)} />
-              </div>
-            )}
           </div>
         );
 
@@ -211,6 +104,8 @@ export const AppShell: React.FC = () => {
             <FootprintSummary
               profile={savedProfile}
               onNavigateToProfile={() => setActiveSection('profile')}
+              onNavigateToRecommendations={() => setActiveSection('recommendations')}
+              onNavigateToAssumptions={() => setActiveSection('assumptions')}
             />
           </div>
         );
@@ -225,12 +120,19 @@ export const AppShell: React.FC = () => {
             <RecommendationPanel
               profile={savedProfile}
               onNavigateToProfile={() => setActiveSection('profile')}
+              onNavigateToTracker={() => setActiveSection('tracker')}
+              trackerProgress={progress}
             />
           </div>
         );
 
       case 'choice-lab':
-        return <DailyChoiceLab profile={savedProfile} />;
+        return (
+          <DailyChoiceLab
+            profile={savedProfile}
+            onNavigateToProfile={() => setActiveSection('profile')}
+          />
+        );
 
       case 'carbon-world':
         return (
@@ -240,6 +142,7 @@ export const AppShell: React.FC = () => {
             trackerState={trackerState}
             onNavigateToOnboarding={() => setActiveSection('profile')}
             onNavigateToTracker={() => setActiveSection('tracker')}
+            onNavigateToRecommendations={() => setActiveSection('recommendations')}
           />
         );
 
@@ -253,16 +156,13 @@ export const AppShell: React.FC = () => {
             <WeeklyTracker
               profile={savedProfile}
               onNavigateToOnboarding={() => setActiveSection('profile')}
+              onNavigateToWorld={() => setActiveSection('carbon-world')}
+              onNavigateToPrivacy={() => setActiveSection('privacy')}
               trackerState={trackerState}
               weeklyPlanActions={weeklyPlanActions}
               toggleAction={toggleAction}
               resetTracker={resetTracker}
               progress={progress}
-            />
-
-            <LocalDataControls
-              hasData={savedProfile !== null}
-              onClear={() => setSavedProfile(null)}
             />
           </div>
         );
@@ -282,6 +182,9 @@ export const AppShell: React.FC = () => {
         return null;
     }
   };
+
+  const activeItem = navigationItems.find((item) => item.id === activeSection);
+  const activeLabel = activeItem ? activeItem.label : '';
 
   return (
     <>
@@ -304,18 +207,19 @@ export const AppShell: React.FC = () => {
         >
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span
-              style={{ fontWeight: 800, fontSize: 'var(--font-lg)', color: 'var(--color-accent)' }}
+              style={{ fontWeight: 800, fontSize: 'var(--font-md)', color: 'var(--color-accent)' }}
             >
-              CarbonCoach
+              CarbonCoach {activeLabel ? `· ${activeLabel}` : ''}
             </span>
-            <span style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)' }}>
+            <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
               Understand your footprint.
             </span>
           </div>
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            ref={menuButtonRef}
+            onClick={() => setMobileMenuOpen(true)}
             aria-expanded={mobileMenuOpen}
-            aria-label="Toggle navigation menu"
+            aria-label="Open navigation"
             style={{
               background: 'transparent',
               border: '1px solid var(--border-glass)',
@@ -323,59 +227,144 @@ export const AppShell: React.FC = () => {
               borderRadius: 'var(--radius-xs)',
               padding: 'var(--spacing-xs) var(--spacing-sm)',
               cursor: 'pointer',
+              minHeight: '44px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
             Menu
           </button>
         </header>
 
-        {/* Collapsible Mobile Menu */}
+        {/* Collapsible Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <nav
-            aria-label="Mobile navigation"
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation drawer"
+            onClick={handleBackdropClick}
             style={{
-              background: 'var(--bg-deep-navy)',
-              borderBottom: '1px solid var(--border-glass)',
-              padding: 'var(--spacing-md)',
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'rgba(15, 23, 42, 0.75)',
+              backdropFilter: 'blur(4px)',
+              zIndex: 1000,
+              display: 'flex',
+              justifyContent: 'flex-start',
             }}
-            className="hide-desktop-block"
+            className="hide-desktop-flex"
           >
-            <ul
+            <nav
               style={{
-                listStyle: 'none',
+                width: 'min(300px, 80vw)',
+                background: 'var(--bg-deep-navy)',
+                borderRight: '1px solid var(--border-glass)',
+                height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: 'var(--spacing-sm)',
+                justifyContent: 'space-between',
+                padding: 'var(--spacing-lg) var(--spacing-md)',
+                boxShadow: 'var(--shadow-lg)',
               }}
             >
-              {navigationItems.map((item) => (
-                <li key={item.id}>
-                  <button
-                    onClick={() => {
-                      setActiveSection(item.id as ActiveSection);
-                      setMobileMenuOpen(false);
-                    }}
+              <div>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginBottom: 'var(--spacing-xl)',
+                  }}
+                >
+                  <span
                     style={{
-                      background: activeSection === item.id ? 'var(--bg-card)' : 'transparent',
-                      border: 'none',
-                      color:
-                        activeSection === item.id ? 'var(--color-accent)' : 'var(--text-secondary)',
-                      padding: 'var(--spacing-xs) var(--spacing-sm)',
-                      width: '100%',
-                      textAlign: 'left',
-                      borderRadius: 'var(--radius-xs)',
-                      cursor: 'pointer',
+                      fontWeight: 800,
+                      fontSize: 'var(--font-xl)',
+                      color: 'var(--color-accent)',
                     }}
                   >
-                    <div style={{ fontWeight: 600 }}>{item.label}</div>
-                    <div style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)' }}>
-                      {item.description}
-                    </div>
+                    CarbonCoach
+                  </span>
+                  <button
+                    ref={closeButtonRef}
+                    onClick={() => setMobileMenuOpen(false)}
+                    aria-label="Close navigation"
+                    style={{
+                      background: 'transparent',
+                      border: '1px solid var(--border-glass)',
+                      color: 'var(--text-primary)',
+                      borderRadius: 'var(--radius-xs)',
+                      padding: 'var(--spacing-xs) var(--spacing-sm)',
+                      cursor: 'pointer',
+                      minHeight: '44px',
+                      minWidth: '44px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    ✕
                   </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
+                </div>
+
+                <ul
+                  style={{
+                    listStyle: 'none',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 'var(--spacing-sm)',
+                    padding: 0,
+                    margin: 0,
+                  }}
+                >
+                  {navigationItems.map((item) => (
+                    <li key={item.id}>
+                      <button
+                        onClick={() => {
+                          setActiveSection(item.id as ActiveSection);
+                          setMobileMenuOpen(false);
+                        }}
+                        style={{
+                          background: activeSection === item.id ? 'var(--bg-card)' : 'transparent',
+                          border: 'none',
+                          color:
+                            activeSection === item.id
+                              ? 'var(--color-accent)'
+                              : 'var(--text-secondary)',
+                          padding: 'var(--spacing-sm)',
+                          width: '100%',
+                          textAlign: 'left',
+                          borderRadius: 'var(--radius-sm)',
+                          cursor: 'pointer',
+                          minHeight: '44px',
+                        }}
+                      >
+                        <div style={{ fontWeight: 600 }}>{item.label}</div>
+                        <div style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)' }}>
+                          {item.description}
+                        </div>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <footer
+                style={{
+                  borderTop: '1px solid var(--border-glass)',
+                  paddingTop: 'var(--spacing-md)',
+                }}
+              >
+                <p style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)', margin: 0 }}>
+                  Local-first sandbox · AI-assisted coach
+                </p>
+              </footer>
+            </nav>
+          </div>
         )}
 
         {/* Desktop Sidebar Navigation */}
@@ -408,6 +397,8 @@ export const AppShell: React.FC = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 'var(--spacing-sm)',
+                  padding: 0,
+                  margin: 0,
                 }}
               >
                 {navigationItems.map((item) => (
@@ -461,12 +452,12 @@ export const AppShell: React.FC = () => {
       </div>
 
       <style>{`
-        @media (max-width: 767px) {
+        @media (max-width: 1023px) {
           .hide-mobile-flex { display: none !important; }
           .hide-desktop-flex { display: flex !important; }
           .hide-desktop-block { display: block !important; }
         }
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
           .hide-mobile-flex { display: flex !important; }
           .hide-desktop-flex { display: none !important; }
           .hide-desktop-block { display: none !important; }

@@ -14,13 +14,14 @@ describe('worldEngine', () => {
     });
 
     it('should map mid progress to garden', () => {
-      expect(getCarbonWorldStage(34)).toBe('garden');
+      expect(getCarbonWorldStage(36)).toBe('garden');
       expect(getCarbonWorldStage(50)).toBe('garden');
-      expect(getCarbonWorldStage(66)).toBe('garden');
+      expect(getCarbonWorldStage(67)).toBe('garden');
+      expect(getCarbonWorldStage(70)).toBe('garden');
     });
 
     it('should map high/full progress to grove', () => {
-      expect(getCarbonWorldStage(67)).toBe('grove');
+      expect(getCarbonWorldStage(71)).toBe('grove');
       expect(getCarbonWorldStage(90)).toBe('grove');
       expect(getCarbonWorldStage(100)).toBe('grove');
     });
