@@ -11,14 +11,16 @@
   ],
   "scripts": {
     "build": "npm run build --workspace packages/shared && npm run build --workspace services/api && npm run build --workspace apps/web",
-    "typecheck": "npm run typecheck --workspace packages/shared && npm run typecheck --workspace services/api && npm run typecheck --workspace apps/web",
+    "typecheck": "npm run build --workspace packages/shared && npm run typecheck --workspace packages/shared && npm run typecheck --workspace services/api && npm run typecheck --workspace apps/web",
     "test": "npm run test --workspaces",
+    "test:coverage": "vitest run --coverage",
     "lint": "npm run lint --workspaces",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "devDependencies": {
     "@types/node": "^20.12.7",
+    "@vitest/coverage-v8": "^1.5.2",
     "eslint": "^9.0.0",
     "globals": "^15.0.0",
     "prettier": "^3.2.5",

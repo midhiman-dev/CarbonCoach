@@ -127,5 +127,42 @@ describe('NumericGuard', () => {
       expect(result.isValid).toBe(false);
       expect(result.unsupportedNumbers).toContain('10');
     });
+
+    it('fails when unsupported units are used representing invented numbers', () => {
+      const result = validateGeneratedNumbers({
+        allowedNumbers: ['2'],
+        responseTextFields: ['You saved 5 tons.'],
+      });
+      expect(result.isValid).toBe(false);
+      expect(result.unsupportedNumbers).toContain('5');
+    });
+
+    it('fails on conflicting numeric values in different text fields', () => {
+      const result = validateGeneratedNumbers({
+        allowedNumbers: ['100'],
+        responseTextFields: ['The value is 100.', 'But wait, it is actually 200.'],
+      });
+      expect(result.isValid).toBe(false);
+      expect(result.unsupportedNumbers).toContain('200');
+    });
+
+    it('fails on attempts to introduce invented savings numbers', () => {
+      const result = validateGeneratedNumbers({
+        allowedNumbers: ['350', '300'],
+        responseTextFields: ['You could save 50 kg by switching!'],
+      });
+      expect(result.isValid).toBe(false);
+      expect(result.unsupportedNumbers).toContain('50');
+    });
+
+    it('fails on attempts to change deterministic calculator outputs', () => {
+      const result = validateGeneratedNumbers({
+        allowedNumbers: ['500'],
+        responseTextFields: ['Your estimated footprint is 501.'],
+      });
+      expect(result.isValid).toBe(false);
+      expect(result.unsupportedNumbers).toContain('501');
+    });
   });
 });
+

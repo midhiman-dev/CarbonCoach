@@ -78,9 +78,11 @@ describe('trackerStorage', () => {
   });
 
   it('returns null for malformed JSON', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
     vi.mocked(localStorage.getItem).mockReturnValue('invalid-json');
     expect(loadStoredProfile()).toBeNull();
     expect(loadTrackerState()).toBeNull();
+    errorSpy.mockRestore();
   });
 
   it('returns null for tracker state with version mismatch', () => {
@@ -100,6 +102,28 @@ describe('trackerStorage', () => {
     expect(() => saveTrackerState(mockState)).not.toThrow();
     expect(loadTrackerState()).toBeNull();
     expect(() => clearAllLocalCarbonCoachData()).not.toThrow();
+  });
+
+  it('returns null for invalid profile payloads missing required fields', () => {
+    const invalidProfile = { commuteMode: 'car' }; // Missing preference
+    vi.mocked(localStorage.getItem).mockReturnValue(JSON.stringify(invalidProfile));
+    expect(loadStoredProfile()).toBeNull();
+  });
+
+  it('returns null for profile payloads that are not objects', () => {
+    vi.mocked(localStorage.getItem).mockReturnValue(JSON.stringify("string instead of object"));
+    expect(loadStoredProfile()).toBeNull();
+  });
+
+  it('returns null for invalid tracker payloads missing required fields', () => {
+    const invalidTracker = { version: 1, weekId: '2026-06-15' }; // Missing completedActionIds
+    vi.mocked(localStorage.getItem).mockReturnValue(JSON.stringify(invalidTracker));
+    expect(loadTrackerState()).toBeNull();
+  });
+
+  it('returns null for tracker payloads that are not objects', () => {
+    vi.mocked(localStorage.getItem).mockReturnValue(JSON.stringify(123));
+    expect(loadTrackerState()).toBeNull();
   });
 
   it('clears profile and tracker state', () => {

@@ -214,4 +214,49 @@ ${JSON.stringify(geminiResponseObj)}
     expect(res.body.source).toBe('gemini');
     expect(res.body.summary).toContain('Option One is recommended');
   });
+
+  it('should return 400 when required fields are missing in the context', async () => {
+    const payload = {
+      mode: 'footprint_coach',
+      tone: 'simple',
+      allowedNumbers: [],
+      // Missing context entirely
+    };
+    const res = await request(app).post('/api/coach').send(payload);
+    expect(res.status).toBe(400);
+  });
+
+  it('should return 200 fallback when an unsupported category is passed', async () => {
+    const payload = {
+      mode: 'footprint_coach',
+      tone: 'simple',
+      allowedNumbers: [],
+      context: {
+        ...validFootprintBody.context,
+        topCategory: 'SpaceTravel', // Invalid category
+      },
+    };
+    const res = await request(app).post('/api/coach').send(payload);
+    expect(res.status).toBe(200);
+    expect(res.body.source).toBe('fallback');
+  });
+
+  it('should return 413 or 400 when the payload is oversized (e.g. extremely large arrays)', async () => {
+    const largeArray = new Array(5000).fill('100');
+    const payload = {
+      ...validFootprintBody,
+      allowedNumbers: largeArray,
+    };
+    // The validation middleware should reject arrays that are too large, or we simulate a large payload
+    const res = await request(app).post('/api/coach').send(payload);
+    expect([400, 413]).toContain(res.status);
+  });
+
+  it('should return 400 for malformed JSON request bodies', async () => {
+    const res = await request(app)
+      .post('/api/coach')
+      .set('Content-Type', 'application/json')
+      .send('{"mode": "footprint_coach", "context": { malformed JSON ');
+    expect(res.status).toBe(400);
+  });
 });
