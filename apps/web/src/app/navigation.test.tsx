@@ -16,9 +16,9 @@ describe('Navigation Components Accessibility', () => {
       render(<DesktopNavigation activeSection="footprint" setActiveSection={setActiveSection} />);
       const btn = screen.getByRole('button', { name: /Footprint/i });
       expect(btn).toBeDefined();
-      
+
       const choicesBtn = screen.getByRole('button', { name: /Daily Choice Lab/i });
-      
+
       fireEvent.click(choicesBtn);
       expect(setActiveSection).toHaveBeenCalledWith('choice-lab');
     });
@@ -38,21 +38,21 @@ describe('Navigation Components Accessibility', () => {
 
     it('hamburger button has accessible name and toggles menu', () => {
       render(<MobileNavigation {...defaultProps} />);
-      
+
       const menuBtn = screen.getByRole('button', { name: /open navigation/i });
       expect(menuBtn).toHaveAttribute('aria-expanded', 'false');
-      
+
       fireEvent.click(menuBtn);
       expect(defaultProps.setMobileMenuOpen).toHaveBeenCalledWith(true);
     });
-    
+
     it('close button is accessible and closes menu', () => {
       render(<MobileNavigation {...defaultProps} mobileMenuOpen={true} />);
-      
+
       const closeBtn = screen.getByRole('button', { name: /close navigation/i });
       expect(closeBtn).toBeDefined();
       fireEvent.click(closeBtn);
-      
+
       expect(defaultProps.setMobileMenuOpen).toHaveBeenCalledWith(false);
     });
   });

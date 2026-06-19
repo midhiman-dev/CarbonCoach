@@ -11,7 +11,13 @@ vi.mock('../features/tracker', () => ({
   trackerStorage: { loadTrackerState: vi.fn(), saveTrackerState: vi.fn() },
   loadStoredProfile: vi.fn().mockReturnValue(null),
   saveStoredProfile: vi.fn(),
-  useWeeklyTracker: vi.fn().mockReturnValue({ trackerState: null, progress: { percent: 0, completed: 0, total: 0 }, weeklyPlanActions: [], toggleAction: vi.fn(), resetTracker: vi.fn() }),
+  useWeeklyTracker: vi.fn().mockReturnValue({
+    trackerState: null,
+    progress: { percent: 0, completed: 0, total: 0 },
+    weeklyPlanActions: [],
+    toggleAction: vi.fn(),
+    resetTracker: vi.fn(),
+  }),
 }));
 
 describe('AppShell', () => {

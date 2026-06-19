@@ -32,7 +32,7 @@ export function securityHeaders(_req: Request, res: Response, next: NextFunction
   // For P3, we keep it safe but permissive enough for a standard React build.
   res.setHeader(
     'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self'"
+    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self'",
   );
 
   next();
@@ -43,11 +43,18 @@ export function securityHeaders(_req: Request, res: Response, next: NextFunction
  */
 export function corsMiddleware(req: Request, res: Response, next: NextFunction) {
   const origin = req.headers.origin;
+  const host = req.headers.host;
+  const isSameOrigin = !!(
+    origin &&
+    host &&
+    (origin === `http://${host}` || origin === `https://${host}`)
+  );
 
   // Handle preflight requests
   if (req.method === 'OPTIONS') {
-    if (origin && config.corsAllowedOrigins.includes(origin)) {
-      res.setHeader('Access-Control-Allow-Origin', origin);
+    const isAllowed = !!(origin && (config.corsAllowedOrigins.includes(origin) || isSameOrigin));
+    if (isAllowed) {
+      res.setHeader('Access-Control-Allow-Origin', origin!);
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
       res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
       res.setHeader('Access-Control-Max-Age', '86400'); // 24 hours caching for preflight
@@ -62,7 +69,7 @@ export function corsMiddleware(req: Request, res: Response, next: NextFunction) 
 
   // Handle standard requests
   if (origin) {
-    if (config.corsAllowedOrigins.includes(origin)) {
+    if (config.corsAllowedOrigins.includes(origin) || isSameOrigin) {
       res.setHeader('Access-Control-Allow-Origin', origin);
     } else if (config.nodeEnv === 'production') {
       logSafe(`[Security] Blocked request from disallowed origin: ${origin}`);

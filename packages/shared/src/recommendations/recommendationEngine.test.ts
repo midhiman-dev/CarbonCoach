@@ -117,7 +117,7 @@ describe('Recommendation Engine', () => {
   it('handles extremely high-footprint users gracefully', () => {
     const footprint = createFootprint('flights', 50000, 48000);
     const actions = recommendActions({ footprint, preference: 'highestImpact' });
-    
+
     // Top action should target flights since it's the dominant extreme footprint
     expect(actions[0].category).toBe('flights');
   });
@@ -126,18 +126,36 @@ describe('Recommendation Engine', () => {
     const footprint: FootprintEstimate = {
       monthlyTotalKgCO2e: 400,
       categories: [
-        { category: 'transport', monthlyKgCO2e: 150, confidence: 'high', factorIds: [], assumptionNotes: [] },
-        { category: 'food', monthlyKgCO2e: 140, confidence: 'high', factorIds: [], assumptionNotes: [] },
-        { category: 'homeEnergy', monthlyKgCO2e: 110, confidence: 'medium', factorIds: [], assumptionNotes: [] },
+        {
+          category: 'transport',
+          monthlyKgCO2e: 150,
+          confidence: 'high',
+          factorIds: [],
+          assumptionNotes: [],
+        },
+        {
+          category: 'food',
+          monthlyKgCO2e: 140,
+          confidence: 'high',
+          factorIds: [],
+          assumptionNotes: [],
+        },
+        {
+          category: 'homeEnergy',
+          monthlyKgCO2e: 110,
+          confidence: 'medium',
+          factorIds: [],
+          assumptionNotes: [],
+        },
       ],
       topCategory: 'transport',
       assumptionNotes: [],
-      confidence: 'high'
+      confidence: 'high',
     };
-    
+
     const actions = recommendActions({ footprint, preference: 'balanced' });
     // It should include items from multiple categories, not just the top
-    const categories = new Set(actions.map(a => a.category));
+    const categories = new Set(actions.map((a) => a.category));
     expect(categories.size).toBeGreaterThan(1);
     expect(actions[0].category).toBe('transport'); // Top still takes precedence
   });
@@ -146,7 +164,7 @@ describe('Recommendation Engine', () => {
     const footprint = createFootprint('shopping');
     const actions1 = recommendActions({ footprint, preference: 'balanced', limit: 5 });
     const actions2 = recommendActions({ footprint, preference: 'saveMoney', limit: 5 });
-    
+
     // Within each set, no duplicates
     const ids1 = new Set(actions1.map((a) => a.id));
     const ids2 = new Set(actions2.map((a) => a.id));
@@ -159,7 +177,7 @@ describe('Recommendation Engine', () => {
     const plan1 = createWeeklyActionPlan({ footprint, preference: 'saveMoney' });
     const plan2 = createWeeklyActionPlan({ footprint, preference: 'saveMoney' });
 
-    expect(plan1.actions.map(a => a.id)).toEqual(plan2.actions.map(a => a.id));
+    expect(plan1.actions.map((a) => a.id)).toEqual(plan2.actions.map((a) => a.id));
     expect(plan1.summary).toBe(plan2.summary);
   });
 });

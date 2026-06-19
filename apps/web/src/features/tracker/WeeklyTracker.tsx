@@ -219,4 +219,3 @@ export const WeeklyTracker: React.FC<WeeklyTrackerProps> = ({
     </div>
   );
 };
-

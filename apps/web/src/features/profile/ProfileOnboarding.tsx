@@ -108,4 +108,3 @@ export const ProfileOnboarding: React.FC<ProfileOnboardingProps> = ({
     />
   );
 };
-

@@ -10,8 +10,9 @@ export const app = express();
 // Apply security headers
 app.use(securityHeaders);
 
-// Apply CORS policy
-app.use(corsMiddleware);
+// Apply CORS policy to API and health checks specifically
+app.use('/api', corsMiddleware);
+app.use('/health', corsMiddleware);
 
 // Limit payloads to protect against large context inputs
 app.use(express.json({ limit: '10kb' }));

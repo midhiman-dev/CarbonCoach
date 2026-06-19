@@ -130,4 +130,3 @@ export const FootprintSummary: React.FC<FootprintSummaryProps> = ({
     </div>
   );
 };
-

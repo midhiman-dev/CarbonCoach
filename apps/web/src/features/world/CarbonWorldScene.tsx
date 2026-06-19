@@ -99,9 +99,36 @@ export const CarbonWorldScene: React.FC<CarbonWorldSceneProps> = ({ stage, progr
         {stage === 'grove' && (
           <g className="sun-anim">
             {/* Sun Rays */}
-            <line x1="300" y1="80" x2="210" y2="170" stroke="#fef08a" strokeWidth="2.5" opacity="0.3" strokeDasharray="6,6" />
-            <line x1="300" y1="80" x2="140" y2="130" stroke="#fef08a" strokeWidth="2" opacity="0.2" strokeDasharray="6,6" />
-            <line x1="300" y1="80" x2="280" y2="210" stroke="#fef08a" strokeWidth="2.5" opacity="0.25" strokeDasharray="6,6" />
+            <line
+              x1="300"
+              y1="80"
+              x2="210"
+              y2="170"
+              stroke="#fef08a"
+              strokeWidth="2.5"
+              opacity="0.3"
+              strokeDasharray="6,6"
+            />
+            <line
+              x1="300"
+              y1="80"
+              x2="140"
+              y2="130"
+              stroke="#fef08a"
+              strokeWidth="2"
+              opacity="0.2"
+              strokeDasharray="6,6"
+            />
+            <line
+              x1="300"
+              y1="80"
+              x2="280"
+              y2="210"
+              stroke="#fef08a"
+              strokeWidth="2.5"
+              opacity="0.25"
+              strokeDasharray="6,6"
+            />
             <circle cx="300" cy="80" r="50" fill="#fef08a" opacity="0.15" />
             <circle cx="300" cy="80" r="30" fill="#fef08a" opacity="0.5" />
           </g>
@@ -110,9 +137,24 @@ export const CarbonWorldScene: React.FC<CarbonWorldSceneProps> = ({ stage, progr
         {/* Birds Layer (Stage 3 Thriving Grove only) */}
         {stage === 'grove' && (
           <g opacity="0.7">
-            <path d="M 60,55 Q 70,45 80,55 Q 90,45 100,55" stroke="#0369a1" strokeWidth="2" fill="none" />
-            <path d="M 230,40 Q 238,32 246,40 Q 254,32 262,40" stroke="#0369a1" strokeWidth="1.5" fill="none" />
-            <path d="M 95,75 Q 101,69 107,75 Q 113,69 119,75" stroke="#0369a1" strokeWidth="1.5" fill="none" />
+            <path
+              d="M 60,55 Q 70,45 80,55 Q 90,45 100,55"
+              stroke="#0369a1"
+              strokeWidth="2"
+              fill="none"
+            />
+            <path
+              d="M 230,40 Q 238,32 246,40 Q 254,32 262,40"
+              stroke="#0369a1"
+              strokeWidth="1.5"
+              fill="none"
+            />
+            <path
+              d="M 95,75 Q 101,69 107,75 Q 113,69 119,75"
+              stroke="#0369a1"
+              strokeWidth="1.5"
+              fill="none"
+            />
           </g>
         )}
 
@@ -122,13 +164,27 @@ export const CarbonWorldScene: React.FC<CarbonWorldSceneProps> = ({ stage, progr
         {/* Ground Grass layers (representing vegetative depth) */}
         {stage !== 'seed' && (
           <>
-            <path d="M -10,225 Q 190,195 410,225 L 410,300 L -10,300 Z" fill="#14532d" opacity="0.4" />
-            <path d="M -5,220 Q 200,200 405,220 L 405,300 L -5,300 Z" fill="#166534" opacity="0.7" />
+            <path
+              d="M -10,225 Q 190,195 410,225 L 410,300 L -10,300 Z"
+              fill="#14532d"
+              opacity="0.4"
+            />
+            <path
+              d="M -5,220 Q 200,200 405,220 L 405,300 L -5,300 Z"
+              fill="#166534"
+              opacity="0.7"
+            />
           </>
         )}
 
         {/* Ground details */}
-        <path d="M -10,225 Q 200,205 410,225" stroke="#78350f" strokeWidth="2.5" fill="none" opacity="0.4" />
+        <path
+          d="M -10,225 Q 200,205 410,225"
+          stroke="#78350f"
+          strokeWidth="2.5"
+          fill="none"
+          opacity="0.4"
+        />
 
         {stage === 'seed' && <CarbonWorldSeed />}
         {stage === 'sprout' && <CarbonWorldSprout />}

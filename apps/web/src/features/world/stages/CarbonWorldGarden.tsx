@@ -27,12 +27,7 @@ export const CarbonWorldGarden: React.FC = () => {
       <circle cx="275" cy="158" r="10" fill="#15803d" />
 
       {/* Center growing tree */}
-      <path
-        d="M 200,210 L 200,135"
-        stroke="#78350f"
-        strokeWidth="6.5"
-        strokeLinecap="round"
-      />
+      <path d="M 200,210 L 200,135" stroke="#78350f" strokeWidth="6.5" strokeLinecap="round" />
       {/* Foliage blocks */}
       <circle cx="200" cy="125" r="28" fill="url(#leafGrad)" />
       <circle cx="182" cy="128" r="20" fill="#15803d" />

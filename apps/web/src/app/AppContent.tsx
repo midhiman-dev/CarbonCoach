@@ -125,10 +125,7 @@ export const AppContent: React.FC<AppContentProps> = ({
     case 'tracker':
       return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>
-          <SectionHeader
-            title="Weekly Tracker"
-            subtitle="Log your completed low-impact actions"
-          />
+          <SectionHeader title="Weekly Tracker" subtitle="Log your completed low-impact actions" />
           <WeeklyTracker
             profile={savedProfile}
             onNavigateToOnboarding={() => setActiveSection('profile')}

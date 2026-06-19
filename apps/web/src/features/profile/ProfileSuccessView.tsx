@@ -64,9 +64,7 @@ export const ProfileSuccessView: React.FC<ProfileSuccessViewProps> = ({
                 {savedProfile.monthlyHomeEnergyKwh
                   ? `${savedProfile.monthlyHomeEnergyKwh} kWh/month`
                   : 'Not specified'}{' '}
-                (
-                {savedProfile.householdSize ? `${savedProfile.householdSize} people` : '1 person'}
-                )
+                ({savedProfile.householdSize ? `${savedProfile.householdSize} people` : '1 person'})
               </li>
               <li>
                 <strong>Shopping & Deliveries:</strong>{' '}

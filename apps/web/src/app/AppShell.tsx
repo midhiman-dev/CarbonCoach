@@ -3,11 +3,7 @@ import { navigationItems } from './navigation';
 import { ActiveSection } from './routes';
 import { Container } from '../components/ui';
 import { CarbonProfile, calculateFootprint } from '@carboncoach/shared';
-import {
-  loadStoredProfile,
-  saveStoredProfile,
-  useWeeklyTracker,
-} from '../features/tracker';
+import { loadStoredProfile, saveStoredProfile, useWeeklyTracker } from '../features/tracker';
 import { MobileNavigation } from './MobileNavigation';
 import { DesktopNavigation } from './DesktopNavigation';
 import { AppContent } from './AppContent';
@@ -77,10 +73,7 @@ export const AppShell: React.FC = () => {
           handleBackdropClick={handleBackdropClick}
         />
 
-        <DesktopNavigation
-          activeSection={activeSection}
-          setActiveSection={setActiveSection}
-        />
+        <DesktopNavigation activeSection={activeSection} setActiveSection={setActiveSection} />
 
         {/* Main Workspace content */}
         <main id="main-content" className="main-content">
@@ -120,4 +113,3 @@ export const AppShell: React.FC = () => {
     </>
   );
 };
-

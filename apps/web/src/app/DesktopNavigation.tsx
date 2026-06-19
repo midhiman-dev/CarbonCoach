@@ -26,9 +26,7 @@ export const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
     >
       <div>
         <div style={{ marginBottom: 'var(--spacing-xl)' }}>
-          <h1 style={{ fontSize: 'var(--font-2xl)', color: 'var(--color-accent)' }}>
-            CarbonCoach
-          </h1>
+          <h1 style={{ fontSize: 'var(--font-2xl)', color: 'var(--color-accent)' }}>CarbonCoach</h1>
           <p style={{ fontSize: 'var(--font-xs)', color: 'var(--text-muted)' }}>
             Understand your footprint. Make better everyday choices.
           </p>
@@ -53,9 +51,7 @@ export const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
                     background: activeSection === item.id ? 'var(--bg-card)' : 'transparent',
                     border: 'none',
                     color:
-                      activeSection === item.id
-                        ? 'var(--color-accent)'
-                        : 'var(--text-secondary)',
+                      activeSection === item.id ? 'var(--color-accent)' : 'var(--text-secondary)',
                     padding: 'var(--spacing-sm)',
                     width: '100%',
                     textAlign: 'left',

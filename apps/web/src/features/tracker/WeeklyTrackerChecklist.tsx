@@ -56,9 +56,7 @@ export const WeeklyTrackerChecklist: React.FC<WeeklyTrackerChecklistProps> = ({
                   minWidth: '20px',
                   minHeight: '20px',
                 }}
-                aria-label={`Mark "${action.title}" as ${
-                  isCompleted ? 'incomplete' : 'complete'
-                }`}
+                aria-label={`Mark "${action.title}" as ${isCompleted ? 'incomplete' : 'complete'}`}
               />
               <label
                 htmlFor={`action-check-${action.id}`}

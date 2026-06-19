@@ -487,39 +487,39 @@ Update `buildprogresstracker.md` after deployment.
 
 ## 11.1 Build checks
 
-| Check                         | Result  |
-| ----------------------------- | ------- |
-| `npm run build` passes        | Pending |
-| `npm run typecheck` passes    | Pending |
-| `npm run test` passes         | Pending |
-| `npm run lint` passes         | Pending |
-| `npm run format:check` passes | Pending |
+| Check                         | Result |
+| ----------------------------- | ------ |
+| `npm run build` passes        | Pass   |
+| `npm run typecheck` passes    | Pass   |
+| `npm run test` passes         | Pass   |
+| `npm run lint` passes         | Pass   |
+| `npm run format:check` passes | Pass   |
 
 ## 11.2 Local container checks
 
-| Check                               | Result  |
-| ----------------------------------- | ------- |
-| Docker build succeeds               | Pending |
-| Container starts locally            | Pending |
-| `/health` works locally             | Pending |
-| Frontend loads locally              | Pending |
-| `/api/coach` fallback works locally | Pending |
+| Check                               | Result |
+| ----------------------------------- | ------ |
+| Docker build succeeds               | Skip   |
+| Container starts locally            | Skip   |
+| `/health` works locally             | Skip   |
+| Frontend loads locally              | Skip   |
+| `/api/coach` fallback works locally | Skip   |
 
 ## 11.3 Cloud Run checks
 
-| Check                            | Result  |
-| -------------------------------- | ------- |
-| Cloud Run service deployed       | Pending |
-| Public HTTPS URL generated       | Pending |
-| App loads from public URL        | Pending |
-| Hard refresh works               | Pending |
-| `/health` works                  | Pending |
-| Footprint Coach works            | Pending |
-| Choice Coach works               | Pending |
-| Fallback works                   | Pending |
-| No API key exposed in frontend   | Pending |
-| Min instances is 0               | Pending |
-| Max instances is 1 or documented | Pending |
+| Check                            | Result |
+| -------------------------------- | ------ |
+| Cloud Run service deployed       | Pass   |
+| Public HTTPS URL generated       | Pass   |
+| App loads from public URL        | Pass   |
+| Hard refresh works               | Pass   |
+| `/health` works                  | Pass   |
+| Footprint Coach works            | Pass   |
+| Choice Coach works               | Pass   |
+| Fallback works                   | Pass   |
+| No API key exposed in frontend   | Pass   |
+| Min instances is 0               | Pass   |
+| Max instances is 1 or documented | Pass   |
 
 ---
 

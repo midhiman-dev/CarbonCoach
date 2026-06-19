@@ -9,7 +9,10 @@ interface FootprintHeroProps {
   topCategory?: FootprintCategory | null;
 }
 
-export const FootprintHero: React.FC<FootprintHeroProps> = ({ monthlyTotalKgCO2e, topCategory }) => {
+export const FootprintHero: React.FC<FootprintHeroProps> = ({
+  monthlyTotalKgCO2e,
+  topCategory,
+}) => {
   return (
     <section
       aria-label="Footprint snapshot"

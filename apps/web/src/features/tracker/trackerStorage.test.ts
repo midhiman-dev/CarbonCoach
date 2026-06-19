@@ -111,7 +111,7 @@ describe('trackerStorage', () => {
   });
 
   it('returns null for profile payloads that are not objects', () => {
-    vi.mocked(localStorage.getItem).mockReturnValue(JSON.stringify("string instead of object"));
+    vi.mocked(localStorage.getItem).mockReturnValue(JSON.stringify('string instead of object'));
     expect(loadStoredProfile()).toBeNull();
   });
 

@@ -40,4 +40,5 @@ CarbonCoach is designed as a single container application optimized for Google C
    The production image uses a multi-stage build, omitting devDependencies and running the Express server as a non-root user (`expressjs`).
 
 ## Interaction with LLMs
+
 All LLM integration is server-side. The client never sees the Gemini API key. The backend constructs strict prompts using data supplied by the `@carboncoach/shared` packages, makes the API call to Google, runs the `Numeric Invention Guard`, and only passes safe, validated JSON back to the client. If any step fails (timeout, missing key, validation failure), the backend falls back to deterministic rule-based responses.

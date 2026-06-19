@@ -5,12 +5,7 @@ export const CarbonWorldGrove: React.FC = () => {
     <g>
       {/* Small Left Tree */}
       <g className="tree-anim" style={{ animationDelay: '-1s' }}>
-        <path
-          d="M 125,215 L 125,145"
-          stroke="#78350f"
-          strokeWidth="6.5"
-          strokeLinecap="round"
-        />
+        <path d="M 125,215 L 125,145" stroke="#78350f" strokeWidth="6.5" strokeLinecap="round" />
         <circle cx="125" cy="132" r="25" fill="url(#matureLeafGrad)" />
         <circle cx="110" cy="130" r="18" fill="#14532d" />
         <circle cx="140" cy="130" r="18" fill="#14532d" />
@@ -19,12 +14,7 @@ export const CarbonWorldGrove: React.FC = () => {
 
       {/* Small Right Tree */}
       <g className="tree-anim" style={{ animationDelay: '-2s' }}>
-        <path
-          d="M 285,218 L 285,160"
-          stroke="#78350f"
-          strokeWidth="5.5"
-          strokeLinecap="round"
-        />
+        <path d="M 285,218 L 285,160" stroke="#78350f" strokeWidth="5.5" strokeLinecap="round" />
         <circle cx="285" cy="150" r="22" fill="url(#matureLeafGrad)" />
         <circle cx="272" cy="148" r="16" fill="#14532d" />
         <circle cx="298" cy="148" r="16" fill="#14532d" />
@@ -32,12 +22,7 @@ export const CarbonWorldGrove: React.FC = () => {
 
       {/* Main Center Mature Tree */}
       <g className="tree-anim">
-        <path
-          d="M 200,210 L 200,105"
-          stroke="#78350f"
-          strokeWidth="10"
-          strokeLinecap="round"
-        />
+        <path d="M 200,210 L 200,105" stroke="#78350f" strokeWidth="10" strokeLinecap="round" />
         <path
           d="M 200,155 Q 175,135 165,128"
           stroke="#78350f"

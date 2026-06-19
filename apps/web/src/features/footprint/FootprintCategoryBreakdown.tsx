@@ -60,9 +60,7 @@ export const FootprintCategoryBreakdown: React.FC<FootprintCategoryBreakdownProp
       >
         {sortedCategories.map((cat) => {
           const share =
-            monthlyTotalKgCO2e > 0
-              ? Math.round((cat.monthlyKgCO2e / monthlyTotalKgCO2e) * 100)
-              : 0;
+            monthlyTotalKgCO2e > 0 ? Math.round((cat.monthlyKgCO2e / monthlyTotalKgCO2e) * 100) : 0;
           const barPercent =
             monthlyTotalKgCO2e > 0 ? (cat.monthlyKgCO2e / monthlyTotalKgCO2e) * 100 : 0;
           const impactBand = getCategoryImpactBand(cat.category, cat.monthlyKgCO2e);
@@ -135,11 +133,7 @@ export const FootprintCategoryBreakdown: React.FC<FootprintCategoryBreakdownProp
                 {isTop && <StatusBadge variant="high" label="Top" />}
                 <StatusBadge
                   variant={
-                    impactBand === 'high'
-                      ? 'high'
-                      : impactBand === 'moderate'
-                        ? 'moderate'
-                        : 'low'
+                    impactBand === 'high' ? 'high' : impactBand === 'moderate' ? 'moderate' : 'low'
                   }
                   label={`${impactBand} impact`}
                 />

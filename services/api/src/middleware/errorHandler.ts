@@ -13,11 +13,11 @@ export function globalErrorHandler(err: any, _req: Request, res: Response, next:
 
   // Handle JSON parsing errors (e.g., from express.json())
   if (err instanceof SyntaxError && 'status' in err && err.status === 400 && 'body' in err) {
-    logSafe('Malformed JSON payload received', { 
+    logSafe('Malformed JSON payload received', {
       safeErrorCategory: 'malformed_json',
-      providerStatusCode: 400 
+      providerStatusCode: 400,
     });
-    
+
     res.status(400).json({
       error: {
         code: 'BAD_REQUEST',
@@ -29,9 +29,9 @@ export function globalErrorHandler(err: any, _req: Request, res: Response, next:
 
   // Handle payload too large errors
   if (err.type === 'entity.too.large') {
-    logSafe('Payload too large', { 
+    logSafe('Payload too large', {
       safeErrorCategory: 'payload_too_large',
-      providerStatusCode: 413 
+      providerStatusCode: 413,
     });
 
     res.status(413).json({
@@ -58,7 +58,7 @@ export function globalErrorHandler(err: any, _req: Request, res: Response, next:
 }
 
 /**
- * Middleware to handle unsupported HTTP methods (e.g. PUT, DELETE) 
+ * Middleware to handle unsupported HTTP methods (e.g. PUT, DELETE)
  * preventing unexpected route resolution behavior.
  */
 export function methodNotAllowedHandler(_req: Request, res: Response) {
