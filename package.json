@@ -16,7 +16,8 @@
     "test:coverage": "vitest run --coverage",
     "lint": "npm run lint --workspaces",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "docker:build": "docker build -t carboncoach ."
   },
   "devDependencies": {
     "@types/node": "^20.12.7",
