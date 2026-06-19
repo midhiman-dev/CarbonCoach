@@ -7,9 +7,17 @@ export const app = express();
 app.use(express.json({ limit: '10kb' }));
 
 app.get('/health', (_req, res) => {
+  const apiKey = process.env.GEMINI_API_KEY;
+  const configuredModel = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
+  const providerConfigured = !!apiKey;
+  const coachMode = providerConfigured ? 'gemini' : 'fallback';
+
   res.json({
     status: 'ok',
     service: 'carboncoach-api',
+    providerConfigured,
+    configuredModel,
+    coachMode,
   });
 });
 

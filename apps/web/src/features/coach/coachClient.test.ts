@@ -85,6 +85,20 @@ describe('coachClient', () => {
       );
     });
 
+    it('propagates server-side error messages on failure', async () => {
+      vi.mocked(fetch).mockResolvedValue({
+        ok: false,
+        status: 400,
+        json: async () => ({
+          error: { message: 'Coach is not configured for this local environment.' },
+        }),
+      } as Response);
+
+      await expect(requestFootprintCoach(mockFootprintRequest)).rejects.toThrow(
+        'Coach is not configured for this local environment.',
+      );
+    });
+
     it('throws a user-friendly error if the response validation fails', async () => {
       vi.mocked(fetch).mockResolvedValue({
         ok: true,
@@ -129,6 +143,20 @@ describe('coachClient', () => {
 
       await expect(requestChoiceCoach(mockChoiceRequest)).rejects.toThrow(
         'The Choice Coach could not respond right now. Please try again.',
+      );
+    });
+
+    it('propagates server-side error messages on failure', async () => {
+      vi.mocked(fetch).mockResolvedValue({
+        ok: false,
+        status: 400,
+        json: async () => ({
+          error: { message: 'Coach is temporarily unavailable. Please retry in a moment.' },
+        }),
+      } as Response);
+
+      await expect(requestChoiceCoach(mockChoiceRequest)).rejects.toThrow(
+        'Coach is temporarily unavailable. Please retry in a moment.',
       );
     });
 

@@ -32,11 +32,30 @@ export const CoachResponseCard: React.FC<CoachResponseCardProps> = ({ response }
       <Card title="Coach Response">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
           {/* Source badge */}
-          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: 'var(--spacing-xs)',
+            }}
+          >
             <StatusBadge
               variant={isFallback ? 'moderate' : 'low'}
               label={isFallback ? 'Deterministic Fallback' : 'AI Response'}
             />
+            {!isFallback && (
+              <span
+                style={{
+                  fontSize: 'var(--font-xs)',
+                  color: 'var(--text-muted)',
+                  fontStyle: 'italic',
+                }}
+              >
+                AI explanation checked against your calculated inputs
+              </span>
+            )}
           </div>
           {/* Summary / Lead */}
           <div

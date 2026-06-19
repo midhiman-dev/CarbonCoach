@@ -6,6 +6,11 @@ export interface SafeLogData {
   providerUnavailable?: boolean;
   numericGuardRejected?: boolean;
   error?: string;
+  providerStatusCode?: number;
+  safeErrorCategory?: string;
+  modelIdentifier?: string;
+  guardPassed?: boolean;
+  fallbackUsed?: boolean;
 }
 
 export function logSafe(message: string, data?: SafeLogData) {
@@ -22,6 +27,12 @@ export function logSafe(message: string, data?: SafeLogData) {
     if (data.numericGuardRejected !== undefined)
       logPayload.numericGuardRejected = data.numericGuardRejected;
     if (data.error) logPayload.error = data.error;
+    if (data.providerStatusCode !== undefined)
+      logPayload.providerStatusCode = data.providerStatusCode;
+    if (data.safeErrorCategory) logPayload.safeErrorCategory = data.safeErrorCategory;
+    if (data.modelIdentifier) logPayload.modelIdentifier = data.modelIdentifier;
+    if (data.guardPassed !== undefined) logPayload.guardPassed = data.guardPassed;
+    if (data.fallbackUsed !== undefined) logPayload.fallbackUsed = data.fallbackUsed;
   }
 
   console.log(

@@ -4,13 +4,14 @@ import { withTimeout } from './timeout';
 
 export class GeminiProvider implements LlmProvider {
   private ai: GoogleGenerativeAI | null = null;
-  private modelName = 'gemini-1.5-flash';
+  private modelName: string;
 
   constructor() {
     const apiKey = process.env.GEMINI_API_KEY;
     if (apiKey) {
       this.ai = new GoogleGenerativeAI(apiKey);
     }
+    this.modelName = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
   }
 
   async generateText(prompt: string, options: LlmGenerationOptions): Promise<string> {
@@ -35,5 +36,9 @@ export class GeminiProvider implements LlmProvider {
     })();
 
     return withTimeout(apiCall, options.timeoutMs, 'Gemini request timed out');
+  }
+
+  getActiveModelName(): string {
+    return this.modelName;
   }
 }

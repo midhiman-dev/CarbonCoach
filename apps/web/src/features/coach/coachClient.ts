@@ -21,7 +21,16 @@ export async function requestFootprintCoach(
   });
 
   if (!response.ok) {
-    throw new Error('The coach could not respond right now. Please try again.');
+    let errMsg = 'The coach could not respond right now. Please try again.';
+    try {
+      const errorData = await response.json();
+      if (errorData?.error?.message) {
+        errMsg = errorData.error.message;
+      }
+    } catch {
+      // ignore JSON parse error, use default
+    }
+    throw new Error(errMsg);
   }
 
   const data = await response.json();
@@ -48,7 +57,16 @@ export async function requestChoiceCoach(request: ChoiceCoachRequest): Promise<C
   });
 
   if (!response.ok) {
-    throw new Error('The Choice Coach could not respond right now. Please try again.');
+    let errMsg = 'The Choice Coach could not respond right now. Please try again.';
+    try {
+      const errorData = await response.json();
+      if (errorData?.error?.message) {
+        errMsg = errorData.error.message;
+      }
+    } catch {
+      // ignore JSON parse error, use default
+    }
+    throw new Error(errMsg);
   }
 
   const data = await response.json();
