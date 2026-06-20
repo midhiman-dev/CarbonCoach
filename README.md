@@ -4,7 +4,7 @@
 
 CarbonCoach is an AI-assisted carbon awareness platform that helps individuals understand, track, and reduce their carbon footprint through everyday decision moments. By combining deterministic calculation with smart, bounded AI coaching, CarbonCoach goes beyond simple calculators to provide actionable, habit-building insights.
 
-[**Live App Deployment**]([PLACEHOLDER_LIVE_URL])
+[**Live App Deployment**](https://carboncoach-192872123770.asia-south1.run.app/)
 
 ---
 
@@ -110,3 +110,9 @@ For complete evaluation context, refer to the [Submission Docs](./docs/submissio
 - [Prompt Strategy](./docs/submission/prompt-strategy.md)
 - [Architecture Summary](./docs/submission/architecture-summary.md)
 - [Cloud Run Deployment](./docs/deployment/cloud-run.md)
+
+---
+
+## License
+
+This project is licensed under the MIT License.

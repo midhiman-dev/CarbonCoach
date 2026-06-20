@@ -13,7 +13,7 @@ Building this taught me some incredible lessons about AI safety and software eng
 4️⃣ **Production Ready:** Built as a strict TypeScript monorepo, tested with 286 automated tests (~95% coverage), and deployed as a hardened, scalable Docker container on Google Cloud Run.
 
 Check it out!
-Live App: [PLACEHOLDER_LIVE_APP_LINK]
+Live App: https://carboncoach-192872123770.asia-south1.run.app/
 GitHub Repo: [PLACEHOLDER_GITHUB_REPO_LINK]
 
 [PLACEHOLDER_DEMO_SCREENSHOT_IMAGE]

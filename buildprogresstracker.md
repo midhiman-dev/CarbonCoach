@@ -121,29 +121,29 @@ npm audit --omit=dev
 
 _Note on controlled deviation: Choice Coach UI was pulled forward to complete the Daily Choice Lab coaching loop before tracker/persistence work. Weekly Tracker and Carbon World were shifted to the next tasks._
 
-| Task  | Title                                                                             | Status       | Owner/Agent | Scoring Focus         | Build | Typecheck | Tests | Lint | Format  | Human Review | Commit  |
-| ----- | --------------------------------------------------------------------------------- | ------------ | ----------- | --------------------- | ----- | --------- | ----- | ---- | ------- | ------------ | ------- |
-| 001   | Repo Foundation, Workspace, and Quality Gates                                     | Complete     | Antigravity | CQ, TEST, EFF         | Pass  | Pass      | Pass  | Pass | Pass    | Accepted     | Pending |
-| 002   | Shared Carbon Domain Model and Factor Registry                                    | Complete     | Antigravity | CQ, TEST, ALIGN       | Pass  | Pass      | Pass  | Pass | Pass    | Accepted     | Pending |
-| 003   | Deterministic Carbon Footprint Engine                                             | Complete     | Antigravity | CQ, TEST, ALIGN       | Pass  | Pass      | Pass  | Pass | Pass    | Accepted     | Pending |
-| 004   | Recommendation Engine and Weekly Action Ranking                                   | Complete     | Antigravity | CQ, TEST, ALIGN       | Pass  | Pass      | Pass  | Pass | Pass    | Accepted     | Pending |
-| 005   | Privacy, Redaction, and Local Data Safety Utilities                               | Complete     | Antigravity | SEC, TEST, CQ         | Pass  | Pass      | Pass  | Pass | Pass    | Accepted     | Pending |
-| 006   | Coach Contracts, Fallback Composer, and Numeric Guard Contracts                   | Review Ready | Antigravity | SEC, TEST, CQ         | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 007   | Gemini Coach Service with Timeout, Schema Validation, Numeric Guard, and Fallback | Review Ready | Antigravity | SEC, EFF, TEST, ALIGN | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 008   | Accessible UI Foundation and App Shell                                            | Review Ready | Antigravity | CQ, A11Y, EFF         | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 009   | Carbon Profile Onboarding Flow                                                    | Review Ready | Antigravity | A11Y, CQ, ALIGN       | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 010   | Footprint Summary UI                                                              | Review Ready | Antigravity | ALIGN, A11Y, CQ       | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 011   | Recommendation and Weekly Plan UI                                                 | Review Ready | Antigravity | ALIGN, TEST, CQ       | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 012   | Footprint Coach UI                                                                | Review Ready | Antigravity | ALIGN, A11Y, SEC, EFF | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 013   | Daily Choice Lab Foundation                                                       | Review Ready | Antigravity | ALIGN, A11Y, EFF      | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 014   | Choice Coach UI                                                                   | Review Ready | Antigravity | ALIGN, TEST, SEC      | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 015   | Weekly Tracker and Local Persistence                                              | Review Ready | Antigravity | ALIGN, CQ, TEST       | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 016   | Carbon World Engine and Lightweight Visual UI                                     | Review Ready | Antigravity | ALIGN, A11Y, EFF      | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| Patch | Pre-Task 017 Smoke Polish Patch                                                   | Review Ready | Antigravity | CQ, ALIGN             | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 017   | Privacy and Assumptions Page                                                      | Review Ready | Antigravity | SEC, ALIGN, CQ        | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 018   | Final Accessibility / Demo Polish                                                 | Review Ready | Antigravity | A11Y, CQ, TEST        | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 019   | Cloud Run Deployment                                                              | Review Ready | Antigravity | EFF, SEC, CQ          | Pass  | Pass      | Pass  | Pass | Pass    | Pending      | Pending |
-| 020   | README, Submission Docs, LinkedIn Post                                            | Not Started  | TBD         | ALIGN, CQ             | N/A   | N/A       | N/A   | N/A  | Not Run | Not Run      | Pending |
+| Task  | Title                                                                             | Status       | Owner/Agent | Scoring Focus         | Build | Typecheck | Tests | Lint | Format | Human Review | Commit  |
+| ----- | --------------------------------------------------------------------------------- | ------------ | ----------- | --------------------- | ----- | --------- | ----- | ---- | ------ | ------------ | ------- |
+| 001   | Repo Foundation, Workspace, and Quality Gates                                     | Complete     | Antigravity | CQ, TEST, EFF         | Pass  | Pass      | Pass  | Pass | Pass   | Accepted     | Pending |
+| 002   | Shared Carbon Domain Model and Factor Registry                                    | Complete     | Antigravity | CQ, TEST, ALIGN       | Pass  | Pass      | Pass  | Pass | Pass   | Accepted     | Pending |
+| 003   | Deterministic Carbon Footprint Engine                                             | Complete     | Antigravity | CQ, TEST, ALIGN       | Pass  | Pass      | Pass  | Pass | Pass   | Accepted     | Pending |
+| 004   | Recommendation Engine and Weekly Action Ranking                                   | Complete     | Antigravity | CQ, TEST, ALIGN       | Pass  | Pass      | Pass  | Pass | Pass   | Accepted     | Pending |
+| 005   | Privacy, Redaction, and Local Data Safety Utilities                               | Complete     | Antigravity | SEC, TEST, CQ         | Pass  | Pass      | Pass  | Pass | Pass   | Accepted     | Pending |
+| 006   | Coach Contracts, Fallback Composer, and Numeric Guard Contracts                   | Review Ready | Antigravity | SEC, TEST, CQ         | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 007   | Gemini Coach Service with Timeout, Schema Validation, Numeric Guard, and Fallback | Review Ready | Antigravity | SEC, EFF, TEST, ALIGN | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 008   | Accessible UI Foundation and App Shell                                            | Review Ready | Antigravity | CQ, A11Y, EFF         | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 009   | Carbon Profile Onboarding Flow                                                    | Review Ready | Antigravity | A11Y, CQ, ALIGN       | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 010   | Footprint Summary UI                                                              | Review Ready | Antigravity | ALIGN, A11Y, CQ       | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 011   | Recommendation and Weekly Plan UI                                                 | Review Ready | Antigravity | ALIGN, TEST, CQ       | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 012   | Footprint Coach UI                                                                | Review Ready | Antigravity | ALIGN, A11Y, SEC, EFF | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 013   | Daily Choice Lab Foundation                                                       | Review Ready | Antigravity | ALIGN, A11Y, EFF      | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 014   | Choice Coach UI                                                                   | Review Ready | Antigravity | ALIGN, TEST, SEC      | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 015   | Weekly Tracker and Local Persistence                                              | Review Ready | Antigravity | ALIGN, CQ, TEST       | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 016   | Carbon World Engine and Lightweight Visual UI                                     | Review Ready | Antigravity | ALIGN, A11Y, EFF      | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| Patch | Pre-Task 017 Smoke Polish Patch                                                   | Review Ready | Antigravity | CQ, ALIGN             | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 017   | Privacy and Assumptions Page                                                      | Review Ready | Antigravity | SEC, ALIGN, CQ        | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 018   | Final Accessibility / Demo Polish                                                 | Review Ready | Antigravity | A11Y, CQ, TEST        | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 019   | Cloud Run Deployment                                                              | Review Ready | Antigravity | EFF, SEC, CQ          | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
+| 020   | README, Submission Docs, LinkedIn Post                                            | Review Ready | Antigravity | ALIGN, CQ             | Pass  | Pass      | Pass  | Pass | Pass   | Pending      | Pending |
 
 ---
 
