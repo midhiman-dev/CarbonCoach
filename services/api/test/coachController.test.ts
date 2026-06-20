@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import request from 'supertest';
 import { app } from '../src/server';
 import { GeminiProvider } from '../src/llm/geminiProvider';
+import { clearCoachCache } from '../src/coach/coachController';
 
 const { mockGenerateText } = vi.hoisted(() => {
   return {
@@ -51,6 +52,7 @@ describe('Coach API End-to-End Error Classification & Fallback', () => {
     process.env = { ...originalEnv };
     process.env.GEMINI_API_KEY = 'mock-key';
     vi.clearAllMocks();
+    clearCoachCache();
   });
 
   afterEach(() => {

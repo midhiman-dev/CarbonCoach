@@ -1,5 +1,5 @@
 import React from 'react';
-import type { CarbonProfile} from '@carboncoach/shared';
+import type { CarbonProfile } from '@carboncoach/shared';
 import { calculateFootprint } from '@carboncoach/shared';
 import { EmptyState, Button } from '../../components/ui';
 import { formatCategoryLabel } from './footprintViewModel';

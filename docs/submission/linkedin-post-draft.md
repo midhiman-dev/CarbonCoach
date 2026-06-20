@@ -16,6 +16,6 @@ Check it out!
 Live App: https://carboncoach-192872123770.asia-south1.run.app/
 GitHub Repo: https://github.com/midhiman-dev/CarbonCoach
 
-*Demo screenshot: see the LinkedIn post and live app*
+_Demo screenshot: see the LinkedIn post and live app_
 
 #PromptWars #GenAI #GoogleCloud #Sustainability #SoftwareEngineering #Gemini

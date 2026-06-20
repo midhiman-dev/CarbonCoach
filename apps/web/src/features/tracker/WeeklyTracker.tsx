@@ -3,12 +3,8 @@ import type { CarbonProfile } from '@carboncoach/shared';
 import { Card, Button, EmptyState } from '../../components/ui';
 import { useWeeklyTracker } from './trackerViewModel';
 
-import type {
-  WeeklyTrackerState,
-  RankedCarbonAction} from '@carboncoach/shared';
-import {
-  createCarbonWorldState,
-} from '@carboncoach/shared';
+import type { WeeklyTrackerState, RankedCarbonAction } from '@carboncoach/shared';
+import { createCarbonWorldState } from '@carboncoach/shared';
 
 import { formatWeekId } from './trackerFormatters';
 import { WeeklyTrackerProgress } from './WeeklyTrackerProgress';

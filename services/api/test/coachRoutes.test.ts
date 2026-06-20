@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import request from 'supertest';
 import { app } from '../src/server';
+import { clearCoachCache } from '../src/coach/coachController';
 
 const { mockGenerateText } = vi.hoisted(() => {
   return {
@@ -33,6 +34,7 @@ describe('POST /api/coach', () => {
   beforeEach(() => {
     process.env = { ...originalEnv, GEMINI_API_KEY: 'mock-key' };
     vi.clearAllMocks();
+    clearCoachCache();
   });
 
   afterEach(() => {

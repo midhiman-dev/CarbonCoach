@@ -4,10 +4,9 @@ import type {
   UserPreference,
   CoachTone,
   FootprintCoachRequest,
-  WeeklyActionPlan} from '@carboncoach/shared';
-import {
-  extractAllowedNumbersFromFootprintContext,
+  WeeklyActionPlan,
 } from '@carboncoach/shared';
+import { extractAllowedNumbersFromFootprintContext } from '@carboncoach/shared';
 
 export interface BuildRequestInput {
   footprint: FootprintEstimate;

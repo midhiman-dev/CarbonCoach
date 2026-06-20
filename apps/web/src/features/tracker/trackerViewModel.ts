@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react';
-import type {
-  CarbonProfile,
-  WeeklyTrackerState,
-  RankedCarbonAction} from '@carboncoach/shared';
+import type { CarbonProfile, WeeklyTrackerState, RankedCarbonAction } from '@carboncoach/shared';
 import {
   calculateFootprint,
   createWeeklyActionPlan,
   createCurrentWeekId,
   createInitialWeeklyTrackerState,
   toggleTrackedAction,
-  calculateTrackerProgress
+  calculateTrackerProgress,
 } from '@carboncoach/shared';
 import { loadTrackerState, saveTrackerState } from './trackerStorage';
 

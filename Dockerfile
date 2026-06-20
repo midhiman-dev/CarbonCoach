@@ -52,7 +52,9 @@ RUN chown -R expressjs:nodejs /app
 
 USER expressjs
 
+ENV NODE_ENV=production
+
 EXPOSE 8080
 
-# Run compiled JS server
-CMD ["npm", "start", "--workspace", "services/api"]
+# Run compiled JS server directly (no npm overhead, proper signal handling)
+CMD ["node", "services/api/dist/server.js"]

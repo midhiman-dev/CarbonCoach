@@ -41,11 +41,26 @@ app.use('/api', methodNotAllowedHandler);
 // In production, the build outputs are expected to be at apps/web/dist
 // The path resolves relative to __dirname which will be `services/api/dist` after tsc build.
 const frontendPath = path.join(__dirname, '../../../apps/web/dist');
+
+// Serve Vite hashed assets with long cache (fingerprinted filenames ensure cache-busting)
+app.use(
+  '/assets',
+  express.static(path.join(frontendPath, 'assets'), {
+    maxAge: '1y',
+    immutable: true,
+    setHeaders: (res) => {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    },
+  }),
+);
+
+// Serve remaining static files with default caching
 app.use(express.static(frontendPath));
 
 // Fallback all other GET requests to the React index.html for client-side routing
 app.get('*', (req, res, next) => {
   if (req.method === 'GET') {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     res.sendFile(path.join(frontendPath, 'index.html'), (err) => {
       if (err) {
         next(err);

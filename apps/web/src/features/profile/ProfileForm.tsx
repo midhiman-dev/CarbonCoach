@@ -14,7 +14,10 @@ interface ProfileFormProps {
   onNavigateToPrivacy?: () => void;
 }
 
-const FormSection: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
+const FormSection: React.FC<{ title: string; children: React.ReactNode }> = ({
+  title,
+  children,
+}) => (
   <fieldset style={{ border: 'none', padding: 0, margin: `0 0 var(--spacing-lg) 0` }}>
     <legend
       style={{

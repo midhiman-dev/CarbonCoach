@@ -1,10 +1,5 @@
-import type {
-  CoachResponse,
-  FootprintCoachRequest,
-  ChoiceCoachRequest} from '@carboncoach/shared';
-import {
-  validateCoachResponse,
-} from '@carboncoach/shared';
+import type { CoachResponse, FootprintCoachRequest, ChoiceCoachRequest } from '@carboncoach/shared';
+import { validateCoachResponse } from '@carboncoach/shared';
 
 /**
  * Sends a FootprintCoachRequest to /api/coach and returns a validated CoachResponse.

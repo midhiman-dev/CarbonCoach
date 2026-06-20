@@ -3,11 +3,9 @@ import type {
   CarbonProfile,
   WeeklyTrackerState,
   RankedCarbonAction,
-  CarbonWorldState} from '@carboncoach/shared';
-import {
-  calculateTrackerProgress,
-  createCarbonWorldState
+  CarbonWorldState,
 } from '@carboncoach/shared';
+import { calculateTrackerProgress, createCarbonWorldState } from '@carboncoach/shared';
 
 export interface UseCarbonWorldProps {
   profile: CarbonProfile | null;

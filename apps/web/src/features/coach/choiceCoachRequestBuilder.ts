@@ -1,4 +1,9 @@
-import type { ChoiceScenario, UserPreference, CoachTone, ChoiceCoachRequest } from '@carboncoach/shared';
+import type {
+  ChoiceScenario,
+  UserPreference,
+  CoachTone,
+  ChoiceCoachRequest,
+} from '@carboncoach/shared';
 
 export interface BuildChoiceRequestInput {
   scenario: ChoiceScenario;

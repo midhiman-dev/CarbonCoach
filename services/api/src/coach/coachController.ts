@@ -1,6 +1,5 @@
 import type { Request, Response } from 'express';
-import type {
-  CoachRequest} from '@carboncoach/shared';
+import type { CoachRequest } from '@carboncoach/shared';
 import {
   validateCoachResponse,
   validateGeneratedNumbers,
@@ -11,11 +10,34 @@ import { buildCoachPrompt } from './promptBuilder';
 import { cleanAndParseJson } from './responseParser';
 import { GeminiProvider } from '../llm/geminiProvider';
 import { logSafe } from '../middleware/safeLogging';
+import { CoachResponseCache } from './responseCache';
+
+// Singleton cache: 10-minute TTL, max 50 entries
+const coachCache = new CoachResponseCache(10 * 60 * 1000, 50);
+
+/** Clear the coach response cache. Exported for test isolation. */
+export function clearCoachCache(): void {
+  coachCache.clear();
+}
 
 export async function handleCoachRequest(req: Request, res: Response) {
   const coachRequest = req.body as CoachRequest;
   const startTime = Date.now();
   const modelName = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite';
+
+  // Check cache before calling Gemini
+  const cacheKey = CoachResponseCache.buildKey(coachRequest);
+  const cached = coachCache.get(cacheKey);
+  if (cached) {
+    logSafe('Coach cache hit', {
+      mode: coachRequest.mode,
+      durationMs: Date.now() - startTime,
+      modelIdentifier: modelName,
+      guardPassed: true,
+      fallbackUsed: false,
+    });
+    return res.status(200).json(cached);
+  }
 
   // Check if API key is missing
   if (!process.env.GEMINI_API_KEY) {
@@ -133,6 +155,9 @@ export async function handleCoachRequest(req: Request, res: Response) {
 
     // Normalize source to gemini
     coachResponse.source = 'gemini';
+
+    // Cache successful response
+    coachCache.set(cacheKey, coachResponse);
 
     return res.status(200).json(coachResponse);
   } catch (error: unknown) {

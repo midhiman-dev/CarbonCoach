@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { CarbonProfile} from '@carboncoach/shared';
+import type { CarbonProfile } from '@carboncoach/shared';
 import { calculateFootprint } from '@carboncoach/shared';
 import { recommendActions, createWeeklyActionPlan } from '@carboncoach/shared';
 import { Card, EmptyState, StatusBadge, Button } from '../../components/ui';
