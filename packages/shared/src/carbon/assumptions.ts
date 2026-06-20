@@ -1,4 +1,4 @@
-import { FootprintCategory } from '../types/carbon';
+import type { FootprintCategory } from '../types/carbon';
 
 export const carbonEstimateDisclaimer =
   'Carbon footprint estimates are approximate and based on standard emission factors. ' +

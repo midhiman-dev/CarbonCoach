@@ -4,8 +4,7 @@ import { logSafe } from './safeLogging';
 /**
  * Custom error handler to prevent stack traces from leaking and handle malformed JSON correctly.
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function globalErrorHandler(err: any, _req: Request, res: Response, next: NextFunction) {
+export function globalErrorHandler(err: unknown, _req: Request, res: Response, next: NextFunction) {
   // If headers are already sent, delegate to default Express handler
   if (res.headersSent) {
     return next(err);
@@ -28,7 +27,7 @@ export function globalErrorHandler(err: any, _req: Request, res: Response, next:
   }
 
   // Handle payload too large errors
-  if (err.type === 'entity.too.large') {
+  if (err && typeof err === 'object' && 'type' in err && err.type === 'entity.too.large') {
     logSafe('Payload too large', {
       safeErrorCategory: 'payload_too_large',
       providerStatusCode: 413,
@@ -46,7 +45,7 @@ export function globalErrorHandler(err: any, _req: Request, res: Response, next:
   // Handle all other unexpected errors safely
   logSafe('Unexpected server error', {
     safeErrorCategory: 'internal_server_error',
-    error: err.message, // Log message internally, but don't leak it to the client
+    error: err instanceof Error ? err.message : String(err), // Log message internally, but don't leak it to the client
   });
 
   res.status(500).json({

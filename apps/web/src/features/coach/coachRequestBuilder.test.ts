@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { buildFootprintCoachRequest } from './coachRequestBuilder';
-import { FootprintEstimate, RankedCarbonAction } from '@carboncoach/shared';
+import type { FootprintEstimate, RankedCarbonAction } from '@carboncoach/shared';
 
 describe('coachRequestBuilder', () => {
   const mockFootprint: FootprintEstimate = {

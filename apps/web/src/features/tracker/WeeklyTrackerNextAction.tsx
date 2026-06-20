@@ -1,5 +1,5 @@
 import React from 'react';
-import { RankedCarbonAction } from '@carboncoach/shared';
+import type { RankedCarbonAction } from '@carboncoach/shared';
 import { Button } from '../../components/ui';
 import { formatActionCategory } from '../recommendations/recommendationViewModel';
 

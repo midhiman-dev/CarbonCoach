@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { LlmProvider, LlmGenerationOptions } from './llmProvider';
+import type { LlmProvider, LlmGenerationOptions } from './llmProvider';
 import { withTimeout } from './timeout';
 
 export class GeminiProvider implements LlmProvider {

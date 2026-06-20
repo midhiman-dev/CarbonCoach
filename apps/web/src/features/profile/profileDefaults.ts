@@ -1,4 +1,4 @@
-import { CarbonProfile } from '@carboncoach/shared';
+import type { CarbonProfile } from '@carboncoach/shared';
 
 export const defaultProfile: CarbonProfile = {
   commuteMode: 'metro',

@@ -5,9 +5,9 @@ import { JourneyProgress } from './JourneyProgress';
 import { NextBestActionCard } from './NextBestActionCard';
 import { Card } from '../../components/ui/Card';
 import { StatusBadge } from '../../components/ui/StatusBadge';
-import { ActiveSection } from '../../app/routes';
+import type { ActiveSection } from '../../app/routes';
 
-import { CarbonProfile, FootprintEstimate } from '@carboncoach/shared';
+import type { CarbonProfile, FootprintEstimate } from '@carboncoach/shared';
 import { formatCategoryLabel } from '../footprint';
 import { CarbonWorldScene } from '../world/CarbonWorldScene';
 
@@ -22,6 +22,46 @@ interface OverviewDashboardProps {
   };
   onNavigate: (section: ActiveSection) => void;
 }
+
+const DashboardMetricCard: React.FC<{
+  title: string;
+  description: string;
+  statusVariant: 'low' | 'moderate' | 'high' | 'info';
+  statusLabel: string;
+  buttonLabel?: string;
+  onAction?: () => void;
+}> = ({ title, description, statusVariant, statusLabel, buttonLabel, onAction }) => (
+  <Card title={title}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
+      <p style={{ margin: 0, fontSize: 'var(--font-sm)', color: 'var(--text-secondary)' }}>
+        {description}
+      </p>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: 'var(--spacing-xs)',
+        }}
+      >
+        <StatusBadge variant={statusVariant} label={statusLabel} />
+        {buttonLabel && onAction && (
+          <button
+            onClick={onAction}
+            className="btn btn-secondary"
+            style={{
+              fontSize: 'var(--font-xs)',
+              padding: 'var(--spacing-2xs) var(--spacing-xs)',
+            }}
+          >
+            {buttonLabel}
+          </button>
+        )}
+      </div>
+    </div>
+  </Card>
+);
 
 export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
   savedProfile,
@@ -59,111 +99,44 @@ export const OverviewDashboard: React.FC<OverviewDashboardProps> = ({
 
       {/* Key Status Cards Grid */}
       <div className="grid-responsive">
-        <Card title="Carbon Profile">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
-            <p style={{ margin: 0, fontSize: 'var(--font-sm)', color: 'var(--text-secondary)' }}>
-              {hasProfile
-                ? 'Your personal profile is complete.'
-                : 'Configure lifestyle details to get started.'}
-            </p>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                gap: 'var(--spacing-xs)',
-              }}
-            >
-              <StatusBadge
-                variant={hasProfile ? 'low' : 'moderate'}
-                label={hasProfile ? 'Configured' : 'Not Configured'}
-              />
-              <button
-                onClick={() => onNavigate('profile')}
-                className="btn btn-secondary"
-                style={{
-                  fontSize: 'var(--font-xs)',
-                  padding: 'var(--spacing-2xs) var(--spacing-xs)',
-                }}
-              >
-                {hasProfile ? 'Edit Profile' : 'Configure'}
-              </button>
-            </div>
-          </div>
-        </Card>
+        <DashboardMetricCard
+          title="Carbon Profile"
+          description={
+            hasProfile
+              ? 'Your personal profile is complete.'
+              : 'Configure lifestyle details to get started.'
+          }
+          statusVariant={hasProfile ? 'low' : 'moderate'}
+          statusLabel={hasProfile ? 'Configured' : 'Not Configured'}
+          buttonLabel={hasProfile ? 'Edit Profile' : 'Configure'}
+          onAction={() => onNavigate('profile')}
+        />
 
-        <Card title="Top Contributor">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
-            <p style={{ margin: 0, fontSize: 'var(--font-sm)', color: 'var(--text-secondary)' }}>
-              {estimate && estimate.topCategory
-                ? `Largest source: ${formatCategoryLabel(estimate.topCategory)}`
-                : 'Awaiting profile onboarding.'}
-            </p>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                gap: 'var(--spacing-xs)',
-              }}
-            >
-              <StatusBadge
-                variant={estimate ? 'high' : 'info'}
-                label={estimate ? 'Calculated' : 'Awaiting Profile'}
-              />
-              {estimate && (
-                <button
-                  onClick={() => onNavigate('footprint')}
-                  className="btn btn-secondary"
-                  style={{
-                    fontSize: 'var(--font-xs)',
-                    padding: 'var(--spacing-2xs) var(--spacing-xs)',
-                  }}
-                >
-                  View Footprint
-                </button>
-              )}
-            </div>
-          </div>
-        </Card>
+        <DashboardMetricCard
+          title="Top Contributor"
+          description={
+            estimate && estimate.topCategory
+              ? `Largest source: ${formatCategoryLabel(estimate.topCategory)}`
+              : 'Awaiting profile onboarding.'
+          }
+          statusVariant={estimate ? 'high' : 'info'}
+          statusLabel={estimate ? 'Calculated' : 'Awaiting Profile'}
+          buttonLabel={estimate ? 'View Footprint' : undefined}
+          onAction={estimate ? () => onNavigate('footprint') : undefined}
+        />
 
-        <Card title="Weekly Action Plan">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
-            <p style={{ margin: 0, fontSize: 'var(--font-sm)', color: 'var(--text-secondary)' }}>
-              {hasActions
-                ? `Plan includes ${weeklyPlanActionsCount} actions.`
-                : 'Plan will generate based on priority.'}
-            </p>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                gap: 'var(--spacing-xs)',
-              }}
-            >
-              <StatusBadge
-                variant={hasActions ? 'low' : 'info'}
-                label={hasActions ? 'Active' : 'Awaiting Profile'}
-              />
-              {hasActions && (
-                <button
-                  onClick={() => onNavigate('recommendations')}
-                  className="btn btn-secondary"
-                  style={{
-                    fontSize: 'var(--font-xs)',
-                    padding: 'var(--spacing-2xs) var(--spacing-xs)',
-                  }}
-                >
-                  Edit Plan
-                </button>
-              )}
-            </div>
-          </div>
-        </Card>
+        <DashboardMetricCard
+          title="Weekly Action Plan"
+          description={
+            hasActions
+              ? `Plan includes ${weeklyPlanActionsCount} actions.`
+              : 'Plan will generate based on priority.'
+          }
+          statusVariant={hasActions ? 'low' : 'info'}
+          statusLabel={hasActions ? 'Active' : 'Awaiting Profile'}
+          buttonLabel={hasActions ? 'Edit Plan' : undefined}
+          onAction={hasActions ? () => onNavigate('recommendations') : undefined}
+        />
       </div>
 
       {/* Large Grid: Daily Choice Lab & Carbon World */}

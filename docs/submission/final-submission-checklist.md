@@ -28,7 +28,7 @@ Before submitting the Prompt Wars Virtual Challenge form, verify the following c
 
 ## 4. Final Polish
 
-- [x] **Remove Placeholders:** Replace `[PLACEHOLDER_LIVE_URL]` and `[PLACEHOLDER_GITHUB_REPO_LINK]` in `README.md` and `linkedin-post-draft.md` before finalizing.
+- [x] **Remove Placeholders:** Replace live URL and GitHub repo links in `README.md` and `linkedin-post-draft.md` before finalizing.
 
 ## Final Verification Values
 

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { calculateFootprint } from './calculator';
 import { nonNegativeNumber } from './categoryCalculators';
-import { CarbonProfile } from '../types/carbon';
+import type { CarbonProfile } from '../types/carbon';
 
 describe('Carbon Footprint Engine', () => {
   const baseProfile: CarbonProfile = {

@@ -1,5 +1,5 @@
-import { FootprintCategory } from '../types/carbon';
-import { EmissionFactor } from './factorTypes';
+import type { FootprintCategory } from '../types/carbon';
+import type { EmissionFactor } from './factorTypes';
 
 const registry: EmissionFactor[] = [
   // Transport

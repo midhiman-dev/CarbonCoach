@@ -5,7 +5,7 @@ import {
   getFactorById,
   getRequiredFactorById,
 } from './factorRegistry';
-import { FootprintCategory } from '../types/carbon';
+import type { FootprintCategory } from '../types/carbon';
 
 describe('Emission Factor Registry Integrity', () => {
   it('registry should not be empty', () => {

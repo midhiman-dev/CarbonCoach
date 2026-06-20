@@ -1,6 +1,6 @@
 import React from 'react';
 import { navigationItems } from './navigation';
-import { ActiveSection } from './routes';
+import type { ActiveSection } from './routes';
 
 interface MobileNavigationProps {
   activeSection: ActiveSection;

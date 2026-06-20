@@ -1,5 +1,5 @@
 import React from 'react';
-import { CarbonProfile, WeeklyTrackerState, RankedCarbonAction } from '@carboncoach/shared';
+import type { CarbonProfile, WeeklyTrackerState, RankedCarbonAction } from '@carboncoach/shared';
 import { useCarbonWorld } from './worldViewModel';
 import { CarbonWorldScene } from './CarbonWorldScene';
 import { CarbonWorldStatus } from './CarbonWorldStatus';

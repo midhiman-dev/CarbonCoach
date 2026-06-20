@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { assumptionsCopy } from './assumptionsCopy';
-import { getFactorsByCategory, FootprintCategory } from '@carboncoach/shared';
+import type { FootprintCategory } from '@carboncoach/shared';
+import { getFactorsByCategory } from '@carboncoach/shared';
 
 export const AssumptionCategorySection: React.FC = () => {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);

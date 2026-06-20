@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBadge } from '../../components/ui';
-import { FootprintCategory } from '@carboncoach/shared';
+import type { FootprintCategory } from '@carboncoach/shared';
 import {
   formatKgCO2e,
   formatCategoryLabel,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CoachResponse } from '@carboncoach/shared';
+import type { CoachResponse } from '@carboncoach/shared';
 import { Card, StatusBadge } from '../../components/ui';
 
 interface CoachResponseCardProps {

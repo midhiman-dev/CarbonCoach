@@ -1,7 +1,7 @@
 import React from 'react';
-import { CarbonProfile } from '@carboncoach/shared';
+import type { CarbonProfile } from '@carboncoach/shared';
 import { Card, Input, Select, Button } from '../../components/ui';
-import { ProfileErrors } from './profileValidation';
+import type { ProfileErrors } from './profileValidation';
 import { profileCopy } from './profileCopy';
 
 interface ProfileFormProps {
@@ -13,6 +13,25 @@ interface ProfileFormProps {
   savedProfile: CarbonProfile | null;
   onNavigateToPrivacy?: () => void;
 }
+
+const FormSection: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
+  <fieldset style={{ border: 'none', padding: 0, margin: `0 0 var(--spacing-lg) 0` }}>
+    <legend
+      style={{
+        fontSize: 'var(--font-lg)',
+        fontWeight: 'bold',
+        marginBottom: 'var(--spacing-md)',
+        borderBottom: '1px solid var(--border-glass)',
+        width: '100%',
+        paddingBottom: 'var(--spacing-xs)',
+        color: 'var(--text-primary)',
+      }}
+    >
+      {title}
+    </legend>
+    {children}
+  </fieldset>
+);
 
 export const ProfileForm: React.FC<ProfileFormProps> = ({
   formData,
@@ -32,20 +51,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
 
         <form onSubmit={onSubmit} noValidate>
           {/* Transport Section */}
-          <fieldset style={{ border: 'none', padding: 0, margin: `0 0 var(--spacing-lg) 0` }}>
-            <legend
-              style={{
-                fontSize: 'var(--font-lg)',
-                fontWeight: 'bold',
-                marginBottom: 'var(--spacing-md)',
-                borderBottom: '1px solid var(--border-glass)',
-                width: '100%',
-                paddingBottom: 'var(--spacing-xs)',
-                color: 'var(--text-primary)',
-              }}
-            >
-              {profileCopy.sections.transport.title}
-            </legend>
+          <FormSection title={profileCopy.sections.transport.title}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
               <Select
                 id="commuteMode"
@@ -74,23 +80,10 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
                 required
               />
             </div>
-          </fieldset>
+          </FormSection>
 
           {/* Food Section */}
-          <fieldset style={{ border: 'none', padding: 0, margin: `0 0 var(--spacing-lg) 0` }}>
-            <legend
-              style={{
-                fontSize: 'var(--font-lg)',
-                fontWeight: 'bold',
-                marginBottom: 'var(--spacing-md)',
-                borderBottom: '1px solid var(--border-glass)',
-                width: '100%',
-                paddingBottom: 'var(--spacing-xs)',
-                color: 'var(--text-primary)',
-              }}
-            >
-              {profileCopy.sections.food.title}
-            </legend>
+          <FormSection title={profileCopy.sections.food.title}>
             <Select
               id="dietPattern"
               name="dietPattern"
@@ -105,23 +98,10 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
               error={errors.dietPattern}
               required
             />
-          </fieldset>
+          </FormSection>
 
           {/* Home Energy Section */}
-          <fieldset style={{ border: 'none', padding: 0, margin: `0 0 var(--spacing-lg) 0` }}>
-            <legend
-              style={{
-                fontSize: 'var(--font-lg)',
-                fontWeight: 'bold',
-                marginBottom: 'var(--spacing-md)',
-                borderBottom: '1px solid var(--border-glass)',
-                width: '100%',
-                paddingBottom: 'var(--spacing-xs)',
-                color: 'var(--text-primary)',
-              }}
-            >
-              {profileCopy.sections.homeEnergy.title}
-            </legend>
+          <FormSection title={profileCopy.sections.homeEnergy.title}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
               <Input
                 id="monthlyHomeEnergyKwh"
@@ -148,23 +128,10 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
                 min="1"
               />
             </div>
-          </fieldset>
+          </FormSection>
 
           {/* Shopping & Deliveries Section */}
-          <fieldset style={{ border: 'none', padding: 0, margin: `0 0 var(--spacing-lg) 0` }}>
-            <legend
-              style={{
-                fontSize: 'var(--font-lg)',
-                fontWeight: 'bold',
-                marginBottom: 'var(--spacing-md)',
-                borderBottom: '1px solid var(--border-glass)',
-                width: '100%',
-                paddingBottom: 'var(--spacing-xs)',
-                color: 'var(--text-primary)',
-              }}
-            >
-              {profileCopy.sections.shopping.title}
-            </legend>
+          <FormSection title={profileCopy.sections.shopping.title}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
               <Select
                 id="shoppingFrequency"
@@ -193,23 +160,10 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
                 required
               />
             </div>
-          </fieldset>
+          </FormSection>
 
           {/* Flights Section */}
-          <fieldset style={{ border: 'none', padding: 0, margin: `0 0 var(--spacing-lg) 0` }}>
-            <legend
-              style={{
-                fontSize: 'var(--font-lg)',
-                fontWeight: 'bold',
-                marginBottom: 'var(--spacing-md)',
-                borderBottom: '1px solid var(--border-glass)',
-                width: '100%',
-                paddingBottom: 'var(--spacing-xs)',
-                color: 'var(--text-primary)',
-              }}
-            >
-              {profileCopy.sections.flights.title}
-            </legend>
+          <FormSection title={profileCopy.sections.flights.title}>
             <Input
               id="flightsPerYear"
               name="flightsPerYear"
@@ -222,23 +176,10 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
               min="0"
               required
             />
-          </fieldset>
+          </FormSection>
 
           {/* Coaching Preference Section */}
-          <fieldset style={{ border: 'none', padding: 0, margin: `0 0 var(--spacing-lg) 0` }}>
-            <legend
-              style={{
-                fontSize: 'var(--font-lg)',
-                fontWeight: 'bold',
-                marginBottom: 'var(--spacing-md)',
-                borderBottom: '1px solid var(--border-glass)',
-                width: '100%',
-                paddingBottom: 'var(--spacing-xs)',
-                color: 'var(--text-primary)',
-              }}
-            >
-              {profileCopy.sections.preference.title}
-            </legend>
+          <FormSection title={profileCopy.sections.preference.title}>
             <Select
               id="preference"
               name="preference"
@@ -253,7 +194,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
               error={errors.preference}
               required
             />
-          </fieldset>
+          </FormSection>
 
           {/* Form Actions */}
           <div

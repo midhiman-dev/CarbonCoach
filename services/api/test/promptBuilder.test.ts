@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { buildCoachPrompt } from '../src/coach/promptBuilder';
-import { FootprintCoachRequest, ChoiceCoachRequest } from '@carboncoach/shared';
+import type { FootprintCoachRequest, ChoiceCoachRequest } from '@carboncoach/shared';
 
 describe('promptBuilder', () => {
   it('should build a valid footprint coach prompt with constraints', () => {

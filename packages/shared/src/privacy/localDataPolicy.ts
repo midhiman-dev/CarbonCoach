@@ -1,4 +1,4 @@
-import { LocalDataPolicyItem } from '../types/privacy';
+import type { LocalDataPolicyItem } from '../types/privacy';
 
 export const localDataPolicyItems: LocalDataPolicyItem[] = [
   {

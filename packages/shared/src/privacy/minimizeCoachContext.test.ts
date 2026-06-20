@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { summarizeFootprintContextForCoach } from './minimizeCoachContext';
-import { FootprintEstimate, UserPreference } from '../types/carbon';
-import { RankedCarbonAction } from '../types/actions';
+import type { FootprintEstimate, UserPreference } from '../types/carbon';
+import type { RankedCarbonAction } from '../types/actions';
 
 describe('minimizeCoachContext', () => {
   const mockFootprint: FootprintEstimate = {

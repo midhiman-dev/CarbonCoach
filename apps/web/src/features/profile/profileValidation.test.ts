@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { validateProfile } from './profileValidation';
-import { CarbonProfile } from '@carboncoach/shared';
+import type { CarbonProfile } from '@carboncoach/shared';
 
 describe('validateProfile', () => {
   const validProfile: CarbonProfile = {

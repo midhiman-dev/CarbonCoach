@@ -1,7 +1,8 @@
-import {
+import type {
   CoachResponse,
   FootprintCoachRequest,
-  ChoiceCoachRequest,
+  ChoiceCoachRequest} from '@carboncoach/shared';
+import {
   validateCoachResponse,
 } from '@carboncoach/shared';
 

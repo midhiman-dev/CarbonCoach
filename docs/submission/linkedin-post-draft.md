@@ -14,8 +14,8 @@ Building this taught me some incredible lessons about AI safety and software eng
 
 Check it out!
 Live App: https://carboncoach-192872123770.asia-south1.run.app/
-GitHub Repo: [PLACEHOLDER_GITHUB_REPO_LINK]
+GitHub Repo: https://github.com/midhiman-dev/CarbonCoach
 
-[PLACEHOLDER_DEMO_SCREENSHOT_IMAGE]
+*Demo screenshot: see the LinkedIn post and live app*
 
 #PromptWars #GenAI #GoogleCloud #Sustainability #SoftwareEngineering #Gemini

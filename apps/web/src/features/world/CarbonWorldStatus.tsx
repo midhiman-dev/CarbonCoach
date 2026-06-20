@@ -1,5 +1,5 @@
 import React from 'react';
-import { CarbonWorldState } from '@carboncoach/shared';
+import type { CarbonWorldState } from '@carboncoach/shared';
 import { ProgressMeter } from '../../components/ui/ProgressMeter';
 
 interface CarbonWorldStatusProps {

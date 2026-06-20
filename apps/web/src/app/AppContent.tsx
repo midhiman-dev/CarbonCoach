@@ -1,7 +1,8 @@
 import React from 'react';
-import { ActiveSection } from './routes';
+import type { ActiveSection } from './routes';
 import { SectionHeader } from '../components/ui';
-import { CarbonProfile, RankedCarbonAction, WeeklyTrackerState } from '@carboncoach/shared';
+import type { CarbonProfile, RankedCarbonAction, WeeklyTrackerState } from '@carboncoach/shared';
+import type { calculateFootprint } from '@carboncoach/shared';
 import { ProfileOnboarding } from '../features/profile';
 import { FootprintSummary } from '../features/footprint';
 import { RecommendationPanel } from '../features/recommendations';
@@ -18,7 +19,7 @@ interface AppContentProps {
   savedProfile: CarbonProfile | null;
   setSavedProfile: (profile: CarbonProfile | null) => void;
   saveStoredProfile: (profile: CarbonProfile) => void;
-  estimate: ReturnType<typeof import('@carboncoach/shared').calculateFootprint> | null;
+  estimate: ReturnType<typeof calculateFootprint> | null;
   weeklyPlanActions: RankedCarbonAction[];
   progress: { completed: number; total: number; percent: number };
   trackerState: WeeklyTrackerState | null;

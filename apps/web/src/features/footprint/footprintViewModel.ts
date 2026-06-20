@@ -1,4 +1,4 @@
-import { FootprintCategory, ConfidenceLevel } from '@carboncoach/shared';
+import type { FootprintCategory, ConfidenceLevel } from '@carboncoach/shared';
 
 /**
  * Formats a kg CO2e value to a user-friendly string.

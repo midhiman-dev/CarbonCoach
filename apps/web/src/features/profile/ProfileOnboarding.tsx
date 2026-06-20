@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { CarbonProfile } from '@carboncoach/shared';
+import type { CarbonProfile } from '@carboncoach/shared';
 import { defaultProfile } from './profileDefaults';
-import { validateProfile, ProfileErrors } from './profileValidation';
+import type { ProfileErrors } from './profileValidation';
+import { validateProfile } from './profileValidation';
 import { ProfileSuccessView } from './ProfileSuccessView';
 import { ProfileForm } from './ProfileForm';
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChoiceScenario, UserPreference, CoachTone, CoachResponse } from '@carboncoach/shared';
+import type { ChoiceScenario, UserPreference, CoachTone, CoachResponse } from '@carboncoach/shared';
 import { Card, Button, Select } from '../../components/ui';
 import { buildChoiceCoachRequest } from './choiceCoachRequestBuilder';
 import { requestChoiceCoach } from './coachClient';

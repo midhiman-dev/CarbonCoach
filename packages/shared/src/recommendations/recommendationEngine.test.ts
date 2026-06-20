@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { recommendActions } from './recommendationEngine';
 import { createWeeklyActionPlan } from './weeklyPlan';
-import { FootprintEstimate, FootprintCategory } from '../types/carbon';
+import type { FootprintEstimate, FootprintCategory } from '../types/carbon';
 
 function createFootprint(
   topCategory: FootprintCategory | null,

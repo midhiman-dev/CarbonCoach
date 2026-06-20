@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { FootprintSummary } from './FootprintSummary';
-import { CarbonProfile } from '@carboncoach/shared';
+import type { CarbonProfile } from '@carboncoach/shared';
 
 const mockProfile: CarbonProfile = {
   commuteMode: 'car',

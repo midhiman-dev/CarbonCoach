@@ -1,6 +1,6 @@
 import React from 'react';
 import { overviewCopy } from './overviewCopy';
-import { ActiveSection } from '../../app/routes';
+import type { ActiveSection } from '../../app/routes';
 
 interface JourneyProgressProps {
   hasProfile: boolean;

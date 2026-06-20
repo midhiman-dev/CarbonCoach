@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { FootprintCoachPanel } from './FootprintCoachPanel';
-import { FootprintEstimate, RankedCarbonAction, CoachResponse } from '@carboncoach/shared';
+import type { FootprintEstimate, RankedCarbonAction, CoachResponse } from '@carboncoach/shared';
 
 describe('FootprintCoachPanel Component', () => {
   const mockFootprint: FootprintEstimate = {

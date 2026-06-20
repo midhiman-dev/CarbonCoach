@@ -1,5 +1,5 @@
 import React from 'react';
-import { FootprintCategory } from '@carboncoach/shared';
+import type { FootprintCategory } from '@carboncoach/shared';
 import { formatCategoryLabel } from './footprintViewModel';
 import { CATEGORY_ICONS } from './footprintConstants';
 

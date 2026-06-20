@@ -1,4 +1,4 @@
-import { CarbonProfile, CategoryFootprintEstimate, ConfidenceLevel } from '../types/carbon';
+import type { CarbonProfile, CategoryFootprintEstimate, ConfidenceLevel } from '../types/carbon';
 import { getRequiredFactorById } from './factorRegistry';
 import { categoryAssumptionNotes } from './assumptions';
 

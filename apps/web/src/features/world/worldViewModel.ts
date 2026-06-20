@@ -1,11 +1,12 @@
 import { useMemo } from 'react';
-import {
+import type {
   CarbonProfile,
   WeeklyTrackerState,
   RankedCarbonAction,
+  CarbonWorldState} from '@carboncoach/shared';
+import {
   calculateTrackerProgress,
-  createCarbonWorldState,
-  CarbonWorldState,
+  createCarbonWorldState
 } from '@carboncoach/shared';
 
 export interface UseCarbonWorldProps {

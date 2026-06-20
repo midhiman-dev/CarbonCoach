@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { WeeklyActionPlan } from '@carboncoach/shared';
+import type { WeeklyActionPlan } from '@carboncoach/shared';
 import { Card, StatusBadge, Button } from '../../components/ui';
 import { recommendationCopy } from './recommendationCopy';
 import { formatActionCategory, formatImpactBand } from './recommendationViewModel';

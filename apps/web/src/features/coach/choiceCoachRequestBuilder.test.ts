@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { buildChoiceCoachRequest } from './choiceCoachRequestBuilder';
-import { ChoiceScenario } from '@carboncoach/shared';
+import type { ChoiceScenario } from '@carboncoach/shared';
 
 describe('choiceCoachRequestBuilder', () => {
   const mockScenario: ChoiceScenario = {

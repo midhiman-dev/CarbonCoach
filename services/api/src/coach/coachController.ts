@@ -1,6 +1,7 @@
 import type { Request, Response } from 'express';
+import type {
+  CoachRequest} from '@carboncoach/shared';
 import {
-  CoachRequest,
   validateCoachResponse,
   validateGeneratedNumbers,
   collectCoachResponseTextFields,

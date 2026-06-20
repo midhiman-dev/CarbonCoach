@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { CarbonProfile } from '@carboncoach/shared';
+import type { CarbonProfile } from '@carboncoach/shared';
 import { Card, Button, EmptyState } from '../../components/ui';
 import { useWeeklyTracker } from './trackerViewModel';
 
-import {
+import type {
   WeeklyTrackerState,
-  RankedCarbonAction,
+  RankedCarbonAction} from '@carboncoach/shared';
+import {
   createCarbonWorldState,
 } from '@carboncoach/shared';
 

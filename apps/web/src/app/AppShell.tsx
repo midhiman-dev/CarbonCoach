@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { navigationItems } from './navigation';
-import { ActiveSection } from './routes';
+import type { ActiveSection } from './routes';
 import { Container } from '../components/ui';
-import { CarbonProfile, calculateFootprint } from '@carboncoach/shared';
+import type { CarbonProfile} from '@carboncoach/shared';
+import { calculateFootprint } from '@carboncoach/shared';
 import { loadStoredProfile, saveStoredProfile, useWeeklyTracker } from '../features/tracker';
 import { MobileNavigation } from './MobileNavigation';
 import { DesktopNavigation } from './DesktopNavigation';

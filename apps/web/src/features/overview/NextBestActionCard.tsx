@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
-import { ActiveSection } from '../../app/routes';
+import type { ActiveSection } from '../../app/routes';
 
 interface NextBestActionCardProps {
   hasProfile: boolean;

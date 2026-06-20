@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { requestFootprintCoach, requestChoiceCoach } from './coachClient';
-import { FootprintCoachRequest, ChoiceCoachRequest, CoachResponse } from '@carboncoach/shared';
+import type { FootprintCoachRequest, ChoiceCoachRequest, CoachResponse } from '@carboncoach/shared';
 
 describe('coachClient', () => {
   const mockFootprintRequest: FootprintCoachRequest = {

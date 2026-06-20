@@ -1,5 +1,5 @@
 import React from 'react';
-import { CarbonProfile } from '@carboncoach/shared';
+import type { CarbonProfile } from '@carboncoach/shared';
 import { Card, Button } from '../../components/ui';
 import { profileCopy } from './profileCopy';
 

@@ -1,5 +1,5 @@
-import { FootprintEstimate, UserPreference } from '../types/carbon';
-import { WeeklyActionPlan } from '../types/actions';
+import type { FootprintEstimate, UserPreference } from '../types/carbon';
+import type { WeeklyActionPlan } from '../types/actions';
 import { recommendActions } from './recommendationEngine';
 
 export function createWeeklyActionPlan(input: {

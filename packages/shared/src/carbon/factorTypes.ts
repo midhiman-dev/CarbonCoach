@@ -1,4 +1,4 @@
-import { FootprintCategory, ConfidenceLevel } from '../types/carbon';
+import type { FootprintCategory, ConfidenceLevel } from '../types/carbon';
 
 export type EmissionFactorUnit =
   | 'kgCO2e_per_km'

@@ -1,10 +1,11 @@
-import {
+import type {
   FootprintEstimate,
   RankedCarbonAction,
   UserPreference,
   CoachTone,
   FootprintCoachRequest,
-  WeeklyActionPlan,
+  WeeklyActionPlan} from '@carboncoach/shared';
+import {
   extractAllowedNumbersFromFootprintContext,
 } from '@carboncoach/shared';
 

@@ -1,4 +1,4 @@
-import { RedactionMatch, RedactionResult } from '../types/privacy';
+import type { RedactionMatch, RedactionResult } from '../types/privacy';
 
 // Very basic deterministic regexes. Not a comprehensive PII scanner, just a guard rail.
 const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;

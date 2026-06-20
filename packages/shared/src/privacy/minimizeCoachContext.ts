@@ -1,6 +1,6 @@
-import { FootprintEstimate, UserPreference } from '../types/carbon';
-import { RankedCarbonAction, WeeklyActionPlan } from '../types/actions';
-import { CoachContextPrivacySummary } from '../types/privacy';
+import type { FootprintEstimate, UserPreference } from '../types/carbon';
+import type { RankedCarbonAction, WeeklyActionPlan } from '../types/actions';
+import type { CoachContextPrivacySummary } from '../types/privacy';
 
 export interface MinimizedFootprintContext {
   monthlyTotalKgCO2e: number;

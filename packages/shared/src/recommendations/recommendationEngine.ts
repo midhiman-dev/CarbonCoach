@@ -1,5 +1,5 @@
-import { FootprintEstimate, UserPreference } from '../types/carbon';
-import { RankedCarbonAction } from '../types/actions';
+import type { FootprintEstimate, UserPreference } from '../types/carbon';
+import type { RankedCarbonAction } from '../types/actions';
 import { getActionCatalog } from './actionCatalog';
 
 export function recommendActions(input: {

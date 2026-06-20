@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RankedCarbonAction } from '@carboncoach/shared';
+import type { RankedCarbonAction } from '@carboncoach/shared';
 import { Card, StatusBadge } from '../../components/ui';
 import {
   formatActionCategory,

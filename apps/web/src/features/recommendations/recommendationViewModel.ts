@@ -1,5 +1,5 @@
-import { FootprintCategory } from '@carboncoach/shared';
-import { ActionEffort, CostEffect } from '@carboncoach/shared';
+import type { FootprintCategory } from '@carboncoach/shared';
+import type { ActionEffort, CostEffect } from '@carboncoach/shared';
 
 /**
  * Maps a FootprintCategory key to a reader-friendly display label.

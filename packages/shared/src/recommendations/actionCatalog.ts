@@ -1,4 +1,4 @@
-import { CarbonAction } from '../types/actions';
+import type { CarbonAction } from '../types/actions';
 
 export const actionCatalog: CarbonAction[] = [
   // Transport

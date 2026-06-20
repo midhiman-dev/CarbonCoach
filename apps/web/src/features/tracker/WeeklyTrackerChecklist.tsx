@@ -1,5 +1,5 @@
 import React from 'react';
-import { RankedCarbonAction, WeeklyTrackerState } from '@carboncoach/shared';
+import type { RankedCarbonAction, WeeklyTrackerState } from '@carboncoach/shared';
 import { formatActionCategory } from '../recommendations/recommendationViewModel';
 
 interface WeeklyTrackerChecklistProps {

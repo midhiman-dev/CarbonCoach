@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, SectionHeader, EmptyState, Button } from '../../components/ui';
-import { getChoiceScenarios, compareChoiceScenario, CarbonProfile } from '@carboncoach/shared';
+import type { CarbonProfile } from '@carboncoach/shared';
+import { getChoiceScenarios, compareChoiceScenario } from '@carboncoach/shared';
 import { ChoiceScenarioSelector } from './ChoiceScenarioSelector';
 import { ChoiceComparisonPanel } from './ChoiceComparisonPanel';
 import { choiceCopy } from './choiceCopy';

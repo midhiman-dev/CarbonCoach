@@ -2,10 +2,11 @@ import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { WeeklyTracker } from './WeeklyTracker';
 import type { CarbonProfile } from '@carboncoach/shared';
+import type * as SharedTypes from '@carboncoach/shared';
 
 // Mock shared dependency helpers
 vi.mock('@carboncoach/shared', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@carboncoach/shared')>();
+  const actual = await importOriginal<typeof SharedTypes>();
   return {
     ...actual,
     createCurrentWeekId: () => '2026-06-15',

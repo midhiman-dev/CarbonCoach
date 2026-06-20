@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { ChoiceCoachPanel } from './ChoiceCoachPanel';
-import { ChoiceScenario, CoachResponse } from '@carboncoach/shared';
+import type { ChoiceScenario, CoachResponse } from '@carboncoach/shared';
 
 describe('ChoiceCoachPanel Component', () => {
   const mockScenario: ChoiceScenario = {
